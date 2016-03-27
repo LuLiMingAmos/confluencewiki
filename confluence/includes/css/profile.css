@@ -1,0 +1,59 @@
+body.profile #main {
+    padding: 0;
+}
+
+body.profile #main-header {
+    padding: 20px;
+    margin-bottom: 0;
+    background-color: #f5f5f5;
+}
+
+.user-profile .page-item {
+    padding: 20px;
+}
+
+.user-profile form.aui span.field-value {
+    font-weight: normal;
+}
+
+.user-profile .content-navigation { 
+	float: none;
+}
+
+.user-profile .content-navigation .ajs-menu-bar {
+	padding: 0;
+	float:right;
+}
+
+.user-profile .profile-section + .profile-section {
+	margin-top: 20px;
+}
+
+.profile-page .profile-menu {
+    padding: 20px 10px;
+    width: 200px;
+    height: 440px;
+    min-width: 200px;
+}
+
+.profile-page .profile-main {
+    border-left: 1px solid #CCC;
+}
+
+.profile-page .page-group {
+    margin: 0;
+}
+
+.user-profile .profile-info {
+	min-width: 400px;
+}
+
+.user-profile .content-navigation {
+	position: absolute;
+	top: -119px;
+	width: 100%;
+}
+
+.profile-info .first {
+	margin-top: 0;
+}

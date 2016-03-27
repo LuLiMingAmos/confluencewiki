@@ -1,0 +1,7 @@
+<p>$action.getText('themes.description')</p>
+<p>$action.getText('themes.description.text.1')</p>
+<p>$action.getText('themes.description.text.2')</p>
+<p>$action.getText('space.admins.can.select.different.theme')</p>
+
+#doc("help.themes.overview" "$action.getText('more.about.themes')")
+

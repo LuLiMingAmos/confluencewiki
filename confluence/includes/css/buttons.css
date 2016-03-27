@@ -1,0 +1,63 @@
+.aui-button2 {
+  background-color: #eee;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 3px;
+  border: 1px solid #aaa;
+  color: #000;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: bold;
+  margin: 0;
+  padding: 3px 9px;
+  vertical-align: baseline;
+}
+.aui-button2:hover, .aui-button2:focus {
+  background-image: -o-linear-gradient(#ffffff, #dfdfdf);
+  background-image: -ms-linear-gradient(#ffffff, #dfdfdf);
+  background-image: -moz-linear-gradient(#ffffff, #dfdfdf);
+  background-image: -webkit-linear-gradient(#ffffff, #dfdfdf);
+  background-image: linear-gradient(#ffffff, #dfdfdf);
+  border-color: #666;
+}
+/* Need this to control button height in Firefox
+ * See http://www.experimentgarden.com/2010/11/firefox-buttontext-height-and-padding.html
+ */
+.aui-button2::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* Hero style buttons */
+
+.aui-nav.aui-style-blocks .aui-nav-link.aui-style-hero
+{
+    padding: 4px 10px;
+}
+
+.aui-button2.aui-style-hero {
+  background-color: #366ea7;
+  background-image: -moz-linear-gradient(top, #5a88b7, #366ea7);
+  background-image: -ms-linear-gradient(top, #5a88b7, #366ea7);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5a88b7), to(#366ea7));
+  background-image: -webkit-linear-gradient(top, #5a88b7, #366ea7);
+  background-image: -o-linear-gradient(top, #5a88b7, #366ea7);
+  background-image: linear-gradient(top, #5a88b7, #366ea7);
+  background-repeat: repeat-x;
+  border: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 2px 3px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  padding: 4px 10px;
+}
+.aui-button2.aui-style-hero:hover, .aui-button2.aui-style-hero:focus {
+  background-color: #3C7AB9;
+  background-image: -moz-linear-gradient(top, #6e96bf, #3c7ab9);
+  background-image: -ms-linear-gradient(top, #6e96bf, #3c7ab9);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6e96bf), to(#3c7ab9));
+  background-image: -webkit-linear-gradient(top, #6e96bf, #3c7ab9);
+  background-image: -o-linear-gradient(top, #6e96bf, #3c7ab9);
+  background-image: linear-gradient(top, #6e96bf, #3c7ab9);
+  text-decoration: none;
+}

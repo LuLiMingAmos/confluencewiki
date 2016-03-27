@@ -1,0 +1,13 @@
+@white: #ffffff;
+@mediumGray: #707070;
+
+// Need to hide the IE8 and IE9 placeholder polyfill because it should only appear on mobile
+#login-container .placeholded {
+    color: @white;
+}
+
+@media screen and (max-width: 400px) {
+    #login-container .placeholded {
+        color: @mediumGray;
+    }
+}

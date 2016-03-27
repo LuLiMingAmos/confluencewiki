@@ -1,0 +1,7 @@
+
+<p>$i18n.getText("global.default.language.desc")</p>
+#if ($confluenceFlavour == 'VANILLA')
+    <p>$i18n.getText("download.more.languages", [$i18n.getText("url.atlassian.translations")])</p>
+#else
+    <p>$i18n.getText('language.setting.in.development.desc', ['https://confluence.atlassian.com/x/fTIvEw'])</p>
+#end

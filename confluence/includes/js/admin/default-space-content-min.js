@@ -1,0 +1,1 @@
+AJS.toInit(function(a){a("#customise-button").click(function(){a("form .edit-content").removeClass("hidden");a("form .default-content").addClass("hidden");a("#default-space-content-form textarea").focus();return false})});

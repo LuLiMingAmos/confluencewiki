@@ -1,0 +1,23 @@
+#if ($action.isSpaceAdminUser() && $possibleAlternativesInTrash.size() > 0 && $actionErrors.size() == 0)
+    #set($pageTitle = $action.getText("alternatives.title.intrash", [$action.title]))
+    #set($trashDesc = $action.getText("page.in.trash.restore"))
+    #set($trashList = $possibleAlternativesInTrash)
+    #set($key = $space.key)
+    #parse("/pages/viewtrash.vm")
+#else
+    <html>
+        <head>
+            <title>$action.title</title>
+            <meta name="infopanel-width" content="25%">
+        </head>
+
+        #applyDecorator ("root")
+            #decoratorParam("helper" $action.helper)
+            #decoratorParam("context" "page")
+            #decoratorParam("mode"  "view-information")
+            <body>
+                #parse("/pages/alternativepages-results.vm")
+            </body>
+        #end
+    </html>
+#end

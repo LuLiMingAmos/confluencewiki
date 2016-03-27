@@ -1,0 +1,80 @@
+<html>
+<head>
+    <title>$i18n.getText("properties.attachment", ["$generalUtil.htmlEncode($newFileName)"])#if($page.title) - $page.title#end</title>
+</head>
+
+    #set ($confPage = $action.page)
+	#set ($labels = $attachment.labels)
+	#set ($labelable = $attachment)
+
+    <content tag="title-text-span">$i18n.getText("properties.attachment", ["$generalUtil.htmlEncode($newFileName)"])</content>
+
+    <!-- call the page decorator -->
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("mode" "view-attachment")
+        #decoratorParam("context" "$action.page.type")
+
+
+	<body>
+        #requireResource("confluence.web.resources:attachments")
+        <div class="page-metadata">
+            <ul>
+                <li class="page-metadata-modification-info">
+                    $action.getText('added.on.date.by.user.edited.on.date', ["$action.dateFormatter.formatDateTime( $attachment.creationDate )", "#userLink ($attachment.creator)","$action.dateFormatter.formatDateTime( $attachment.lastModificationDate )"])
+                </li>
+            </ul>
+        </div>
+        <form name="editattachment" method="POST" action="doeditattachment.action?pageId=$page.id&attachmentBean.fileName=$generalUtil.urlEncode($attachment.fileName)" class="aui">
+            #form_xsrfToken()
+            #tag ("Hidden" "name='pageId'" "value='$pageId'")
+            #tag ("Hidden" "name='isFromPageView'" "value='$isFromPageView'")
+
+            <div class="attachment-field">
+            #fielderror ('rename')
+            #bodytag ( "TextField" "label='file.name'" "name='newFileName'" "theme='aui'")
+                #param ("tabindex" "1")
+            #end
+            </div>
+
+			<div class="attachment-field">
+                <div class="field-group">
+                    <label>$action.getText("labels.title")</label>
+                    #parse("/labels/labels-editor-content.vm")
+                </div>
+            </div>
+
+            <div class="attachment-field">
+            #fielderror ('newComment')
+            #bodytag ( "TextField" "label='new.comment'" "name='newComment'" "theme='aui'")
+                #param ("tabindex" "2")
+                #param ("maxlength" "255")
+            #end
+            </div>
+
+            <div class="attachment-field">
+            #fielderror ('newContentType')
+            #bodytag ( "TextField" "label='new.contentType'" "name='newContentType'""theme='aui'")
+                #param ("tabindex" "3")
+                #param ("maxlength" "255")
+            #end
+            </div>
+
+            <div class="attachment-field">
+            #fielderror ('move')
+            #bodytag ( "TextField" "label='page.word'" "name='newParentPage'" "theme='aui'")
+                #param ("tabindex" "4")
+                #param ("maxlength" "255")
+                #param ("description" "$action.getText('move.attachment.desc')")
+            #end
+
+            </div>
+            #bodytag("Submit" "theme='aui'")
+                #param("submitValue" "$i18n.getText('save.name')")
+                #param ("editMode" "true")
+                #param ("tabindex" "5")
+            #end
+        </form>
+	</body>
+    #end
+</html>

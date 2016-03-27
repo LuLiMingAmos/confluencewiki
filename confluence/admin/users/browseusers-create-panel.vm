@@ -1,0 +1,51 @@
+#* @vtlvariable name="action" type="com.atlassian.confluence.user.actions.SearchUsersAction" *#
+## Used in browseusers.vm
+
+#if ($action.licensedToAddMoreUsers)
+    <div class="user-forms-container">
+        <div id="create-user-form" class="cell">
+            #applyDecorator("form-aui")
+                #decoratorParam("formName" "createuserform")
+                #decoratorParam("submitAction" "docreateuser.action")
+                #decoratorParam("editMode" "true")
+
+                <h2>$i18n.getText('heading.create.user')</h2>
+                #form_xsrfToken()
+                <fieldset>
+                    <legend>$i18n.getText('heading.create.user')</legend>
+                    #set ($requiredText = $i18n.getText('required.field'))
+                    #bodytag( "TextField" "label='username.name'" "id=username" "name='username'" "theme='aui'")
+                        #param("description" "$i18n.getText('username.lowercase')")
+                        #param("required" "$requiredText")
+                    #end
+                    #bodytag( "TextField" "label='fullname.name'" "id=fullname" "name='fullName'" "theme='aui'")
+                        #param("required" "$requiredText")
+                    #end
+                    #bodytag( "TextField" "label='email.name.withdash'" "id=email" "name='email'" "theme='aui'")
+                        #param("required" "$requiredText")
+                    #end
+                    #if($action.mailServerConfigured)
+                        #tag( "Component" "template='onofflist.vm'" "label='create.user.form.hint'" "id=sendEmail" "name='sendEmail'" "theme='aui'" "value='$action.sendEmail'")
+                    #end
+                    #bodytag( "Password" "label='password.name'" "id=password" "name='password'" "theme='aui'" "cssClass='medium-field'")
+                        #param("required" "$requiredText")
+                    #end
+                    #bodytag( "Password" "label='confirm.password'" "id=confirm" "name='confirm'" "theme='aui'" "cssClass='medium-field'")
+                        #param("required" "$requiredText")
+                    #end
+
+                    <div class="buttons-container">
+                        <div class="buttons">
+                            <input type="submit" class="aui-button aui-button-primary" value="$i18n.getText('add.word')">
+                        </div>
+                    </div>
+                </fieldset>
+            #end
+        </div>
+
+    </div>
+#else
+    <div id="license-error" class="errorBox">
+        $action.licenseErrorHtml
+    </div>
+#end

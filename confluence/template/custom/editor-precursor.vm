@@ -1,0 +1,41 @@
+#*
+Renders the title input field for blog and page edits.
+
+-- Required Parameters:
+--   * $title             -- Title of the page
+--   * $isLinkCreation    --
+--   * $titlePlaceholder  -- Default content title
+*#
+###if ($parameters.title)
+##    #set ($title = "$parameters.title")
+###end
+<div id="editor-precursor">
+    <div class="cell">
+    ## Title text field
+
+        <div id="content-title-div">
+            #bodytag ("TextField" "name='title'" "theme='aui'")
+                #param ("id" "content-title")
+                #param ("cssClass" "pagetitle")
+                #param ("disabled" $isLinkCreation)
+                #if ($isTitleReadOnly == "true")
+                    #param ("readonly" "readonly")
+                #end
+                #param ("tabindex" "1")
+                #param ("autocomplete" "off")
+                #param ("placeholder" "$!titlePlaceholder")
+            #end
+        </div>
+
+        <div id="editor-messages">
+            #parse ("/includes/alert-anonymous.vm")
+
+                ## Drafts and heartbeat messages
+                #parse ("/pages/includes/editpage-notifications.vm")
+
+        </div>
+        <div id="all-messages">
+            #parse ("/template/includes/actionerrors.vm")
+        </div>
+    </div>
+</div>

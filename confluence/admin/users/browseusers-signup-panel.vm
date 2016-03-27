@@ -1,0 +1,15 @@
+#if ($action.licensedToAddMoreUsers)
+##    <div>You can add users to Confluence in a number of ways. Talk to a tech writer.</div>
+    <div id="user-forms-container">
+        <div id="signup-user-errors"></div>
+        #foreach ($webPanel in $webInterfaceManager.getDisplayableWebPanels("atl.admin.users.signup", $action.context))
+            <div class="cell">
+                $!webPanel.getHtml($action.context)
+            </div>
+        #end
+    </div>
+#else
+    <div id="license-error" class="errorBox">
+        $action.licenseErrorHtml
+    </div>
+#end

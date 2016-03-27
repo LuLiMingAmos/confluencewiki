@@ -1,0 +1,53 @@
+.panel,
+.alertPanel,
+.infoPanel {
+    color: #333;
+    padding: 0;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.alertPanel, .infoPanel, .panelContent {
+    padding: 10px;
+}
+
+.alertPanel {
+    border-color: #c00;
+}
+
+.infoPanel {
+    border-color: #69c;
+}
+
+.panelHeader {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f7f7f7;
+}
+
+/* basic panel (basicpanel.vmd) style */
+.basicPanelContainer {
+    border-width: 1px;
+    border-style: solid;
+    margin-top: 2px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.basicPanelContainer:first-child {
+    margin-top: 0;
+}
+
+.basicPanelTitle {
+    padding: 10px;
+    margin: 0;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+}
+
+.basicPanelBody {
+    padding: 5px;
+    margin: 0;
+}

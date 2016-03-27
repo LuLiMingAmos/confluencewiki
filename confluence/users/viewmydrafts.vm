@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<title>$generalUtil.htmlEncode($pageTitle)</title>
+        #putMetadata("drafts-max-results", $maxResults)
+    </head>
+
+    <body>
+    #requireResource("confluence.web.resources:draft-changes")
+    #requireResource("confluence.web.resources:view-my-drafts")
+
+    #applyDecorator("root")
+        #decoratorParam("context" "profile")
+        #decoratorParam("mode" "drafts")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("infopanel-width" "200px")
+
+        <div class="view-my-drafts recently-updated">
+            <p>$action.getText('viewdrafts.page.desc')</p>
+
+            <div id="errors"></div>
+
+            <ol id="draft-space-list">
+                #if ($draftsBySpace.isEmpty())
+                    <li>
+                        <span>$action.getText('no.drafts.found')</span>
+                    </li>
+                #end
+                #foreach ($space in $draftsBySpace.keySet())
+                    <li>
+
+                        <div class="space-logo">
+                        #logoBlock($space)
+                        </div>
+
+                        <div class="drafts-container">
+                            <h2 class="draft-space-title">$spaceManager.getSpace($space).name</h2>
+
+                            #set ($drafts = $draftsBySpace.get($space))
+                            <table class="aui">
+                                ## The head is kept in for accessibility reasons but is hidden.
+                                <thead>
+                                    <th>$action.getText('draft')</th>
+                                    <th>$action.getText('last.saved')</th>
+                                    <th>$action.getText('actions.word')</th>
+                                </thead>
+                                <tbody>
+                                #foreach ($draft in $drafts)
+                                    <tr id="draft-$draft.id">
+                                        <td class="draft-title-description">
+                                            #iconSpan($draft.draftType $draft.draftType)
+                                            <a class="drafts-title" href="$req.contextPath/pages/resumedraft.action?draftId=$draft.id">
+                                                #if ("$!{draft.title}" != "") $!{draft.title} #else <em>$action.getText('untitled.draft.title')</em> #end
+                                            </a>
+                                            <div class="draft-summary">
+                                                #if ($draft.bodyAsString.length() > 0)
+                                                    $generalUtil.shortenString($draft.contentSummary, 150)
+                                                #else
+                                                  <em>$action.getText('draft.no.content')</em>
+                                                #end
+                                            </div>
+                                        </td>
+                                        <td class="draft-last-modified">
+                                            $generalUtil.getRelativeTime($draft.lastModificationDate)
+                                        </td>
+                                        <td class="draft-actions">
+                                            <a id="resume-draft-$draft.id" href="$req.contextPath/pages/resumedraft.action?draftId=$draft.id">$action.getText('resume.editing')</a>
+                                            <a id="discard-draft-$draft.id" class="discard-draft-link" href="#" data-draftId="$draft.id">$action.getText('discard.name')</a>
+                                        </td>
+                                    </tr>
+                                #end
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </li>
+                #end
+            </ol>
+
+        </div><!-- .view-my-drafts -->
+
+    #end
+    </body>
+</html>

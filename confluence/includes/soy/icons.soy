@@ -1,0 +1,26 @@
+{namespace Confluence.Templates.Icons}
+
+/**
+ * Display an icon for a given content object
+ *
+ * NOTE: This is the soy equivalent of #contentIcon2 in macros.vm. If you modify this, you should probably also modify
+ *       that.
+ *
+ * @param content the content object
+ * @param iconTitle the text representation of the icon (used as tooltip and inline text)
+ * @param iconCss the CSS class for the icon
+ * @param linkColour the link colour
+ * @param linkHref the link target location
+ * @//param linkTitle the value of the title attribute for the link (displayed on hover)
+ */
+{template .contentIcon}
+    {if $content.type == 'trackback'}
+        <a{if $linkColour} {$linkColour}{/if} href="{$linkHref}" class="icon icon-trackback" title="{getText('track.back')}">
+            {getText('track.back')}:
+        </a>
+    {else}
+        <a{if $linkColour} {$linkColour}{/if} href="{$linkHref}" class="icon {$iconCss}" title="{$iconTitle}">
+            {$iconTitle}
+        </a>
+    {/if}
+{/template}

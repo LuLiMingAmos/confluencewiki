@@ -1,0 +1,28 @@
+#if (!$mode.startsWith("create-")) ## don't render space links for create-page, -blogpost, -comment.
+<content tag="content-navigation">
+    <div id="navigation" class="content-navigation view">
+        <ul class="ajs-menu-bar">
+            #menuMacros_renderAddMenu()
+        </ul>
+    </div>
+</content>
+
+<content tag="tab-navigation">
+## Although the use of aui-tab-events-bound data attr relies on aui-tab internals, this code reuses the styling of
+## aui-tabs, but implements it's behavior itself. Without this data attr, aui would attempt to use the urls as css selectors.
+    <div id="tab-navigation" class="aui-tabs horizontal-tabs" data-aui-tab-events-bound="true">
+        <ul class="tabs-menu">
+            #foreach ($item in $webInterfaceManager.getDisplayableItems("system.space", $action.webInterfaceContext))
+            #if ($context == $item.key)
+                <li class="menu-item active-tab">
+            #else
+                <li class="menu-item">
+            #end
+                <a #if($item.link.id) id="${item.link.id}-tab"#end href="$item.link.getDisplayableUrl($req, $action.webInterfaceContext)"><strong>$item.label.getDisplayableLabel($req, $action.webInterfaceContext)</strong></a>
+            </li>
+            #end
+        </ul>
+    </div>
+</content>
+
+#end

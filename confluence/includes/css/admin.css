@@ -1,0 +1,200 @@
+#main {
+    padding: 0;
+}
+
+#main .pagecontent {
+    margin-top: 0;
+    padding: 0 20px;
+    display: table;
+}
+
+#main .pagecontent > div {
+    display: table-cell;
+}
+
+body.admin-body #main-header {
+    padding: 20px;
+    margin-bottom: 0;
+    background-color: #f5f5f5;
+}
+
+#admin-menu {
+    margin: 0 10px 0 -10px;
+    width: 200px;
+}
+
+#admin-navigation .aui-item-navgroup {
+    margin-bottom: 30px;
+}
+
+.admin-heading {
+    margin-top: 0;
+}
+
+#admin-content {
+    width: 100%;
+    padding: 20px 0 20px 30px;
+    border-left: 1px solid #ccc;
+}
+
+#admin-content .logoBlock a {
+    display: none;
+}
+
+#admin-body-content {
+    float: left;
+    width: 100%;
+}
+
+#admin-body-content > h2,
+#admin-body-content > form,
+#admin-body-content > form > input+h2,
+#editdefaultspacepermissions .header h2 {
+    margin-top: 0;
+}
+
+#admin-body-content.with-help {
+    width: 75%;
+}
+
+#helptd {
+    width: 22%;
+    float: right;
+    margin-top: 0px;
+    padding: 10px;
+    word-break: break-word;
+}
+
+#edit-scheme-link {
+    margin: 10px 0;
+}
+
+.stepdesc {
+    margin: 10px 0;
+}
+
+/* Global permissions */
+
+#editglobalperms h2,
+#admin-body .primary-button-container {
+    margin-top: 20px;
+}
+
+#editglobalperms .userpicker.button {
+    margin-left: 10px;
+}
+
+.permissions .permissionCell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.permissions .permissionTab {
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.permissions img {
+    vertical-align: middle;
+}
+
+.editpermissions .even,
+.permissions .even {
+    background: #f0f0f0;
+}
+
+/* Override AUI since it's .aui-button style isn't specific enough to insist on a text color
+ * This can be removed once https://ecosystem.atlassian.net/browse/AUI-1304 is resolved.
+ */
+.aui-button.edit-permissions {
+    color: #333;
+}
+
+/* Default space permissions */
+#permission-description {
+    margin: 0;
+    padding: 0 5px;
+}
+
+.spam-prevention form.aui {
+    margin-top: 10px; /* restore AUIs default */
+}
+
+.spam-prevention .userpicker {
+    padding-left: 142px;
+}
+
+/* HACK for CONFDEV-13243
+ * This will make the applink dialogs usable until we can get applinks 3.10.7
+ * TODO: See CONFDEV-14813 - Remove this once we upgrade applinks to version 3.10.7 or newer
+ */
+#edit-application-link-dialog #applinkDetailsPage .field-group label {
+    left: 0;
+}
+
+#add-application-link-dialog .field-group label {
+    left: 0;
+}
+
+#add-application-link-dialog input.radio,
+#add-application-link-dialog input.checkbox,
+#delete-application-link-dialog input.radio {
+    height: inherit;
+    position: relative;
+}
+
+.dialog-button-panel .applinks-cancel-link {
+    font-size: inherit;
+}
+/* End HACK */
+
+/* View User */
+.view-user form.aui .field-value {
+    font-weight: normal;
+}
+
+.view-user #groups-name ul {
+    padding-left: 0;
+}
+
+.view-user #groups-name li {
+    list-style: none;
+}
+
+.view-user .icon-group {
+    margin-right: 5px;
+}
+
+.login-meta-info {
+    display: block;
+    font-weight: bold;
+}
+
+.login-meta-info .value {
+    font-weight: normal;
+}
+
+.grid {
+    min-width: 700px;
+    table-layout: fixed;
+}
+
+.grid th:first-child {
+    width: 65%;
+}
+
+.grid td:first-child {
+    word-wrap: break-word;
+    padding-right: 10px;
+}
+
+@media all and (max-width: 1200px) {
+    #admin-body-content.with-help, #helptd {
+        float: none;
+        width: auto;
+    }
+
+    #admin-body-content.with-help {
+        padding-bottom: 20px;
+    }
+}

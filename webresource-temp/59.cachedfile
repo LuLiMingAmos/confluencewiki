@@ -1,0 +1,11 @@
+try {
+/* module-key = 'com.atlassian.confluence.contributors:contributors-web-resources', location = 'com/atlassian/confluence/contributors/scripts/contributors.js' */
+jQuery(function(a){var b={init:function(c){a(".show-hidden-contributors",c).click(function(){a(".hidden-contributor",c).removeClass("hidden");a(this).parent().remove();return false})}};a("div.plugin-contributors").each(function(){b.init(a(this))})});
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+

@@ -1,0 +1,98 @@
+.aui-header a.aui-button {
+    line-height: 1.4285714285714;
+    display: inline-block;
+    padding: 4px 10px;
+}
+
+.aui-button-primary[aria-disabled="true"] .aui-icon-wait {
+    background-image: url(data:image/gif;base64,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);
+}
+/* Hank sez - way too spacey! */
+#com-atlassian-confluence .tipsy {
+    line-height: 16px;
+}
+
+.aui-navgroup-inner > div:first-child > .aui-nav-heading,
+.aui-navgroup-inner > div:first-child > div:first-child .aui-nav-heading {
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.aui-message .icon-problem,
+.aui-icon-problem {
+    /* icon-warning.png */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA20lEQVQ4y6WTTQ6CQAyFZ+VPohcBAgvBC3g/YQEJnsV4BjdGjNfQhRiNvppHUnGYBJnkS+jrtHQ6HWNaa79aemANKnAjR2qe6VpwjkAOnuDVgfhKMLUFb9XGDUjAhCTUGv9OYnSCgo4ziJT+CVC2D07Ucy0+KIatyr4SUIuoS4wvQtqUbenLTwLqzXFSw26LEfdIENNXiVHTGPdIMKav/jfBnL6L8wiOmVkw5jC0iZkYQc9rDNU1Bs5BsvxZD1LhGuWS5xR9xu+yc5QHPyZLmRlLvYOrdJta0N7/BnQXKgcW/4OXAAAAAElFTkSuQmCC);
+}
+.aui-message.problem {
+    background: #fff8f7;
+    border-color: #d04437;
+}
+
+/* Prevents nasty buttons on iPad */
+.aui-button {
+    -webkit-appearance: none;
+}
+
+/* File uploads look like garbage (and it's the same on the ADG spec) */
+form.aui .field-group .upfile {
+    padding: 0;
+    position: relative;
+    bottom: -4px;
+}
+
+/* CONFDEV-13577 Team Calendars portions were covering the Tools menu */
+.aui-dropdown2 {
+    z-index: 1000;
+}
+
+/* CONFDEV-14742: Override aui style because disabled checkboxes are too bright
+   and cause very low contrast in pages like viewsecurityconfig.action */
+form.aui div.checkbox > .checkbox[disabled] + label {
+    color: #707070;
+}
+
+/* CONF-28482: Allow maximum-width textareas for various pages in the space admin */
+form.aui .textarea.max-textarea {
+    width: 100%; 
+    max-width: none;
+}
+
+/* The background image is already on the #footer-logo, on mobile having both logos breaks */
+#footer .footer-body {
+    background-image: none;
+}
+
+
+/* These overides are needed to combat teamcal's jquery-ui datepicker custom styles */
+body .aui-datepicker-dialog .ui-datepicker {
+    position: static;
+}
+
+/* These overides are needed to combat teamcal's jquery-ui datepicker custom styles */
+.aui-datepicker-dialog div.ui-datepicker .ui-datepicker-prev,
+.aui-datepicker-dialog  div.ui-datepicker .ui-datepicker-next {
+    background-image: none;
+}
+
+.aui-datepicker-dialog .ui-datepicker td {
+    padding: 0;
+}
+
+/* These overides are needed to combat atlassian-streams ui jquery-ui datepicker custom styles*/
+.aui-datepicker-dialog  .ui-icon {
+    text-indent: 0;
+}
+
+.aui-datepicker-dialog .ui-datepicker .ui-datepicker-prev span,
+.aui-datepicker-dialog .ui-datepicker .ui-datepicker-next span {
+    background: none;
+    height: auto;
+    width: auto;
+}
+
+.aui-inline-dialog.aui-datepicker-dialog .hasDatepicker .ui-widget-header {
+    background: #f5f5f5;
+}
+
+

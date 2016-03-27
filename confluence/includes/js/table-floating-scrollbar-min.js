@@ -1,0 +1,1 @@
+AJS.toInit(function(a){a(".wiki-content").find(".table-wrap").floatingScrollbar()});

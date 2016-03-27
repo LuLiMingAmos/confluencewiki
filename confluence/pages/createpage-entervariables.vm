@@ -1,0 +1,50 @@
+<html>
+    <head>
+        #requireResource("confluence.web.resources:page-templates")
+        <title>$action.getText("page.template.wizard")</title>
+	</head>
+
+	<body>
+		#parse ( "/template/includes/actionerrors.vm" )
+        #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("context" "space-pages")
+        #decoratorParam("mode" "create-page")
+
+        <div class="padded">
+            <div class="steptitle" style="margin-top: 10px">$action.getText('pagevariables.step2')</div>
+            <p>$action.getText('text.pagevariables.step2.instructions')</p>
+
+            <div class="smallfont view-template">
+                <div class="wiki-content">$action.renderedTemplateContent</div>
+            </div>
+
+            <form name="filltemplateform" method="POST" action="doenterpagevariables.action">
+                #tag ("Hidden" "name='queryString'" "value='$!queryString'")
+                #tag ("Hidden" "name='templateId'" "value='$pageTemplate.id'")
+                #tag ("Hidden" "name='linkCreation'" "value='$linkCreation'")
+                #tag ("Hidden" "name='title'" "value=title")
+                #tag ("Hidden" "name='parentPageId'" "value=parentPageId")
+                #tag ("Hidden" "name='fromPageId'" "value=fromPageId")
+                #tag ("Hidden" "name='spaceKey'" "value=spaceKey")
+
+                <div class="aui-toolbar">
+                    <ul class="toolbar-group">
+                        <li class="toolbar-item">
+                            <input class="toolbar-trigger" type="button" value="$action.getText('back.witharrows.name')" onclick="javascript:history.go(-1)">
+                        </li>
+                        <li class="toolbar-item">
+                            #tag( "Submit" "name='confirm'" "id=confirm" "value='next.name'" "theme='notable'" "cssClass='toolbar-trigger'")
+                        </li>
+                    </ul>
+                </div>
+            </form>
+
+            #parse ( "/pages/page-breadcrumbs.vm" )
+		</div>
+
+        #end
+	</body>
+</html>
+
+

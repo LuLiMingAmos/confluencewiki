@@ -1,0 +1,73 @@
+#parse ( "/template/includes/actionerrors.vm" )
+
+#if ($actionErrors.size() == 0)
+    #if ($possibleAlternativesInTrash.size() > 0)
+        <div class="aui-message hint shadowed">
+            <p class="title">$action.getText("alternatives.title.intrash")</p>
+            <span class="aui-icon icon-hint"></span>
+            <p>$action.getText("page.in.trash")</p>
+        </div>
+    #else
+        <div class="aui-message hint shadowed">
+            <p class="title">$action.getText("alternatives.title")</p>
+            <span class="aui-icon icon-hint"></span>
+            <p>$action.getText("alternatives.available")</p>
+        </div>
+        #if ($possibleAlternativesInSpace.size() != 0)
+            <h2>$action.getText("alternatives.space.title")</h2>
+            #if ($possibleAlternativesInSpace.size() == 1)
+                <p>$action.getText("alternatives.space.one")</p>
+            #else
+                <p>$action.getText("alternatives.space.many")</p>
+            #end
+            <ul id="alternative-pages-in-space" class="alternative-page-list">
+                #foreach ($page in $possibleAlternativesInSpace)
+                    <li>
+                        #contentLink($page)
+                        <div class="smalltext excerpt">$action.stripToPlainText($page.bodyAsString)</div>
+                    </li>
+                #end
+            </ul>
+        #end
+
+        #if ($possibleAlternativesElsewhere.size() != 0)
+            <h2>$action.getText("alternatives.elsewhere.title")</h2>
+            #if ($possibleAlternativesElsewhere.size() == 1)
+                <p>$action.getText("alternatives.elsewhere.one")</p>
+            #else
+                <p>$action.getText("alternatives.elsewhere.many")</p>
+            #end
+            <ul id="alternative-pages-elsewhere" class="alternative-page-list">
+                #foreach ($page in $possibleAlternativesElsewhere)
+                    <li>
+                        #contentLink($page)
+                        <div class="smalltext excerpt">$action.stripToPlainText($page.bodyAsString)</div>
+                    </li>
+                #end
+            </ul>
+        #end
+
+        #if ($possibleAlternativesInSpaceSearch.size() != 0)
+            <h2>$action.getText('alternatives.space.title')</h2>
+            #if ($possibleAlternativesInSpaceSearch.size() == 1)
+                <p>$action.getText('alternative.page.similar.one')</p>
+            #else
+                <p>$action.getText('alternative.page.similar.many')</p>
+            #end
+            <ul id="alternative-pages-in-space-search" class="alternative-page-list">
+                #foreach ($page in $possibleAlternativesInSpaceSearch)
+                    <li>
+                        #contentLink($page)
+                        <div class="smalltext excerpt">$action.stripToPlainText($page.bodyAsString)</div>
+                    </li>
+                #end
+            </ul>
+        #end
+
+    #end
+#end
+
+#if ($space.key)
+<content tag="spacename">$webwork.htmlEncode($space.name)</content>
+<content tag="spacekey">$space.key</content>
+#end

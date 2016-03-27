@@ -1,0 +1,96 @@
+a.search-for span:before {
+    font-family: "Atlassian Icons";
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-size: 16px;
+    border: none;
+    line-height: 1;
+    content: "\e004"; /* search icon*/
+}
+
+/* Override of drop-down to make it look aui-like*/
+#com-atlassian-confluence .aui-dd-parent .aui-dropdown {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    padding: 0;
+}
+
+/* loading spinner */
+#quick-search-query.loading {
+    background-image: url(data:image/gif;base64,R0lGODlhEAAQAPMPALu7u5mZmTMzM93d3REREQAAAHd3d1VVVWZmZqqqqoiIiO7u7kRERCIiIgARAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFBwAPACwAAAAAEAAQAEAEcPDJtyg6dUrFetDTIopMoSyFcxxD1krD8AwCkASDIlPaUDQLR6G1Cy0SgqIkE1IQGMrFAKCcGWSBzwPAnAwarcKQ15MpTMJYd1ZyUDXSDGelBY0qIoBh/ZoYGgELCjoxCRRvIQcGD1kzgSAgAACQDxEAIfkEBQcADwAsAAAAAA8AEAAABF3wyfkMkotOJpscRKJJwtI4Q1MAoxQ0RFBw0xEvhGAVRZZJh4JgMAEQW7TWI4EwGFjKR+CAQECjn8DoN0kwDtvBT8FILAKJgfoo1iAGAPNVY9DGJXNMIHN/HJVqIxEAIfkEBQcADwAsAAAAABAADwAABFrwyfmColgiydpaQiY5x9Ith7hURdIl0wBIhpCAjKIIxaAUPQ0hFQsAC7MJALFSFi4SgC4wyHyuCYNWxH3AuhSEotkNGAALAPqqkigG8MWAjAnM4A8594vPUyIAIfkEBQcADwAsAAAAABAAEAAABF3wySkDvdKsddg+APYIWrcg2DIRQAcU6DJICjIsjBEETLEEBYLqYSDdJoCGiHgZwG4LQCCRECEIBAdoF5hdEIWwgBJqDs7DgcKyRHZl3uUwuhm2AbNNW+LV7yd+FxEAIfkEBQcACAAsAAAAABAADgAABEYQyYmMoVgeWQrP3NYhBCgZBdAFRUkdBIAUguVVo1ZsWFcEGB5GMBkEjiCBL2a5ZAi+m2SAURExwKqPiuCafBkvBSCcmiYRACH5BAUHAA4ALAAAAAAQABAAAARs0MnpAKDYrbSWMp0xZIvBKYrXjNmADOhAKBiQDF5gGcICNAyJTwFYTBaDQ0HAkgwSmAUj0OkMrkZM4HBgKK7YTKDRICAo2clAEIheKc9CISjEVTuEQrJASGcSBQcSUFEUDQUXJBgDBW0Zj34RACH5BAUHAA8ALAAAAAAQABAAAARf8Mn5xqBYgrVC4EEmBcOSfAEjSopJMglmcQlgBYjE5NJgZwjCAbO4YBAJjpIjSiAQh5ayyRAIDKvJIbnIagoFRFdkQDQKC0RBsCIUFAWsT7RwG410R8HiiK0WBwJjFBEAIfkEBQcADgAsAQABAA8ADwAABFrQybEWADXJLUHHAMJxIDAgnrOo2+AOibEMh1LN62gIxphzitRoCDAYNcNN6FBLShao4WzwHDQKvVGhoFAwGgtFgQHENhoB7nCwHRAIC0EyUcC8Zw1ha3NIRgAAIfkEBQcADwAsAAAAABAAEAAABGDwyfnWoljaNYYFV+Zx3hCEGEcuypBtMJBISpClAWLfWODymIFiCJwMDMiZBNAAYFqUAaNQ2E0YBIXGURAMCo1AAsFYBBoIScBJEwgSVcmP0li4FwcHz+FpCCQMPCFINxEAIfkEBQcADgAsAAABABAADwAABFzQyemWXYNqaSXY2vVtw3UNmROM4JQowKKlFOsgRI6ASQ8IhSADFAjAMIMAgSYJtByxyQIhcEoaBcSiwegpDgvAwSBJ0AIHBoCQqIAEi/TCIAABGhLG8MbcKBQgEQAh+QQFBwAPACwAAAEAEAAPAAAEXfDJSd+qeK5RB8fDRRWFspyotAAfQBbfNLCVUSSdKDV89gDAwcFBIBgywMRnkWBgcJUDKSZRIKAPQcGwYByAAYTEEJAAJIGbATEQ+B4ExmK9CDhBd8ThdHw/AmUYEQAh+QQFBwAPACwAAAEADwAPAAAEXvBJQIa8+ILSspdHkXxS9wxF4Q3L2aTBeC0sFjhAtuyLIjAMhYc2GBgaSKGuyNoBDp7czFAgeBIKwC6kWCAMxUSAFjtNCAAFGGF5tCQLAaJnWCTqHoREvQuQJAkyGBEAOw==);
+    background-position: 6px 5px;
+    background-repeat: no-repeat;
+}
+
+#quick-search .aui-dd-parent .aui-dropdown {
+    margin-top: -2px;
+}
+
+#com-atlassian-confluence .aui-dd-parent .aui-dropdown ol {
+    padding: 3px 0;
+}
+
+#quick-search .aui-dropdown li a span {
+    background-position: 6px center;
+    padding-left: 30px;
+    line-height: 25px;
+}
+
+#quick-search .aui-dropdown .search-for span {
+    padding-left: 0; /* using icon font, so no need for left padding*/
+}
+
+#header .aui-dd-parent,
+#header .aui-dropdown {
+    width: 315px;
+    position: absolute;
+}
+
+#header .quick-nav-drop-down li a,
+.aui-header .quick-nav-drop-down li a{
+    color: #000;
+    padding: 0;
+}
+
+#header .quick-nav-drop-down li.active a,
+.aui-header .quick-nav-drop-down li.active a{
+    color: #fff;
+}
+
+
+#header .quick-nav-drop-down .aui-dropdown li a.space-name,
+.aui-header .quick-nav-drop-down .aui-dropdown li a.space-name{
+    height: 13px;
+    line-height: 13px;
+    font-size: 11px;
+    padding-left: 30px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#header .quick-nav-drop-down .aui-dropdown li.active a.space-name,
+.aui-header .quick-nav-drop-down .aui-dropdown li.active a.space-name {
+    color: #FFF;
+}
+
+.quick-nav-drop-down li,
+.quick-nav-drop-down li span {
+    cursor: pointer;
+}
+
+.quick-nav-drop-down li span em {
+    font-style: normal;
+}
+
+.quick-nav-drop-down .aui-dropdown li.with-space-name {
+    height: auto;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}

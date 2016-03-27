@@ -1,0 +1,55 @@
+/** Add Space dialog styles **/
+
+#create-space-form,
+#create-personal-space-form {
+    margin-bottom: 0;
+    margin-top: 25px;
+}
+
+#create-space-dialog p,
+#create-personal-space-form p {
+    margin: 9px 9px 15px 9px;
+}
+
+#create-space-form fieldset,
+#create-personal-space-form fieldset {
+    width: 450px;
+    margin: 3px auto 0 auto;
+}
+
+#create-space-form fieldset:last-child,
+#create-personal-space-form fieldset:last-child {
+    padding-bottom: 0;
+}
+
+#permissions-group {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAHlBMVEX///9vb29vb29vb29vb29vb29vb29vb29vb29vb29iaA79AAAACXRSTlMAIkRmd4iq3e5iCk03AAAANElEQVQIW2NgAALGzGkCIJqBvcWjAMzQDGCeBGEoMOFmgEjWzpkzpzsAGZwzgWACqQx0AACzvRrHHArP/gAAAABJRU5ErkJggg==) no-repeat 115px center;
+}
+
+#permissions-group.locked {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJ1BMVEX///9wcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHAzTstiAAAADHRSTlMAETNEZneImarM3e5Iqh64AAAAMklEQVQIW2NgQADG6hMKYAbn1ugFYIZNAtthCMOAGQeDZc2ZM6ccgAyeM0BwgFQGOgAAmkcjUyRCfYAAAAAASUVORK5CYII=);
+}
+
+#permissions-group .checkbox .description {
+    margin-left: 0;
+}
+/* Should probably go in AUI - this overrides the default FF style of margin: 3px 3px 3px 4px; */
+#create-space-form input[type="checkbox"] {
+    margin-left: 0;
+}
+
+body.dialog-page #main {
+    width: 540px;
+    min-height: 0;
+    margin: 0.75em auto;
+    padding-bottom: 0;
+}
+
+body.dialog-page #main .buttons-container {
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+
+body.dialog-page #main .buttons {
+    text-align: right;
+}

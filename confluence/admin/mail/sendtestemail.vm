@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>$action.getActionName($action.getClass().getName())</title>
+        <content tag="selectedWebItem">mailservers</content>
+	</head>
+
+	<body>
+		#parse ( "/template/includes/actionerrors.vm" )
+
+        <form method=POST action="dosendtestemail.action" class="aui">
+        #form_xsrfToken()
+            #tag ("TextField" "label='To'" "name='to'" "theme='aui'" )
+            #tag ("TextField" "label='Subject'" "name='subject'" "theme='aui'" )
+            #tag ("Select" "label='Message Type'" "name='messageType'" "list=mimeTypes" "listKey=key" "listValue=value" "theme='aui'" )
+            #tag ("Textarea" "label='Message'" "name='message'" "rows=8" "theme='aui'" "cssClass='long-field'")
+
+            <div class="buttons-container">
+                <div class="buttons">
+                    #tag ("Submit" "name='confirm'" "value='send.name'" "theme='notable'" "cssClass='aui-button'")
+                    #tag ("Submit" "name='cancel'" "value='cancel.name'" "theme='notable'" "cssClass='aui-button aui-button-link'")
+                </div>
+            </div>
+
+            #tag ("Textarea" "label='Log'" "name='log'" "rows=15" "theme='aui'" "cssClass='long-field'" "disabled='true'")
+            #tag ("Hidden" "name='id'")
+        </form>
+
+        #parse ("/breadcrumbs.vm")
+	</body>
+</html>

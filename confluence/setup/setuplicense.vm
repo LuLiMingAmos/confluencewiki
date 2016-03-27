@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>$action.getText("title.setup.license")</title>
+</head>
+
+<body>
+    <form method="POST" action="dosetuplicense.action" name="licenseform" class="aui">
+
+	    #parse ("/template/includes/actionerrors.vm")
+	        
+	    <h2>$action.getText("action.license")</h2>
+	
+	    #set ($evalLicenseUrl = $action.getText("url.atlassian.confluence.generate.eval.license", [$generalUtil.versionNumber, $generalUtil.buildNumber, $action.serverId, "$generalUtil.lookupDomainName($req)/setup/setuplicense.action"]))
+	
+	    <p>$action.getText("license.description", [$evalLicenseUrl])</p>
+	    
+	    #bodytag( "TextField" "label='server.id'" "name='serverId'" "theme='aui'")
+	        #param ("disabled" "true")
+	    #end
+	    
+	    #bodytag ("Textarea" "label='license.key'" "name='licenseString'" "rows=10" "theme='aui'" "cssClass='long-field'")
+	        #param ("id" "licenseString")
+	    #end
+	
+        <div class="buttons-container">
+            <div class="buttons">
+                <input class="aui-button" type="submit" name="setupTypeCustom" value="$action.getText('setup.license.next')"/>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,2 @@
+#putMetadata('from-page-title', $generalUtil.htmlEncode($action.fromPage.title))
+#putMetadata('can-remove-page', $permissionHelper.canRemove($remoteUser, $helper.page))

@@ -1,0 +1,337 @@
+
+ol.comment-threads {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 40px; /* primary indent for comments */
+}
+ol.comment-threads.top-level {
+    /* accounts for some margins on the section header */
+    margin-top: 5px;
+    margin-bottom: 0;
+    padding-left: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+#comments-section {
+    margin-top: 11px; /* Overrides the default margin of .pageSection */
+}
+
+#comments-section .comment {
+    border-top: 1px solid #ccc;
+    clear: left;
+    padding: 10px 0 10px 0;
+    margin: 0 0 -1px 0;
+    position: relative;
+}
+
+#comments-section td.comment {
+    position: static;
+}
+
+#comments-section .comment.add { /* targets only a fresh comment as opposed to a reply. */
+    border-top: 0;
+}
+
+#comments-section .comment.focused + ol.comment-threads {
+    border-top: 1px solid #ccc;
+}
+
+#comments-section .comment.focused + ol.comment-threads > li.comment-thread:first-child > .comment {
+    border-top: 0;
+}
+
+/* Will want to resize this server side when temporary PDL is finished */
+.comment-user-logo img {
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+}
+
+.comment-header .author {
+    line-height: 1.2;
+    color: #666;
+    padding: 0;
+}
+
+.comment-header .author a {
+    vertical-align: top;
+}
+
+.comment-header .author .author-lozenge {
+    font-size: 10px;
+    margin: 0 8px;
+    padding: 2px 3px;
+    border-radius: 3px;
+    border-width: 1px;
+    vertical-align: middle;
+}
+
+.comment .date {
+    display: inline-block;
+    margin-left: -2px;
+}
+
+.comment .date::before {
+    content: '\22C5'; /* middot */
+    color: #333;
+}
+
+.comment .date a {
+    color: #707070;
+}
+
+.comment-content {
+    margin-top: -5px; /* we could also write a ie7 specific javascript and use first child on the style below avoids negative margins */
+}
+
+.global-comment-actions li,
+.comment-actions li {
+    border: 0;
+    list-style-type: none;
+    display: inline-block;
+    margin: 0; /* for IE */
+    color: #707070;
+}
+
+.comment-actions-primary {
+    overflow: auto; /* since this container contains floated elements. See .comment-actions-primary li */
+}
+
+.comment-actions-primary li {
+    float: left; /* use float instead of inline-block, as the latter causes unwanted spacing if there are any newline characters in the markup */
+}
+
+.comment-actions {
+    margin-top: 10px;
+    font-size: 12px;
+    clear: both;
+}
+
+.comment-actions:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.comment-actions li a {
+    font-size: 12px;
+}
+
+.comment-actions li:first-child:before { /* left-most comment option -- no left middot */
+    display: none;
+}
+
+li#comment-show-hide {
+    padding-left: 0;
+}
+
+.comment-actions li:before,
+.comment-action-separator {
+    content: '•'; /* middot */
+    color: #707070;
+    padding: 0 5px;
+}
+
+/* There is no link icon in the PDL. It may end up being the fuzzy time */
+.comment-actions .comment-actions-secondary {
+    display: none;
+}
+
+.global-comment-actions li.hidden,
+.comment-actions li.hidden {
+    display: none;
+}
+
+.global-comment-actions a {
+    margin: 0;
+    text-decoration: none;
+}
+
+.global-comment-actions,
+.comment-actions ul {
+    display: inline;
+    padding: 0;
+    margin: 0; /* for IE */
+}
+
+.comment-body #editor-container {
+    margin: 0 20px 0 0;
+    min-height: 250px;
+}
+
+#comments-section .comment.focused {
+    border-bottom: 1px solid #ccc;
+    background: #ebf2f9;
+    margin-left: -10px;
+    padding-left: 10px;
+}
+
+.comment .comment-user-logo {
+    width: 32px;
+    margin: 0 10px 0 0;
+    padding: 0;
+    float: left;
+}
+
+.comment .comment-user-logo .replacement {
+    height: 48px;
+    width: 48px;
+}
+.comment.collapsed .comment-user-logo img,
+.comment.collapsed .comment-user-logo .replacement {
+    height: 24px;
+    width: 24px;
+    margin-left: 12px;
+}
+
+.comment.collapsed .comment-body {
+    opacity: 0;
+    height: 0;
+}
+
+img.wait {
+    vertical-align: middle;
+}
+.comment .excerpt {
+    color: #666;
+    font-weight: normal;
+    opacity: 0;
+    height: 1.8em;
+}
+
+.collapsed .excerpt {
+    opacity: inherit;
+}
+
+.comment form .label {
+    font-weight: normal;
+    color: #666;
+}
+
+.comment input#watchPageAfterComment {
+    vertical-align: middle;
+    margin-left: 20px;
+}
+
+#comments-section .comment-actions a {
+    color: #707070;
+}
+
+.comment-body,
+.comment-header {
+    padding: 0 0 0 42px;
+}
+
+.comment-body .comment-content.wiki-content { /* Apply left padding in body to accommodate macros CONFDEV-13918 */
+    padding-right: 20px;
+}
+
+.comment-header {
+    margin-bottom: 10px;
+}
+
+#comments-section #previewArea iframe {
+    height: 210px; /* Default height of the editor in comments */
+}
+
+#comments-section .section-header {
+    position: relative;
+}
+
+#comments-section .comment-body form {
+    display: table;
+    padding: 0;
+    width: 100%;
+    border-top: 0;
+    margin-top: 0; /* Stops AUI from pushing down the quick comment form */
+}
+
+#comments-section .comment-body form .editor-container {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* ADG The quick comment editor by adding rounded corners */
+#comments-section #rte-toolbar {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    box-shadow: none;
+}
+
+#comments-section #rte-savebar {
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    box-shadow: none;
+}
+/* End ADG The quick comment editor by adding rounded corners */
+
+.comment-body #rte {
+    box-shadow: inset 0 1px 3px #ccc;
+    overflow-x: hidden;
+    padding: 8px;
+}
+
+#savebar-container .aui-toolbar {
+    border-bottom: 0;
+}
+
+/* Remove this style when AJS-554 is resolved. The ID may also be removed from markup upon resolution. */
+#comments-actions.aui-toolbar {
+    background-color: transparent;
+    border-top: 0;
+    padding-top: 12px;
+}
+
+/* Text editor */
+#addcomment.comment-text .userLogo {
+    opacity: 0.5;
+}
+
+#addcomment.comment-text.active .userLogo {
+    opacity: 1;
+}
+
+#comments-text-editor textarea {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 1.5em;
+    padding: 5px 0;
+    text-indent: 5px;
+}
+
+#addcomment.active #comments-text-editor textarea {
+    border: 1px solid #bbb;
+    height: 100px;
+    outline-width: 0px;
+    padding: 0;
+    text-indent: 0;
+}
+
+#comments-text-editor .text-editor-chrome {
+    display: none;
+}
+
+#addcomment.active #comments-text-editor .text-editor-chrome {
+    display: block;
+}
+
+#comments-text-editor .comment-actions {
+    margin: -24px 0 0;
+    padding: 0;
+    float: right;
+}
+
+#comments-text-editor .toolbar-group {
+    float: right;
+    margin: 0;
+}
+
+#comments-text-editor .aui-toolbar {
+    background-color: transparent;
+    border-top: none;
+}
+
+.comment-actions-primary {
+    line-height: 16px; /* by default the inherited line-height is 1.3 which computes to 15px which makes it impossible to vertically align the text inside this container */
+}

@@ -1,0 +1,20 @@
+#* @vtlvariable name="labels" type="java.util.List<com.atlassian.confluence.labels.Label>" *#
+#if ($labels && $labels.size())
+    <ul class="label-list#if($alignLabelsRight) label-list-right#end #if($labelable && ($remoteUser || $permissionHelper.canEdit($remoteUser, $labelable))) has-pen#end">
+    #if ($labels.size() == 0)
+        <li class="no-labels-message">
+            $action.getText('labels.none')
+        </li>
+    #else
+        #parse('/labels/label.vm')
+    #end
+    #if($labelable && ($remoteUser || $permissionHelper.canEdit($remoteUser, $labelable)))
+        <li class="labels-edit-container">
+            <a href="#" class="show-labels-editor editor-icon" title="$action.getText('edit.labels.tooltip')">
+                <span class="icon icon-edit">$action.getText('edit.labels')</span>
+            </a>
+        </li>
+    #end
+    </ul>
+#end
+

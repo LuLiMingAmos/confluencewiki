@@ -1,0 +1,170 @@
+/* Mixins and constants */
+// ADG Colours - https://developer.atlassian.com/design/latest/colors.html
+@mediumGray: #707070;
+@ashGray: #cccccc;
+@charcoal: #333333;
+
+// Common Mixins
+.box-sizing(@sizing: border-box) {
+  -moz-box-sizing: @sizing;
+  box-sizing: @sizing;
+}
+
+// Webkit and Mozilla pseudo-selectors must be separate
+.placeholder-color(@color) {
+  &::-webkit-input-placeholder {
+    color: @color;
+  }
+
+  &::-moz-placeholder {
+    color: @color;
+  }
+
+  &:-ms-input-placeholder {
+    color: @color;
+  }
+}
+
+/* Page Styles */
+
+// Make placeholders invisible (only show when max-width is small on mobile, in this case, placeholder text
+// replaces field labels)
+#login-container input {
+    .placeholder-color(transparent);
+}
+
+// No menu's in the login screen header
+.aui-header-primary .aui-nav,
+.aui-header-secondary .aui-nav {
+  display: none;
+}
+
+// spacing between AUI message and form
+.login-section .aui fieldset,
+.signup-section .aui fieldset {
+    margin-top: 20px;
+}
+
+.userpassword-section h2,
+.login-section h2,
+.signup-section h2 {
+    border-bottom: 1px solid @ashGray;
+    color: @charcoal;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#logout-message {
+    padding-left: 16px;
+}
+
+/*Remove default background colour from panel. Align page title above login*/
+.login #main.aui-page-panel {
+    border: 1px solid @ashGray;
+    border-radius: 5px;
+    margin: 50px auto 0 auto;
+    min-height: 120px;
+    overflow: auto;
+    max-width: 500px;
+}
+/*End Remove default background colour from panel. Align page title above login*/
+
+.login .aui-message ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+/*Captcha*/
+#captcha-reponse-label {
+    display: block;
+    position: relative;
+    padding-left: 20px;
+}
+
+// captcha reload icon
+.reload {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 22px;
+    left: 120px;
+}
+/*End captcha*/
+
+// "No username and password? Sign up here" and "Already have a username and password? Log in here" messages
+// First message shows on login screen only if Confluence is configured for sign ups in Admin panel
+// Second message always show on Sign Up screen if Confluence is configured for sign ups
+#loginMessage, #signupMessage {
+  padding-top: 15px;
+  margin-top: 15px;
+  border-top: 1px solid @ashGray;
+}
+
+/* Make the login screen responsive */
+@media screen and (max-width: 440px) {
+    .login #main {
+        &.aui-page-panel {
+            max-width: 400px;
+        }
+        .field-group, .group {
+            padding-left: 120px;
+        }
+        .reload {
+            left: 90px;
+        }
+    }
+
+    #footer {
+        // wrap the footer on small screens
+        .footer-body > ul > li {
+            white-space: normal;
+        }
+        // Hide the footer text "Powered by Atlassian Confluence..."
+        #poweredby {
+            display:none;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .login #main {
+        &.aui-page-panel {
+            .box-sizing();
+            border-left: 0;
+            border-right: 0;
+            border-top: 0;
+            border-radius: 0;
+            margin: 0;
+            width: 100%;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        h2 {
+            font-size: 20px;
+            line-height: 28px;
+        }
+        .aui-button {
+            font-size: 16px;
+            line-height: 22px;
+        }
+
+        // remove text field labels and have the fields take up the entire width
+        .field-group, .group {
+            padding-left: 0;
+        }
+        label {
+            display: none;
+        }
+        // don't hide checkbox label, however
+        .checkbox label {
+            display: inline;
+        }
+        input {
+            .placeholder-color(@mediumGray);
+            max-width: none;
+        }
+        .reload {
+            left: 210px;
+        }
+    }
+}

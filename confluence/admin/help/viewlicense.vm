@@ -1,0 +1,3 @@
+<p>$action.getText('license.page.description.help')</p>
+<p>$action.getText('license.page.description.contact.us')</p>
+<p>$action.getText('license.page.description.mac')</p>

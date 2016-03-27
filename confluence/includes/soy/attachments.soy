@@ -1,0 +1,66 @@
+{namespace Confluence.Templates.Attachments}
+
+/**
+ * Title for the dialog used to confirm attachment removal requests.
+ */
+{template .removalConfirmationTitle}
+    {getText('com.atlassian.confluence.pages.actions.RemoveAttachedFileAction.action.name')}
+{/template}
+
+/**
+ * Body for the dialog used to confirm attachment removal requests.
+ *
+ * @param filename the filename of the attachment
+ */
+{template .removalConfirmationBody}
+    <div>{getText('remove.attachment.confirmation.message', $filename)}</div>
+{/template}
+
+/**
+ * Title for the dialog used to confirm attachment version removal requests.
+ */
+{template .versionRemovalConfirmationTitle}
+    {getText('com.atlassian.confluence.pages.actions.RemoveAttachedFileVersionAction.action.name')}
+{/template}
+
+/**
+ * Body for the dialog used to confirm attachment version removal requests.
+ *
+ * @param version the version of the attachment
+ * @param filename the filename of the attachment
+ */
+{template .versionRemovalConfirmationBody}
+    <div>{getText('remove.attachment.version.confirmation.message', $version, $filename)}</div>
+{/template}
+
+/**
+ * Title for the dialog used to show errors resulting from removal requests.
+ */
+{template .removalErrorTitle}
+    {getText('remove.attachment.version.error.title')}
+{/template}
+
+/**
+ * Body for the dialog used to show errors resulting from removal requests.
+ *
+ * @param? messages
+ */
+{template .removalErrorBody}
+    <div class="aui-message error">
+        {if not $messages}
+            {getText('remove.attachment.version.error.message')}
+        {else}
+            {if length($messages) == 1}
+                {foreach $message in $messages}
+                    {$message}
+                {/foreach}
+            {else}
+                <ul>
+                {foreach $message in $messages}
+                    <li>{$message}</li>
+                {/foreach}
+                </ul>
+            {/if}
+        {/if}
+    </div>
+{/template}

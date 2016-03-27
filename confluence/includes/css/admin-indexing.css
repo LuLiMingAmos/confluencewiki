@@ -1,0 +1,111 @@
+body.indexing .aui-navgroup-horizontal {
+    margin-left: -30px;
+    margin-right: -20px;
+}
+
+body.indexing .aui-navgroup-horizontal .aui-navgroup-inner {
+    margin-left: 10px;
+}
+
+body.indexing #admin-body {
+    position: relative;
+}
+
+body.indexing #admin-body-content {
+    float: none;
+    width: 100%;
+}
+
+body.indexing #helptd {
+    position: absolute;
+    top: 60px;
+    right: 0;
+}
+
+.faded {
+    opacity: 0.1;
+    filter: alpha( opacity = 10 );
+    zoom: 1
+}
+
+#search-index-panel {
+    width: 70%;
+    margin-top: 20px;
+}
+
+.vertical-center-aligning-container {
+    display: table;
+    height: 400px;
+    overflow: hidden;
+}
+
+#search-index-disabling-overlay {
+    position: absolute;
+    width: 70%;
+    height: 210px;
+    z-index: 2;
+    background: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+.index-task-progress-container {
+    margin: 10px 0 0;
+}
+
+#search-index-task-progress-container {
+    padding-right: 180px;
+}
+#search-index-panel-contents h2 {
+    margin-top: 0;
+}
+
+.elapsedTime {
+    width: 180px;
+    padding-left: 5px;
+    float: right;
+    color: #707070;
+}
+
+div.index-status {
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 120px;
+}
+
+#indexqueue-panel {
+    padding-top: 20px;
+}
+
+.status-container {
+    margin: 10px 0;
+}
+
+.progress-fill-color {
+    background: #3b7fc4;
+}
+
+.progress-background-color {
+    background: #ebf2f9;
+    border-radius: 3px;
+}
+
+.vertical-center-div-outer {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#queue-action {
+    padding-top: 10px;
+}
+
+.indexing-status {
+    color: #707070;
+    margin: 0 0 10px 0;
+    text-overflow: ellipsis;
+    width: 450px;
+    overflow: hidden;
+    white-space: nowrap;
+}

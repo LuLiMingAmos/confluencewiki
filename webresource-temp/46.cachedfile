@@ -1,0 +1,21 @@
+/* module-key = 'com.atlassian.confluence.plugins.confluence-templates:variable-editor-content-styles', location = 'css/variables-editor-content.css' */
+/* For variable mark in the editor iframe */
+
+.template-variable {
+    border-radius: 5px;
+    position: relative;
+    top: 3px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+/* Work around different margins for td/th without a <p> */
+th > .template-variable,
+td > .template-variable {
+    top: 1px;
+}
+
+ul[data-variable-declarations] {
+    display: none !important;
+}
+

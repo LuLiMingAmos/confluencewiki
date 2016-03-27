@@ -1,0 +1,192 @@
+#update-page-restrictions-dialog .dialog-panel-body {
+    overflow: visible;
+    padding: 0;
+}
+
+button#add-typed-names {
+    margin-left: 10px;
+}
+
+input#restrictEditRadio.radio {
+    margin-left: 20px;
+}
+
+div#page-permissions-error-div {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+#page-permissions-input-box {
+    padding-left: 1em;
+}
+
+#add-type-names.aui-button {
+    margin-left: 10px;
+}
+
+div.page-permissions-label {
+    padding-left: 5px;
+}
+
+#page-permissions-div > div {
+    font-size: 14px;
+}
+
+#page-permissions-names-input {
+    line-height: 20px;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    box-shadow: #DDD 0 1px 3px 0 inset;
+    width: 250px;
+    font-family: inherit;
+}
+
+#page-perms-name-dropdown-wrapper .aui-dropdown {
+     box-sizing: border-box;
+     padding: 0;
+ }
+
+#page-permissions-chooser-box {
+	padding-left: 10px;
+}
+
+#page-permissions-chooser-box .aui-button {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#page-permissions-input {
+    display: table-row;
+}
+
+#page-permissions-input > div {
+    display: table-cell;
+    float: none;
+}
+
+#page-permissions-chooser-box .aui-button > a,
+#page-permissions-chooser-box .aui-button > a:hover,
+#page-permissions-chooser-box .aui-button > a:focus,
+#page-permissions-chooser-box .aui-button > a:active {
+    text-decoration:none;
+    color:#333;
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+.page-permissions-marker-cell .aui-icon {
+	margin: 0 5px 0 0;
+    color: #707070;
+}
+
+#page-permissions-choose-me img {
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    width: 16px;
+    border-radius: 2px;
+    margin-right: 5px;
+}
+
+img.permission-entity-picture {
+	width: 32px;
+	vertical-align: middle;
+    padding: 0;
+    margin-right: 5px;
+    border-radius: 3px;
+}
+
+#page-permissions-type-radios {
+	margin-bottom: 10px;
+}
+
+#page-permissions-tables {
+    height: 286px;
+    overflow: auto;
+    padding: 15px 20px 20px 20px;
+}
+
+#page-permissions-table {
+	width: 100%;
+}
+
+#page-permissions-table td {
+	padding: 3px;
+}
+
+#page-permissions-table .page-permissions-marker-cell span.first-of-type {
+    display: block;
+    color: #707070;
+}
+
+#page-permissions-table .permission-entity {
+    width: 100%;
+}
+
+.permission-row .page-permissions-marker-cell span {
+    display: none;
+}
+
+.view-permission-row span.first-of-type::before {
+    font-family: "Atlassian Icons";
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-size: 16px;
+    border: none;
+    line-height: 1;
+    margin-right: 8px;
+    content: "\e01c"; /* eye */
+}
+
+.edit-permission-row span.first-of-type {
+	padding-left: 24px;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA0klEQVQ4T5WTgQ2CMBBFYQNHcAPdQJzEuAFuABt0BEbADRhBN9ANcAJ9v6EES6GFpKEt917vLiXPNjwlD+E7Rs9ojDF9nsrDNsReJvFP5kWSIAA7zy0qWIElqVcFEViC5QwS4JomVsEMEuArsJqazQRb4JlgK/wniMAfgkuX9vTu2BIS4AL4Ebp0Yw+QdAScvCCdvAj7JRx1vxmHQRKFrYCTK96tUmQuiX6WNnayy1SC77A4I1EZ6sme+StUs7/nBHc+wJjOa+ibfSey8mFt9xT/A6myX8F0pZIvAAAAAElFTkSuQmCC) no-repeat left top;
+}
+
+.permission-row .page-permissions-marker-cell,
+.permission-row .permission-detail-column {
+	white-space: nowrap;
+}
+
+#page-permissions-editor-form {
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+    height: 61px;
+}
+
+#page-permissions-editor-form.hidden + #page-permissions-tables {
+    height: 388px;
+}
+
+.dialog-button-panel .button-spinner {
+    display: inline-block;
+    margin-right: 13px;
+}
+
+/* Disabled styles clone from aui-button for dialog panel */
+#update-page-restrictions-dialog .permissions-update-button[disabled],
+#update-page-restrictions-dialog .permissions-update-button[disabled]:hover,
+#update-page-restrictions-dialog .permissions-update-button[disabled]:focus,
+#update-page-restrictions-dialog .permissions-update-button[disabled]:active{
+    background: #f2f2f2;
+    background: -webkit-linear-gradient(top, #fff 0%, #f2f2f2 100%);
+    background: -moz-linear-gradient(top, #fff 0%, #f2f2f2 100%);
+    background: -ms-linear-gradient(top, #fff 0%, #f2f2f2 100%);
+    background: -o-linear-gradient(top, #fff 0%, #f2f2f2 100%);
+    background: linear-gradient(to bottom, #fff 0%, #f2f2f2 100%);
+    border-color: #ccc;
+    box-shadow: none;
+    color: #999;
+    cursor: default;
+    text-shadow: none;
+}
+
+/* Target Firefox only */
+@-moz-document url-prefix() {
+    #page-permissions-names-input {
+        padding: 6px 5px 5.5px;
+    }
+}

@@ -1,0 +1,138 @@
+{namespace Confluence.Templates.PagePermissions}
+
+/**
+ * @param currentUser the user name of the current user
+ * @param currentUserAvatar the url of the user profile pic
+ */
+{template .dialogPanel}
+<div id="page-permissions-div">
+    <div id="page-permissions-editor-form">
+        // Where errors are displayed (e.g. if an entered username doesn't exist)
+        <div id="page-permissions-error-div" class="aui-message warning shadowed closeable hidden">
+            <p class="title"/>
+            <span class="aui-icon icon-warning"></span>
+            <span class="aui-icon icon-close" tabindex="0" role="button"></span>
+        </div>
+        // Where the user chooses and types user/group names.
+        <div id="page-permissions-type-radios" class="page-permissions-label-rows">
+            <div class="radio">
+                <input id="restrictViewRadio" class="radio" type="radio" checked="checked" name="pagePermissionTypeRadio" value="view"/>
+                <label for="restrictViewRadio">{getText('page.perms.form.radio.viewing')}</label>
+                <input id="restrictEditRadio" class="radio" type="radio" name="pagePermissionTypeRadio" value="edit"/>
+                <label for="restrictEditRadio">{getText('page.perms.form.radio.editing')}</label>
+            </div>
+        </div>
+        <div id="page-permissions-input" class="page-permissions-label-rows">
+            <div class="page-permissions-label">{getText('page.perms.form.to.label')}</div>
+            <div id="page-permissions-chooser-box">
+                {if $currentUser}
+                    <span id="page-permissions-choose-me" class="aui-button normal">
+                        <a href="#">
+                            <img src="{contextPath()}{$currentUserAvatar}" alt="{getText('page.perms.choose.me')}"/>
+                            {getText('page.perms.choose.me')}
+                        </a>
+                        <span class="remote-user-name hidden">{$currentUser}</span>
+                    </span>
+                {/if}
+                <span id="page-permissions-choose-user" class="aui-button">
+                    <a id="userpicker-popup-link"  href="#">
+    				    <img src="{contextPath()}/images/icons/user_16.png" height="16" width="16" border="0" align="absmiddle"  title="Choose users" />
+						    {getText('page.perms.choose.users')}
+	                </a>
+                </span>
+                <span id="page-permissions-choose-group" class="aui-button">
+
+                    <a id="grouppicker-popup-link"  href="#">
+    				    <img src="{contextPath()}/images/icons/group_16.png" height="16" width="16" border="0" align="absmiddle"  title="Choose groups" />
+						    {getText('page.perms.choose.groups')}
+        	        </a>
+                </span>
+            </div>
+            <div id="page-permissions-input-box">
+                <input id="page-permissions-names-input" class="autocomplete-user-or-group text" type="text" name="permissionNames"
+                    placeholder="{getText('page.perms.input.field.placeholder')}"
+                    data-max="10" data-none-message="{getText('macro.browser.smartfields.no.suggestion')}"
+                    data-target="#page-permissions-names-hidden"
+                    data-dropdown-target="#page-perms-name-dropdown-wrapper" data-resize-to-input="true"
+                    size="30"/>
+                <input type="hidden" id="page-permissions-names-hidden"/>
+                <button class="aui-button" id="add-typed-names">{getText('page.perms.form.add.button')}</button>
+                <div id="page-perms-name-dropdown-wrapper" class="aui-dd-parent autocomplete autocomplete-user-or-group-target"></div>
+            </div>
+        </div>
+    </div>
+    <div id="page-permissions-tables">
+        <div id="page-permissions-table-div">
+            // Where the loaded and amended names are displayed
+            <table id="page-permissions-table" class="page-permissions-table">
+                <tr id="page-permissions-no-views" class="marker-row">
+                    <td colspan="3" class="page-permissions-marker-cell">
+                            <span class="aui-icon aui-icon-small aui-iconfont-view"></span>
+                        <span>{getText('page.perms.no.view.restrictions')}</span>
+                    </td>
+                </tr>
+                <tr id="page-permissions-no-edits" class="marker-row">
+                    <td colspan="3" class="page-permissions-marker-cell">
+                            <span class="aui-icon aui-icon-small edit-icon"></span>
+                        <span>{getText('page.perms.no.edit.restrictions')}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="page-inherited-permissions-table-div" class="hidden">
+            <span id="page-inherited-permissions-table-desc">
+                <a class="icon twisty-closed">{getText('page.perms.inherited.twisty')}</a>
+                <a id="toggle-inherited-permissions" title="{getText('page.perms.inherited.toggle.tooltip')}">{getText('page.perms.inherited.toggle')}</a>
+            </span>
+            <div id="page-inherited-permissions-tables" class="hidden page-inheritance-togglable"></div>
+        </div>
+    </div>
+</div>
+{/template}
+
+/**
+ * A template for a dialog help link
+ */
+{template .helpLink}
+    {call Confluence.Templates.Dialog.helpLink}
+        {param href: docLink('help.page.restrictions') /}
+    {/call}
+{/template}
+
+
+/**
+ * Skeleton of the inherited permissions table.
+ */
+{template .inheritedPermissionsTable}
+    <div class="page-inherited-permissions-owner-div">
+        <div class="page-inherited-permissions-table-desc">{getText('page.perms.inherited.desc')|noAutoescape}</div>
+        <table class="page-permissions-table"></table>
+    </div>
+{/template}
+
+
+/**
+ * For dynamically building table rows in the permissions table.
+ */
+{template .permissionRow}
+    <tr class="permission-row">
+
+        // Viewing/Editing marker row
+        <td class="page-permissions-marker-cell">
+            <span>{getText('page.perms.viewing.restricted.to')}</span>
+        </td>
+        // Entity details
+        <td class="permission-entity" nowrap="true">
+            <span class="entity-container">
+                <img class="permission-entity-picture"/>
+                <span class="permission-entity-display-name"></span>
+                <span class="permission-entity-name-wrap">&nbsp;(<span class="permission-entity-name"></span>)</span>
+            </span>
+        </td>
+        <td class="permission-detail-column">
+            <div class="permission-remove-div">
+                <a href="#" class="remove-permission-link">{getText('page.perms.remove.restriction')}</a>
+            </div>
+        </td>
+    </tr>
+{/template}

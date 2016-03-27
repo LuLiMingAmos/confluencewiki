@@ -1,0 +1,1 @@
+AJS.toInit(function(a){var b=a("#backupPath");a("#backupOption\\.default").click(function(c){b.val(a("#defaultPath").val())});a("#backupOption\\.default").click(function(c){b.prop("disabled",true)});a("#backupOption\\.custom").click(function(c){b.prop("disabled",false)})});

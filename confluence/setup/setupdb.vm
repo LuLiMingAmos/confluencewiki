@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>$action.getActionName($action.getClass().getName())</title>
+	</head>
+
+	<body>
+		#parse ("/template/includes/actionerrors.vm" )
+		
+        <p>$action.getText("choose.connection.description")</p>
+        
+        <h2>$action.getText("database-type-standard.title")</h2>
+        <p>$action.getText("database-type-standard")</p>
+    
+        <div class="aui-panel">
+            <form method="POST" action="setupdb.action" id="directJDBCForm">
+                <input class="aui-button" type="submit"  value="$action.getText("database-type-standard.label")" />
+	            #tag( "Hidden" "name='selectedDatabaseType'" "value='database-type-standard'")
+	            #tag( "Hidden" "name='database'" "value='$database'")
+	        </form>
+        </div>
+
+        <h2>$action.getText("database-type-datasource.title")</h2>
+        <p>$action.getText("database-type-datasource")</p>
+            
+        <div class="aui-panel">
+            <form method="POST" action="setupdb.action" id="datasourceForm">
+                <input class="aui-button" type="submit" value="$action.getText("database-type-datasource.label")" />
+	            #tag( "Hidden" "name='selectedDatabaseType'" "value='database-type-datasource'")
+	            #tag( "Hidden" "name='database'" "value='$database'")
+	        </form>
+        </div>
+	</body>
+</html>

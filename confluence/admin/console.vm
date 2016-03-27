@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>$action.getText("title.admin.console")</title>
+        <content tag="subtitleDescription">console.description</content>
+	</head>
+	<body>
+		#parse ( "/breadcrumbs.vm" )
+		#parse ( "/template/includes/actionerrors.vm" )
+
+        #if ($displaySupportPeriodEndMessage && $displaySupportPeriodEndMessage == "on")
+            #applyDecorator ("alert" "")
+                  $action.getText('confluence.support.has.ended',["$supportPeriodEndDateString"])
+                  <p>$action.getText('buy.renewal', [$action.getText('hitcounter.buy.renewal')])
+                  $action.getText('why.renew', [$action.getText('hitcounter.why.renew')])</p>
+                  $action.getText('contact.us', [$action.getText('mailto.sales')])
+            #end
+        #end
+
+		#if ($displayAlmostSupportPeriodEndMessage && $displayAlmostSupportPeriodEndMessage == "on")
+            #applyDecorator ("message")
+                #decoratorParam("type" "warning")
+                $action.getText('confluence.support.is.about.to.end',["$supportPeriodEndDateString"])
+                <p>$action.getText('buy.renewal', [$action.getText('hitcounter.buy.renewal')])
+                $action.getText('why.renew', [$action.getText('hitcounter.why.renew')])</p>
+                $action.getText('contact.us', [$action.getText('mailto.sales')])
+                $action.getText('dont.remind.me', ["$req.contextPath/admin/editconsolemessages.action?displayAlmostSupportPeriodEndMessage=off&#url_xsrfToken()"])
+            #end
+        #end
+
+        ## Don't show tasklist in OnDemand, since it mentions Marketplace and settings that aren't visible in OnDemand 
+        #if ($confluenceFlavour == 'VANILLA')
+        	#parse ( "/admin/tasklist.vm" )
+        #end        	
+    </body>
+</html>

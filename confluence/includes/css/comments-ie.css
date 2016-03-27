@@ -1,0 +1,43 @@
+.collapsed .comment-body {
+    filter: alpha(opacity=0);
+}
+.comment .excerpt {
+    filter: alpha(opacity=0);
+    zoom: 1.0;
+    padding-left: 5px;
+}
+.collapsed .excerpt {
+    filter: inherit;
+}
+
+#comments-section .editor-default {
+    margin-bottom: 20px;
+    min-height: 0;
+}
+
+/* first child selector doesn't work in IE6 */
+.comment-actions li.first {
+    border-left: none;
+    padding-left: 0;
+}
+
+.comment-actions .comment-permalink a.filtered span,
+.comment-actions .comment-permalink a.filtered:hover span {
+    background: url(../../../images/border/spacer.gif);
+}
+
+.collapsed .comment-permalink {
+    display: none;
+}
+
+.comment-threads {
+    margin-bottom: 0;
+}
+
+#comments-section #savebar-container {
+    border-bottom: 1px solid #ccc;
+}
+
+#comments-section .comment-body FORM .editor-container{
+    border-bottom-width: 2px; /* Fix border not showing up in IE8*/
+}

@@ -1,0 +1,298 @@
+/* wiki-content.css */
+
+/**
+ * AUI Overrides
+ * see /includes/css/aui-overrides.css
+ */
+.rounded-corners (@radius: 5px) {
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.wiki-content {
+  .header, .footer, .cell {
+    margin: 8px 0;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    .rounded-corners;
+  }
+
+  .columnLayout {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    *clear: both;
+
+    .cell {
+      vertical-align: top;
+    }
+    .cell.aside {
+      width: 29.9%;
+    }
+    .cell.sidebars {
+      width: 19.9%;
+    }
+  }
+
+  .cell {
+     display: table-cell;
+     padding: 0 10px;
+  }
+
+  .innerCell {
+    overflow-x: auto;
+  }
+
+  .image-left {
+    float: left;
+    margin: 0 10px 10px 0;
+  }
+
+  .image-center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .image-right {
+    float: right;
+    margin: 0 0 10px 10px;
+  }
+
+  .placeholder {
+    background: #f5f5f5;
+    border: 1px dotted #ccc;
+    color: #707070;
+    font-style: italic;
+    margin: 0;
+    padding: 10px;
+
+    .activation-content {
+      display:none;
+    }
+    .display-content {
+      display: inherit;
+    }
+  }
+
+  li > ul,
+  li > ol,
+  ul > ul,
+  ol > ol {
+    margin-top: 0;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol,
+  ol ol ol ol,
+  ol ol ol ol ol ol ol,
+  ol ol ol ol ol ol ol ol ol ol {
+    list-style-type: decimal;
+  }
+
+  ol ol,
+  ol ol ol ol ol,
+  ol ol ol ol ol ol ol ol,
+  ol ol ol ol ol ol ol ol ol ol ol {
+    list-style-type: lower-alpha;
+  }
+
+  ol ol ol,
+  ol ol ol ol ol ol,
+  ol ol ol ol ol ol ol ol ol,
+  ol ol ol ol ol ol ol ol ol ol ol ol {
+    list-style-type: lower-roman;
+  }
+
+  h5 {
+    text-transform: none;
+    font-size: 14px;
+  }
+
+  h1,
+  h2 {
+      margin-top: 30px;
+  }
+
+  h1:first-child,
+  h2:first-child {
+      margin-top: 0;
+  }
+
+  h1 + h1,
+  h2 + h2,
+  h3 + h3,
+  h4 + h4,
+  h5 + h5,
+  h6 + h6 {
+    margin-top: 10px;
+  }
+
+  .confluence-embedded-image {
+    cursor: pointer;
+    max-width: 100%;
+  }
+
+  .confluence-content-image-border {
+    border: 1px solid black;
+  }
+
+  div.error > span.error {
+    color: #333;
+    padding: 6px 10px;
+    position: relative;
+    background: #fffdf6;
+    border: 1px solid #ffeaae;
+    .rounded-corners;
+  }
+
+/* CONFDEV-6137 Welcome to the world of browser hacks
+ We're targeting IE8 compatibility mode which means IE7
+ hacks. This updates the page-layout to be floated rather
+ than table layout which is not supported in compat mode.
+ These styles are only applied to IE8 compat mode */
+  .columnLayout,
+  .cell,
+  .header,
+  .footer {
+    *display: block;
+    *float: left;
+    *width: 100%;
+  }
+
+  .innerCell {
+    *border: 2px dashed #ccc;
+    *margin: 8px 4px;
+    *padding: 4px 8px;
+  }
+
+  /* Text Placeholders */
+  .text-placeholder {
+    background: #f5f5f5;
+    color: #707070;
+    font-style: italic;
+    min-width: 10px; /* So that it is visible when empty */
+    display: block;
+  }
+
+  .text-placeholder.selected {
+    color: #333
+  }
+
+  .aui-lozenge {
+    padding: 3px 5px 2px 5px;
+  }
+}
+
+.contentLayout .innerCell > *:first-child,
+.contentLayout2 {
+  .innerCell > *:first-child {
+    margin-top: 0;
+  }
+}
+
+.contentLayout2 .columnLayout {
+  margin-bottom: 8px;
+}
+
+
+.view .wiki-content .cell:first-child,
+.content-preview .wiki-content .cell:first-child {
+  padding: 0;
+}
+
+/* CONF-23497 - Work around rendering issue in Webkit and IE9. Works fine for IE8 and Firefox. */
+li[style*='text-align: center'],
+li[style*='text-align: right'] {
+  list-style-position: inside;
+}
+
+/* CONFDEV-7754 - Workaround for some unwanted onDemand styling.
+   Remove once JSTDEV-1730 is fixed. See CONFDEV-7799.
+   Will have a side-effect of breaking any footers in themes that
+   do not use the default font-family or font-size.
+   #main selector is to prevent this rule applying within the RTE iframe.
+   */
+#main .wiki-content .footer p, #main .wiki-content .footer a {
+  font-family: arial,sans-serif;
+  font-size: 14px;
+}
+
+.wiki-content .cell,
+.mceContentBody.wiki-content .cell,
+.twoColumns .cell,
+.threeColumns .cell,
+.twoColumns .large,
+.mceContentBody.wiki-content .header,
+.mceContentBody.wiki-content .footer,
+.threeColumns .large {
+  *border: 0;
+  *margin: 0;
+  *padding: 0;
+  *overflow: hidden;
+}
+
+.twoColumns .cell {
+  *width: 49.9%;
+}
+
+.threeColumns .cell {
+  *width: 33.3%;
+}
+
+.twoColumns .large {
+  *width: 69.9%;
+}
+
+.threeColumns .large {
+  *width: 59.9%;
+}
+
+div.aside + div.large,
+div.large + div.aside,
+div.large + div.sidebars,
+.twoColumns div.cell + div.cell,
+.threeColumns div.cell + div.cell + div.cell {
+  *float: right;
+}
+
+/* Page Layouts 2 */
+/* Section types: single, two-equal, two-left-sidebar, two-right-sidebar, three-equal, three-with-sidebars */
+
+.two-equal .normal {
+  *width: 49.9%;
+}
+
+.two-left-sidebar .normal,
+.two-right-sidebar .normal {
+  *width: 69.9%;
+}
+
+.three-equal .cell {
+  *width: 33.3%;
+}
+
+.three-with-sidebars .normal {
+  *width: 59.9%;
+}
+
+.two-equal div.cell + div.cell {
+  *float: right;
+}
+
+.three-equal, .three-with-sidebars {
+  div.cell + div.cell + div.cell {
+    *float: right;
+  }
+}
+
+/* CONFDEV-13804: Temporary workaround, remove once fixed in the plugin (WDAY-1641). */
+#mw-container div.mw-no-notifications div.subheading p {
+  line-height: 24px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}

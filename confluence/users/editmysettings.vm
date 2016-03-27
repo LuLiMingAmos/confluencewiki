@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>$generalUtil.htmlEncode($pageTitle)</title>
+		#requireResource("confluence.web.resources:aui-forms")
+    </head>
+
+    #applyDecorator("root")
+        #decoratorParam("context" "profile")
+        #decoratorParam("mode"  "settings")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("infopanel-width" "200px")        
+
+        <body>
+            #applyDecorator("form-aui")
+                #decoratorParam("formName" "editsettingsform")
+                #decoratorParam("submitAction"  "doeditmysettings.action")
+                #decoratorParam("editAction" "editmysettings.action")
+                #decoratorParam("editMode" "$editMode")
+
+                <h2>$action.getText("title.edit.general.preferences")</h2>
+
+                <fieldset>
+                    #tag( "Select" "label='site.homepage'" "name='siteHomePage'" "list=siteHomePages" "listKey=key" "listValue=value" "theme='aui'" )
+                    #bodytag( "Select" "label='language.select'" "name='preferredUserLocale'" "list=installedLocalePairs" "listKey=key" "listValue=value" "theme='aui'")
+                        #if ($confluenceFlavour == 'VANILLA')
+                            #set($languagePacksUrl = "${req.contextPath}/plugins/servlet/upm/marketplace/popular?category=Language+Packs&source=user_profile")
+                            #param ("descriptionHtml" "$i18n.getText('language.setting.desc', [$languagePacksUrl])")
+                        #else
+                            #param ("descriptionHtml" "$i18n.getText('language.setting.in.development.desc', ['https://confluence.atlassian.com/x/fTIvEw'])")
+                        #end
+                    #end
+                    #tag( "Select" "label='time.zone.select'" "name='userTimeZone'" "list=availableTimeZones" "listKey=key" "listValue=value" "theme='aui'" )
+
+                    #bodytag( "Component" "label='keyboard.shortcuts.enabled.label'"  
+                              "name='keyboardShortcutsEnabled'" "value=$keyboardShortcutsEnabled" "theme='aui'" "template='onofflist.vm'")
+                        #param ("legend" "$i18n.getText('keyboard.shortcuts.enabled.legend')")
+                        #param ("description" "$i18n.getText('keyboard.shortcuts.enabled.desc')")
+                    #end
+
+                    #if ($highlightPluginEnabled == true)
+                        #bodytag( "Component" "label='highlight.popup.enabled.label'" 
+                                  "name='highlightOptionPanelEnabled'" "value=$highlightOptionPanelEnabled" "theme='aui'" "template='onofflist.vm'")
+                            #param ("legend" "$i18n.getText('highlight.popup.enabled.legend')")
+                        #end
+                    #end
+
+                    #tag( "Submit" "theme='aui'" )
+                </fieldset>
+                #form_xsrfToken()
+            #end
+        </body>
+    #end
+</html>

@@ -1,0 +1,111 @@
+<html>
+<head>
+    <title>$action.getText("setup.evallicense.title")</title>
+    $webResourceManager.requireResourcesForContext("setup.eval-license")
+</head>
+
+<body>
+    <script type="text/template" id="loading-spinner-template">
+        <div class="loading-spinner">
+            <span class='aui-icon aui-icon-wait'></span> <%= message %>
+        </div>
+    </script>
+
+    #parse ("/template/includes/actionerrors.vm")
+    #renderMetadatum("server-id" $action.serverId)
+    #renderMetadatum("dev-mode" $action.devMode.toString())
+
+    #set ($hasLicenseError = $action.fieldErrors.get("licenseString"))
+
+    <form class="aui choose-license-option">
+        <p>$action.getText('setup.evallicense.introduction')</p>
+
+        <div id="license-radio-options" class="inline-radio-options">
+            <fieldset>
+                <div class="radio">
+                    <input class="radio" id="license-select-new-account" name="license-selector" type="radio" value="newAccountForm">
+                    <label for="license-select-new-account">$action.getText('setup.evallicense.no-account')</label>
+                </div>
+
+                <div class="radio">
+                    <input class="radio" id="license-select-login-mac" name="license-selector" type="radio" value="loginMacForm">
+                    <label for="license-select-login-mac">$action.getText('setup.evallicense.account-no-key')</label>
+                </div>
+
+                <div class="radio">
+                    <input class="radio" id="license-select-import-license" name="license-selector" type="radio" value="importLicenseForm" #if ($hasLicenseError) checked="checked" #end>
+                    <label for="license-select-import-license">$action.getText('setup.evallicense.have-key')</label>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+
+    <form id="newAccountForm" class="hidden aui license-form">
+        <h3>$action.getText('setup.evallicense.newaccount.header')</h3>
+        <p class="internet-required">$action.getText('setup.evallicense.internet.required')</p>
+        <div class="form-error"></div>
+
+        <div class="aui-group">
+            #bodytag( "TextField" "label='setup.evallicense.newaccount.firstname'" "name='firstName'" "theme='aui'") #end
+            #bodytag( "TextField" "label='setup.evallicense.newaccount.lastname'" "name='lastName'" "theme='aui'") #end
+            #bodytag( "TextField" "label='setup.evallicense.newaccount.email'" "name='email'" "theme='aui'") #end
+            #bodytag( "Password" "label='setup.evallicense.newaccount.password'" "name='password'" "theme='aui'") #end
+            #bodytag( "Password" "label='setup.evallicense.newaccount.confirmpassword'" "name='confirmPassword'" "theme='aui'") #end
+            #bodytag( "TextField" "label='setup.evallicense.newaccount.company'" "name='companyName'" "theme='aui'") #end
+
+            <div class="field-group">
+                #bodytag( "Component" "label='setup.evallicense.newaccount.country'" "name='country'" "theme='aui'" "template='country-select.vm'") #end
+            </div>
+
+            <div class="field-group">
+                <div class="checkbox">
+                    <input class="checkbox" type="checkbox" name="subscribeNewsletter" id="subscribeNewsletter">
+                    <label for="subscribeNewsletter">$action.getText("setup.evallicense.newaccount.newsletter")</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons-container">
+            <div class="buttons">
+                <input class="aui-button aui-button-primary" type="submit" value="$action.getText('setup.evallicense.newaccount.submit')"/>
+            </div>
+        </div>
+    </form>
+
+    <form id="loginMacForm" class="hidden aui license-form">
+        <h3>$action.getText('setup.evallicense.loginmac.header')</h3>
+        <p class="internet-required">$action.getText('setup.evallicense.internet.required')</p>
+        <div class="form-error"></div>
+        <div class="aui-group">
+            #bodytag( "TextField" "label='setup.evallicense.loginmac.email'" "name='username'" "theme='aui'") #end
+            #bodytag( "Password" "label='setup.evallicense.loginmac.password'" "name='password'" "theme='aui'") #end
+        </div>
+
+        <p class="forgot-password"><a href="https://id.atlassian.com/id/forgotPassword.action" target="_blank">$action.getText('setup.evallicense.loginmac.forgot-password')</a></p>
+
+        <div class="buttons-container">
+            <div class="buttons">
+                <input class="aui-button aui-button-primary" type="submit" value="$action.getText('setup.evallicense.loginmac.submit')"/>
+            </div>
+        </div>
+    </form>
+
+    <form id="importLicenseForm" method="POST" action="doevallicense.action" class="#if (!$hasLicenseError) hidden #end aui license-form">
+        <h3>$action.getText('setup.evallicense.importlicense.header')</h3>
+
+        #bodytag( "TextField" "label='server.id'" "name='serverId'" "theme='aui'")
+            #param ("disabled" "true")
+        #end
+
+        #bodytag ("Textarea" "label='license.key'" "name='licenseString'" "rows=10" "theme='aui'" "cssClass='long-field'")
+            #param ("id" "licenseString")
+        #end
+
+        <div class="buttons-container">
+            <div class="buttons">
+                <input class="aui-button aui-button-primary" type="submit" name="submitLicense" value="$action.getText('setup.license.next')"/>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,1 @@
+AJS.toInit(function(a){a("#ellipsis").live("click",function(){try{a("#breadcrumbs .hidden-crumb").removeClass("hidden-crumb");a(this).addClass("hidden-crumb");AJS.trigger("breadcrumbs.expanded")}catch(b){AJS.log(b)}})});

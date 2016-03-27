@@ -1,0 +1,79 @@
+/*PDL entity-list.css (confluence-webapp)*/
+.entity-list-section + .entity-list-section {
+    margin-top: 20px;
+}
+
+.entity-list-section .section-title {
+    position: relative;
+}
+
+.entity-list-section .more-entities {
+    border-top: 1px solid #CCC;
+    padding: 5px 0;
+}
+
+.sublink {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.entity-list {
+    padding: 0;
+    list-style-type: none;
+}
+
+.entity-list-item {
+    display: table;
+    width: 100%;
+    padding: 5px 0;
+    border-top: 1px solid #CCC;
+}
+
+.entity-list-item > div {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.entity-logo, .entity-logo img {
+    height: 24px;
+    width: 24px;
+}
+
+.entity-info {
+    padding-left: 8px;
+}
+
+.entity-info-icon {
+    padding-left: 8px;
+    width: 16px;
+    height: 16px;
+    text-align: right;
+}
+
+.entity-info-icon .aui-icon {
+    color: #707070;
+}
+
+.entity-favourites {
+    padding-left: 8px;
+    width: 16px;
+    height: 16px;
+    text-align: right;
+}
+
+.entity-attribute.space-name {
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+.global.logo,
+.space.logo {
+    border-radius: 50%;
+}
+
+.entity-icon {
+    font-size: 0;
+}
+
+/*End PDL entity-list.css (confluence-webapp)*/

@@ -1,0 +1,10 @@
+.icon, .icon-container {
+    font-size: 14px;
+}
+
+/* placeholder component styles */
+form.aui textarea.placeholded,
+form.aui input.placeholded {
+    color: #999;
+}
+

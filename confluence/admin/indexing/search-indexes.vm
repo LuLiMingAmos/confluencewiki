@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>$action.getActionName($action.getClass().getName())</title>
+    #requireResource("confluence.web.resources:ajs")
+    #requireResource("confluence.sections.admin.indexing:resources")
+</head>
+<body>
+<content tag="bodyClass">indexing</content>
+<content tag="selectedWebItem">indexing</content>
+
+    #set ($selectedTab = "summary")
+    #parse("/admin/indexing/indexing-tabs.vm")
+
+    <div id="indexes-panel">
+        <div id="search-index-panel" class="functionbox thickPadded">
+            <div id="search-index-panel-contents">
+                <h2>$action.getText('admin.indexing.search.index')</h2>
+
+                <p>$action.getText('admin.indexing.search.index.desc')</p>
+
+                #set ($searchIndexExists = $action.searchIndexExists())
+                #set ($searchIndexBuildInProgress = $action.isSearchIndexBuildInProgress())
+
+                #if ($searchIndexExists)
+                    #set ($searchIndexSubmitButtonName = $action.getText('admin.indexing.rebuild'))
+                #else
+                    #set ($searchIndexSubmitButtonName = $action.getText('admin.indexing.build'))
+                #end
+
+                <div class="index-task-progress-container">
+                    <div id="search-index-elapsed-time-container" class="elapsedTime">
+                        ($action.getText('elapsed.time'): <span id="search-index-elapsed-time">$!action.getLastSearchIndexRebuildElapsedTime()</span>)
+                    </div>
+                    <div id="search-index-task-progress-container"></div>
+                </div>
+
+                <div class="indexing-status">&nbsp;</div>
+
+                <form method="POST" name="rebuild-search-index-form" action="reindex.action">
+                    #form_xsrfToken()
+
+                    <input id="build-search-index-button" type="submit" value="$searchIndexSubmitButtonName" class="aui-button"/>
+                    #if ($searchIndexBuildInProgress) <input type="hidden" id="reindex-task-in-progress" value="true"/> #end
+                    #if ($searchIndexExists) <input type="hidden" id="search-index-exists" value="true"/> #end
+                </form>
+            </div>
+        </div>
+
+       #parse("/breadcrumbs.vm")
+    </div>
+</body>

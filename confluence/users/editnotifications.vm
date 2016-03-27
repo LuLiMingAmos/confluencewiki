@@ -1,0 +1,111 @@
+<html>
+	<head>
+		<title>$generalUtil.htmlEncode($pageTitle)</title>
+    </head>
+
+    #applyDecorator("root")
+        #decoratorParam("context" "profile")
+        #decoratorParam("mode"  "edit-notifications-profile")
+        #decoratorParam("helper" $helper)
+        $action.doDefault()     ## to reset the pagination on non-ajax calls to the page
+
+        <body>
+        <div class="watches">
+
+            #set ($actionUndoLink = $action.undoLink)
+            #if ($actionUndoLink)
+                #applyDecorator("success")
+                #decoratorParam("id" "watch-warning")
+                    <span>$i18n.getText('stop.watching.email.confirmation', $webwork.htmlEncode($actionUndoLink.contentName))</span>
+                    <a href=${req.contextPath}$actionUndoLink.url>$i18n.getText('undo.word')</a>
+                #end
+            #end
+
+             #set ($pageNotifications = $action.paginationSupport.page)
+             #set ($spaceNotifications = $helper.action.spaceNotificationsForUser)
+
+             #if ($pageNotifications.size() == 0 && $spaceNotifications.size() == 0)
+                <p><em>$action.getText('not.watching.anything')</em></p>
+                <br>
+             #end
+
+            <table id="space-watches" class="aui tableview condensed">
+                <thead>
+                <tr>
+                    <th colspan="2">$action.getText('space.watches')</th>
+                    ##<span style="font-weight: bold;">$action.getText('space.watches')</span>
+                </tr>
+                </thead>
+
+            #if ($spaceNotifications.size() > 0)
+                #foreach ($notification in $spaceNotifications)
+                    <tr>
+                        <td class="tableview-action-text">
+                        <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAA3NCSVQICAjb4U/gAAAAdVBMVEX///+7u7u4uLi2trapqamTk5ONjY2IiIiHh4f////5+fny8vLv7+/q6url5eXh4eHe3t7b29vW1tbQ0NDPz8/MzMzJycmvr6+kpKSfn5+dnZ2ZmZmVlZWTk5ORkZGNjY2Hh4eBgYF6enp4eHh1dXVycnJwcHD33NPNAAAAJ3RSTlMAIiIime7u7u7///////////////////////////////////////8CC6LcAAAACXBIWXMAAAsSAAALEgHS3X78AAAAFHRFWHRDcmVhdGlvbiBUaW1lADIvMS8xM6M4B8YAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAAAmElEQVQYlV2P2xLCIAxEY0uRtKVWq/WC9RIN//+JBoLjjPvATA67kyyAyDQsagyoakfnyfv95eXqNFe09JjlH1QJcM+YAjQgdjcn+feuld82JjKwATurPx4TWSxw8Uc8yXtgiMUfRYS9guJHxo6BM8h+ARKxmwSyX0CwYK66RSbkrawFN/3AfZ1Pn7+AaKXlwpjAGLTcX/0P/9QQj8j3CZEAAAAASUVORK5CYII=" />
+                            <a href="$req.contextPath/spaces/browsespace.action?key=$notification.space.key">$webwork.htmlEncode($notification.space.name)</a>
+                            #if ($notification.type)
+                                <span class="smalltext">($i18n.getText('space.watching.blogs.only'))</span>
+                            #end
+
+
+                        </td>
+
+                        <td class="tableview-action-icon">
+                            <div class="entity-watching" data-entity-id="$notification.space.key" data-entity-type="space">
+                               <a href="#" class="link-stop-watching" title="$action.getText('stop.watching.space')">$action.getText('notification.stop')</a>
+                               <a href="#" class="link-start-watching hidden" title="$action.getText('start.watching.space')">$action.getText('notification.start')</a>
+                               <span class="icon icon-wait hidden">$i18NBean.getText('loading.name')</span>
+                           </div>
+                        </td>
+                    </tr>
+                #end
+            </table>
+            #else
+            </table>
+            <div class="aui-message info">
+                <span class="aui-icon icon-info"></span>$action.getText('space.watch.instruction')
+            </div>
+            #end
+            <br>
+
+            <table id="page-watches" class="aui tableview condensed">
+                <thead>
+                <tr>
+                    <th colspan="2">$action.getText('page.watches')</th>
+                </tr>
+                </thead>
+
+            #if ($pageNotifications.size() > 0)
+                #foreach ($notification in $pageNotifications)
+                <tr>
+                    <td class="tableview-action-text">
+                        #contentLink($notification.page)
+                    </td>
+                    <td class="tableview-action-icon">
+                        <div class="entity-watching" data-entity-id="$notification.page.id" data-entity-type="page">
+                           <a href="#" class="link-stop-watching" title="$action.getText('stop.watching.page')">$action.getText('notification.stop')</a>
+                           <a href="#" class="link-start-watching hidden" title="$action.getText('start.watching.page')">$action.getText('notification.start')</a>
+                           <span class="icon icon-wait hidden">$i18NBean.getText('loading.name')</span>
+                       </div>
+                    </td>
+                </tr>
+
+                #end
+
+            </table>
+                #pagination($action.paginationSupport "${req.contextPath}/users/viewnotifications.action?")
+            #else
+            </table>
+            <div class="aui-message info">
+                <span class="aui-icon icon-info"></span>$i18n.getText('page.watch.instruction')
+            </div>
+            #end
+
+            <br>
+            <div class="page-instructions">$i18n.getText("notifications.preferences.desc")</div>
+        </div>## watches
+        </body>
+    #end
+</html>
+
+

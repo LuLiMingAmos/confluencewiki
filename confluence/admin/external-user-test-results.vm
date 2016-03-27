@@ -1,0 +1,12 @@
+<html>
+	<head>
+		<title>$action.getText("ldaptest.test")</title>
+
+    </head>
+    #parse("/breadcrumbs.vm")
+    <body>
+        <content tag="selectedWebItem">ldaptest</content>
+        #parse ("/template/includes/actionerrors.vm")
+        <pre>$paddleOutput</pre>
+    </body>
+</html>

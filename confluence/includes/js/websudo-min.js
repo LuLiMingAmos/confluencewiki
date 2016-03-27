@@ -1,0 +1,1 @@
+AJS.toInit(function(a){a("a#websudo-drop.drop-non-websudo").click(function(){a.getJSON(a(this).attr("href"),function(){a("li#confluence-message-websudo-message").slideUp(function(){AJS.trigger("confluence.header-resized")})});return false})});

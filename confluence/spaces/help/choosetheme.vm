@@ -1,0 +1,3 @@
+<p>$action.getText('choosetheme.theme.description',[$docBean.getLink('help.themes.overview')])</p>
+<p>$action.getText('choosetheme.select.theme.consequences')</p>
+<p>$action.getText('choosetheme.notheme.consequence')</p>

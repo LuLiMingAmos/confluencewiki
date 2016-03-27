@@ -1,0 +1,8 @@
+#if ($action.canAddGroups())
+    <p>$action.getText('group.browser.description') </p>
+#else
+    <p>$action.getText('group.browser.description.externally.managed') </p>
+#end
+
+</br>
+#doc("help.global.groups.overview" "$action.getText('more.about.groups')")

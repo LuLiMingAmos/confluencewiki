@@ -1,0 +1,135 @@
+<html>
+    <head>
+        <title>$i18n.getText("title.view.user")#if($user.name): $generalUtil.htmlEncode($user.name) #end</title>
+    </head>
+
+    <body>
+        <content tag="selectedWebItem">users</content>
+        <content tag="bodyClass">view-user</content>
+        #parse ( "/template/includes/actionerrors.vm" )
+
+        &laquo;
+        <a href="showallusers.action">$i18n.getText("return.to.user.browser")</a>
+
+        #if ($actionErrors.size() == 0)
+            #if ($action.userDeactivated)
+                #applyDecorator("info" "")
+                    #decoratorParam("id" "user-inactive-message")
+                    #decoratorParam("title" $i18n.getText("user.disabled"))
+                    $i18n.getText("user.disabled.description")
+                #end
+            #end
+        #end
+
+        <div id="user-profile">
+            <form class="aui">
+                #tag( "TextField" "label='user.name'" "name='user.name'" "theme='aui'")
+                #tag( "TextField" "label='fullname.name'" "name='user.fullName'" "theme='aui'")
+
+                <div class="field-group viewMode">
+                    <label for="email.name">$i18n.getText("email.name")</label>
+                    <span id="email.name" class="field-value">
+                        <a href='mailto:$generalUtil.urlEncode($!user.email)'>$generalUtil.htmlEncode($!user.email)</a>
+                    </span>
+                </div>
+
+                #tag( "TextField" "label='directory.name'" "name='directory.name'" "theme='aui'")
+
+                #if ($crowdUser.createdDate)
+                    #bodytag( "TextField" "label='user.date.created'" "theme='aui'")
+                        #param( "nameValue" "$!dateFormatter.formatDateTime(${crowdUser.createdDate})")
+                    #end
+                    #bodytag( "TextField" "label='user.date.updated'" "theme='aui'")
+                        #param( "nameValue" "$!dateFormatter.formatDateTime(${crowdUser.updatedDate})")
+                    #end
+                #end
+
+                ## Login
+                <div class="field-group viewMode">
+                    <label for="login.section.name">$i18n.getText("login.section.name")</label>
+                    <div id="login.section.name" class="field-value">
+                        #set ($loginInfo = $action.getLoginInfo())
+                        #if($loginInfo.requiresElevatedSecurityCheck())
+                            <span class="login-meta-info" id="login-meta-elevatedsecuritycheck">$i18n.getText("login.section.elevatedsecuritycheck.required")</span>
+                        #end
+
+                        #if($loginInfo.lastSuccessfulLoginDate)
+                            <span class="login-meta-info" id="login-meta-lastsuccessfulogindate">$i18n.getText("login.section.elevatedsecuritycheck.lastsuccessfulogindate"): <span class="value">$action.dateFormatter.formatDateTime($loginInfo.lastSuccessfulLoginDate)</span></span>
+                        #end
+
+                        #if($loginInfo.lastFailedLoginDate)
+                            <span class="login-meta-info" id="login-meta-lastfailedlogindate">$i18n.getText("login.section.elevatedsecuritycheck.lastfailedlogindate"): <span class="value">$action.dateFormatter.formatDateTime($loginInfo.lastFailedLoginDate)</span></span>
+                        #end
+
+                        #if($loginInfo.totalFailedLoginCount > 0)
+                            <span class="login-meta-info" id="login-meta-totalfailedlogincount">$i18n.getText("login.section.elevatedsecuritycheck.totalfailedlogincount"): <span class="value">$loginInfo.totalFailedLoginCount</span></span>
+                        #end
+                        <span class="login-meta-info" id="login-meta-currentfailedlogincount">$i18n.getText("login.section.elevatedsecuritycheck.currentfailedlogincount"): <span class="value">$loginInfo.currentFailedLoginCount</span></span>
+
+                        #if ($action.canEdit() && $loginInfo.currentFailedLoginCount > 0)
+                            (<a href="resetfailedlogincount.action?username=$generalUtil.doubleUrlEncode($user.name)&#url_xsrfToken()">$i18n.getText("link.resetfailedlogincount.name")</a>)
+                        #end
+                    </div>
+                </div>
+
+                ## Groups
+                <div class="field-group viewMode">
+                    <label for="groups-name">$i18n.getText("groups.name")</label>
+                    <div id="groups-name" class="field-value">
+                        #set ($groups = $userAccessor.getGroups($user))
+                        #if ($groups.isEmpty())
+                            $i18n.getText("user.has.no.groups")
+                        #else
+                            <ul>
+                            #foreach ($group in $groups.iterator())
+                                <li>
+
+                                    <a href="domembersofgroupsearch.action?membersOfGroupTerm=$generalUtil.urlEncode($group.name)">
+                                        <span class="aui-icon icon-group"></span>$webwork.htmlEncode($group.name)
+                                    </a>
+                                </li>
+                            #end
+                            </ul>
+                        #end
+                    </div>
+                </div>
+
+                <div class="buttons-container">
+                    <div class="buttons">
+                        #if( $permissionHelper.canView($remoteUser, $user) )
+                            <a href="$req.contextPath/users/viewuserprofile.action?username=$generalUtil.doubleUrlEncode($user.name)" class="aui-button aui-button-link">$i18n.getText("viewuserprofile.name")</a>
+                        #end
+
+                        #if (!$settingsManager.getGlobalSettings().isExternalUserManagement())
+                            <a href="editusergroups-start.action?username=$generalUtil.doubleUrlEncode($user.name)" class="aui-button aui-button-link">$i18n.getText("editgroups.name")</a>
+                        #end
+
+                        #if ($action.canEdit())
+                            <a href="edituser.action?username=$generalUtil.doubleUrlEncode($user.name)" class="aui-button aui-button-link">$i18n.getText("editdetails.name")</a>
+                        #end
+
+                        #if (!$userAccessor.isReadOnly($user) && $action.canEdit())
+                            <a href="setuserpassword.action?username=$generalUtil.doubleUrlEncode($user.name)" class="aui-button aui-button-link">$i18n.getText("setpassword.name")</a>
+                        #end
+
+                        #if ($userAccessor.isReadOnly($user))
+                            ($i18n.getText("user.is.readonly"))
+                        #elseif ($action.canRemove())
+                            <a href="removeuser.action?username=$generalUtil.doubleUrlEncode($user.name)" class="aui-button aui-button-link">$i18n.getText("remove.name")</a>
+                        #end
+
+                        #if ($user.name != $action.getRemoteUsername() && !$userAccessor.isReadOnly($user))
+                            #if ($action.userDeactivated)
+                                <a href="reactivateuser.action?username=$generalUtil.doubleUrlEncode($user.name)" class="aui-button aui-button-link">$i18n.getText("enable.name")</a>
+                            #else
+                                <a href="deactivateuser.action?username=$generalUtil.doubleUrlEncode($user.name)" class="aui-button aui-button-link">$i18n.getText("disable.name")</a>
+                            #end
+                        #end
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        #parse ( "/breadcrumbs.vm" )
+    </body>
+</html>

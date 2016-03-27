@@ -1,0 +1,12 @@
+/* module-key = 'com.atlassian.confluence.confluence-editor-hide-tools:confluence-editor-hide-tools-iframe-resources', location = '/css/editor-iframe.css' */
+body.no-tools-capable {
+    -webkit-transition: padding .3s linear;
+    -moz-transition: padding .3s linear;
+    transition: padding .3s linear;
+}
+
+body.fullsize.no-tools-enabled {
+    /* Give the user a little space to select text without triggering DFE. */
+    padding: 20px 0;
+}
+

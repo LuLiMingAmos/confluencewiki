@@ -1,0 +1,176 @@
+#* @vtlvariable name="action" type="com.atlassian.confluence.admin.actions.SecurityConfigurationAction" *#
+<html>
+<head>
+    <title>$action.getText("title.edit.security.config")</title>
+    <content tag="selectedWebItem">securityconfiguration</content>
+</head>
+<body>
+    #requireResource("confluence.web.resources:aui-forms")
+    #requireResource("confluence.sections.admin.generalconfig:resources")
+
+    #parse ( "/template/includes/actionerrors.vm" )
+
+    #if($editMode)
+        #set($formAction="doeditsecurityconfig.action")
+    #else
+        #set($formAction="editsecurityconfig.action")
+    #end
+
+<form method="POST" class="aui long-label" name="editsecurityconfig" action="$formAction">
+    #form_xsrfToken()
+
+    ## Security configurations
+    <h2>
+        $action.getText("sub.title.security")
+        #if(!$editMode)
+            <a href="$req.contextPath/admin/editsecurityconfig.action" class="edit-link aui-button">
+                <span class="aui-icon aui-icon-small icon-edit"></span>$action.getText("edit.name")
+            </a>
+        #end
+    </h2>
+    <p>$action.getText("sub.title.security.description")</p>
+
+    #set( $externalUserManagementDescription = "$i18n.getText('external.user.management.description') #doc('help.disabling.built-in.user.management' $i18n.getText('more.about.user.management'))")
+    #bodytag( "Component" "label='ext.user.management'" "name='externalUserManagement'"  "value=externalUserManagement" "theme='aui'"  "template='onofflist.vm'" "disabled=!$systemAdmin")
+        #param("description" $externalUserManagementDescription)
+    #end
+
+    #tag( "Component" "label='users.addwildcards'" "name='addWildcardsToUserAndGroupSearches'" "value=addWildcardsToUserAndGroupSearches" "theme='aui'" " disabled=!$systemAdmin" "template='onofflist.vm'")
+
+    #set( $nofollowExternalLinksDescription = "$i18n.getText('hide.external.links.description') #doc('help.managing.external.referrers' $i18n.getText('more.about.external.links'))")
+    #bodytag( "Component" "label='nofollow.external.links'" "name='nofollowExternalLinks'" "value=nofollowExternalLinks" "theme='aui'" "template='onofflist.vm'")
+        #param("description" $nofollowExternalLinksDescription)
+    #end
+
+    #bodytag( "Component" "label='allow.remoteapi.anonymous'" "name='allowRemoteApiAnonymous'" "value=allowRemoteApiAnonymous" "theme='aui'" "template='onofflist.vm'")
+        #param("description" $i18n.getText('remote.api.anonymous.access.description'))
+    #end
+
+    #tag( "Component" "label='enable.space.styles'" "name='enableSpaceStyles'" "value=enableSpaceStyles" "theme='aui'" "template='onofflist.vm'" "disabled=!$systemAdmin")
+    #tag( "Component" "label='sys.info.500'" "name='showSystemInfoIn500Page'" "value=showSystemInfoIn500Page" "theme='aui'" "template='onofflist.vm'" "disabled=!$systemAdmin")
+    #tag( "Select" "label='email.address.visibility'" "name='emailAddressVisibility'" "list=emailAddressVisibilityTypes" "listKey=key" "listValue=value" "theme='aui'")
+    #bodytag( "TextField" "label='rss.max.items'" "name='maxRssItems'" "theme='aui'" "value=maxRssItems" "disabled=!$systemAdmin")
+        #param("shortField" "true")
+        #param("description" $i18n.getText('rss.max.items.description'))
+    #end
+
+    #bodytag( "TextField" "label='rss.max.time'" "name='rssTimeout'" "theme='aui'" "value=rssTimeout" "disabled=!$systemAdmin")
+        #param("shortField" "true")
+        #param("inlineText" "$i18n.getText('core.dateutils.seconds')")
+        #param("description" $i18n.getText('rss.max.time.description'))
+    #end
+    
+    #bodytag( "TextField" "label='page.render.max.time'" "name='pageTimeout'" "theme='aui'" "value=pageTimeout" "disabled=!$systemAdmin")
+        #param("shortField" "true")
+        #param("inlineText" "$i18n.getText('core.dateutils.seconds')")
+        #param("description" $i18n.getText('page.render.max.time.description'))
+    #end
+
+    <fieldset class="group">
+        #if (!$editMode || ($editMode && $action.passConfirmationConfigurable))
+            <legend><span>$action.getText("login.elevatedsecurity.use.captcha")</span></legend>
+            #tag( "Component" "label='enable.name'" "name='enableElevatedSecurityCheck'"
+                "value=enableElevatedSecurityCheck" "theme='aui'" "template='onofflist-include.vm'")
+            #if($editMode && $action.passConfirmationConfigurable)
+                #bodytag( "TextField" "id=loginAttemptsThreshold" "label=''" "name='loginAttemptsThreshold'" "value=loginAttemptsThreshold" "theme='aui'")
+                    #param("shortField" "true")
+                    #param("inlineText" "$action.getText('login.elevatedsecurity.loginAttemptsThreshold.form')")
+                #end
+            #elseif (!$editMode)
+                #if (!$action.passConfirmationConfigurable)
+                    $action.getText('password.confirmation.disabled')
+                #elseif($action.enableElevatedSecurityCheck)
+                    <label>
+                        #if ($action.enableElevatedSecurityCheck && $action.loginAttemptsThreshold >= 0)
+                            #if($action.loginAttemptsThreshold == 0)
+                                ($action.getText('login.elevatedsecurity.loginAttemptsThreshold.label.always'))
+                            #elseif($action.loginAttemptsThreshold == 1)
+                                ($action.getText('login.elevatedsecurity.loginAttemptsThreshold.label.singular'))
+                            #else
+                                ($action.getText('login.elevatedsecurity.loginAttemptsThreshold.label.plural', [$action.loginAttemptsThreshold]))
+                            #end
+                        #end
+                    </label>
+                #end
+            #end
+        #end
+    </fieldset>
+    <fieldset class="group">
+        #if (!$editMode || ($editMode && $action.passConfirmationConfigurable))
+            <legend><span>$action.getText("websudo.enabled")</span></legend>
+            #tag( "Component" "label='enable.name'" "name='webSudoEnabled'" "value=webSudoEnabled" "theme='aui'" "template='onofflist-include.vm'")
+            #if($editMode)
+                #bodytag( "TextField" "id=webSudoTimeout" "label=''" "name='webSudoTimeout'" "value=webSudoTimeout" "theme='aui'")
+                    #param("shortField" "true")
+                    #param("inlineText" "$action.getText('websudo.timeout.label.input')")
+                #end
+            #else
+                #if (!$action.passConfirmationConfigurable)
+                    $action.getText('password.confirmation.disabled')
+                #elseif($action.webSudoEnabled)
+                    <label>
+                        #if ($action.webSudoEnabled && $action.webSudoTimeout >= 0)
+                            #if($action.loginAttemptsThreshold == 1)
+                                ($action.getText('websudo.timeout.label.singular'))
+                            #else
+                                ($action.getText('websudo.timeout.label.plural', [$action.webSudoTimeout]))
+                            #end
+                        #end
+                    </label>
+                #end
+            #end
+         #end
+        <div class="description description-textbox">
+            $i18n.getText('secure.admin.sessions.description')
+         #doc("help.secure.admin.sessions" "$i18n.getText('more.about.secure.admin.sessions')")
+        </div>
+    </fieldset>
+
+    #bodytag ("Radio" "label='attachment.security.level.label'" "list=attachmentSecurityLevels" "name='attachmentSecurityLevel'" "value=attachmentSecurityLevel" "theme='aui'" "template='radiolist.vm'"
+        "listKey=value" "listValue=key" "disabled=!$systemAdmin")
+	#param("displayValue" $attachmentSecurityLevelDisplay)
+    #end
+
+    <h2 id="xsrf">
+        $action.getText("sub.title.xsrf")
+        #if(!$editMode)
+            <a href="$req.contextPath/admin/editsecurityconfig.action#xsrf" class="edit-link aui-button">
+                <span class="aui-icon aui-icon-small icon-edit"></span>$action.getText("edit.name")
+            </a>
+        #end
+    </h2>
+    <p>$action.getText("sub.title.xsrf.description")</p>
+    #bodytag( "Component" "label='xsrf.addComments'" "name='xsrfAddComments'" "value=xsrfAddComments" "theme='aui'" "template='onofflist.vm'" "disabled=!$systemAdmin")
+        #param("description" $i18n.getText('xsrf.addComments.description'))
+    #end
+
+    <h2 id="xss">
+        $action.getText("sub.title.xss")
+        #if(!$editMode)
+            <a href="$req.contextPath/admin/editsecurityconfig.action#xss" class="edit-link aui-button">
+                <span class="aui-icon aui-icon-small icon-edit"></span>$action.getText("edit.name")
+            </a>
+        #end
+    </h2>
+
+    <p>$action.getText("sub.title.xss.description")</p>
+    #bodytag( "Component" "label='anti.xss.mode'" "name='antiXssMode'" "value=antiXssMode" "theme='aui'" "template='onofflist.vm'" "disabled=!$systemAdmin")
+        #param("description" $i18n.getText('anti.xss.mode.description'))
+    #end
+
+    <div class="hidden parameters">
+        <input type="hidden" id="editMode" value="$editMode">
+    </div>
+
+    ## Buttons
+    #if($editMode)
+        #bodytag( "Submit" "theme='aui'" )
+            #param ("submitValue" "$action.getText('update.name')")
+            #param ("cancelValue" "$action.getText('cancel.name')")
+        #end
+    #end
+</form>
+
+    #parse("/breadcrumbs.vm")
+</body>
+</html>

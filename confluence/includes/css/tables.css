@@ -1,0 +1,100 @@
+.confluenceTable {
+    border-collapse: collapse;
+}
+
+.confluenceTh,
+.confluenceTd {
+    border: 1px solid #ddd;
+    padding: 7px 10px; /* CONFDEV-13618: line-height will add up 3 pixels, so we have a 10px top padding for text. Images will remain with 7px top margin though (see thread in Stash) */
+    vertical-align: top;
+    text-align: left;
+}
+
+/* Lists in tables */
+.confluenceTable ol,
+.confluenceTable ul {
+    margin-left: 0;
+    padding-left: 22px; /* CONFDEV-12589: default left padding is far too wide */
+}
+
+/* all tables should have a top margin of 10px */
+.confluenceTable, .table-wrap {
+    margin: 10px 0 0 0;
+    overflow-x: auto;
+}
+
+/* an exception to above rule for tables that are first child */
+.confluenceTable:first-child, .table-wrap:first-child {
+    margin-top: 0;
+}
+
+/* Background colors */
+table.confluenceTable th.confluenceTh,
+table.confluenceTable th.confluenceTh > p,
+table.confluenceTable td.confluenceTd.highlight, /* deprecated */
+table.confluenceTable td.confluenceTd.highlight > p, /* deprecated */
+table.confluenceTable th.confluenceTh.highlight-grey,
+table.confluenceTable th.confluenceTh.highlight-grey > p,
+table.confluenceTable td.confluenceTd.highlight-grey,
+table.confluenceTable td.confluenceTd.highlight-grey > p {
+    background-color: #f0f0f0;
+}
+
+table.confluenceTable th.confluenceTh.info, /* deprecated */
+table.confluenceTable th.confluenceTh.info > p, /* deprecated */
+table.confluenceTable td.confluenceTd.highlight.info, /* deprecated */
+table.confluenceTable td.confluenceTd.highlight.info > p, /* deprecated */
+table.confluenceTable th.confluenceTh.highlight-blue,
+table.confluenceTable th.confluenceTh.highlight-blue > p,
+table.confluenceTable td.confluenceTd.highlight-blue,
+table.confluenceTable td.confluenceTd.highlight-blue > p {
+    background-color: #e0f0ff;
+}
+
+table.confluenceTable th.confluenceTh.success, /* deprecated */
+table.confluenceTable th.confluenceTh.success > p, /* deprecated */
+table.confluenceTable td.confluenceTd.highlight.success, /* deprecated */
+table.confluenceTable td.confluenceTd.highlight.success > p, /* deprecated */
+table.confluenceTable th.confluenceTh.highlight-green,
+table.confluenceTable th.confluenceTh.highlight-green > p,
+table.confluenceTable td.confluenceTd.highlight-green,
+table.confluenceTable td.confluenceTd.highlight-green > p {
+    background-color: #ddfade;
+}
+
+table.confluenceTable th.confluenceTh.warning, /* deprecated */
+table.confluenceTable th.confluenceTh.warning > p, /* deprecated */
+table.confluenceTable td.confluenceTd.highlight.warning, /* deprecated */
+table.confluenceTable td.confluenceTd.highlight.warning > p, /* deprecated */
+table.confluenceTable th.confluenceTh.highlight-red,
+table.confluenceTable th.confluenceTh.highlight-red > p,
+table.confluenceTable td.confluenceTd.highlight-red,
+table.confluenceTable td.confluenceTd.highlight-red > p {
+    background-color: #ffe7e7;
+}
+
+table.confluenceTable th.confluenceTh.note, /* deprecated */
+table.confluenceTable th.confluenceTh.note > p, /* deprecated */
+table.confluenceTable td.confluenceTd.highlight.note, /* deprecated */
+table.confluenceTable td.confluenceTd.highlight.note > p, /* deprecated */
+table.confluenceTable th.confluenceTh.highlight-yellow,
+table.confluenceTable th.confluenceTh.highlight-yellow > p,
+table.confluenceTable td.confluenceTd.highlight-yellow,
+table.confluenceTable td.confluenceTd.highlight-yellow > p {
+    background-color: #ffffdd;
+}
+
+table.confluenceTable th.confluenceTh,
+table.confluenceTable th.confluenceTh > p {
+    font-weight: bold;
+}
+
+table.confluenceTable th.confluenceTh.nohighlight, /* deprecated */
+table.confluenceTable th.confluenceTh.nohighlight > p { /* deprecated */
+    font-weight: normal;
+    background-color: transparent;
+}
+
+table.confluenceTable td.confluenceTd img {
+    max-width: none;
+}

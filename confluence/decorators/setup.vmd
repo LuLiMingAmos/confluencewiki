@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE,chrome=IE7">
+    <meta charset="utf-8">
+    <title>KICK9 WIKI</title>
+    <!--<title>$title - Confluence</title>-->
+    
+    $webResourceManager.requireResourcesForContext("setup")
+    $webResourceManager.getResources()
+    
+    #renderMetadata()
+    #favicon()
+</head>
+<body class="aui-layout aui-page-focused aui-page-focused-large setup">
+<div id="page">
+    <div id="content" role="main">
+        <div class="aui-page-header">
+            <div class="aui-page-header-inner">
+                <div class="aui-page-header-main">
+                    <a class="logocell-text" href="$req.contextPath/">KICK9 WIKI</a>
+                    <!--<a class="logocell-text" href="$req.contextPath/"><img src="$staticResourceUrlPrefix/images/logo/confluence_header.png" alt="Confluence"></a>-->
+                </div>
+                <div class="aui-page-header-actions">
+                    #if ($sitemeshPage.getProperty("page.header-actioncontent"))
+                        $sitemeshPage.getProperty("page.header-actioncontent")
+                    #end
+                </div>
+            </div>
+        </div>
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <div class="aui-page-panel-content">
+                    <h1 class="pageheader">$title</h1>
+                    $body
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
+</html>

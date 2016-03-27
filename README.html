@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+	<title>Atlassian Confluence 5.5.3 - Standalone README</title>
+    <style type="text/css">
+body, p, td, table, tr, .bodytext {
+	font-family: Verdana, arial, sans-serif;
+	font-size: 11px;
+	line-height: 16px;
+	color: #000000;
+}
+
+body {
+	margin:0px;
+	padding:0px;
+    background-color:#f0f0f0;
+}
+A:link, A:visited, A:active, A:hover {
+	color: #003366;
+}
+h1 {
+	font-size: 24px;
+	line-height: normal;
+	font-weight: bold;
+ 	border-bottom: #3c78b5;
+	border-width: 0 0 1px 0;
+	border-style: solid;
+}
+
+h2 {
+	font-size: 14px;
+	line-height: normal;
+	font-weight: bold;
+	padding: 5px 0 0 0;
+}
+#Content {
+	text-align:left;
+	background-color:#fff;
+	border-style: solid;
+	border-color: #003366;
+	border-width: 10px 0px 1px 0px;
+	padding: 0px 10px 10px 10px;
+	}
+
+</style>
+  </head>
+
+  <body>
+	  <div id="Content">
+		  <h1>Confluence 5.5.3 - README</h1>
+
+		  <p>Thank you for downloading Confluence 5.5.3 - Standalone distribution.
+		  This distribution comes with a built-in Tomcat 7.0.47 web server
+		  and hsql database, so it runs (almost) out the box.</p>
+
+		  <h2>Installing Confluence</h2>
+
+		  <ol>
+			<li><a href="https://confluence.atlassian.com/display/DOC/Installing+Confluence+on+Windows+from+Zip+File">Windows Instructions</a></li>
+			<li><a href="https://confluence.atlassian.com/display/DOC/Installing+Confluence+on+Linux+from+Archive+File">Unix Instructions</a></li>
+		  </ol>
+
+		  <h2>Problems</h2>
+
+		  <p>A known startup problem is when another program has claimed a configured network port <b>8090</b>,
+		  which Confluence is configured to run on by default.  To avoid this port conflict, use the installer 
+          which checks for conflicts during installation. Otherwise Confluence's port can be changed in <b>conf/server.xml</b>.</p>
+
+          <p>If you encounter any errors, please visit our online documentation at <a
+                  href="http://confluence.atlassian.com/x/8hIC">http://confluence.atlassian.com/x/8hIC</a> or open a support case at
+              <a href="http://support.atlassian.com">our support JIRA instance</a>.</p>
+		  <br/>
+
+		  <p>
+		  <b>Thank you for using Confluence!<br />
+			  - The Atlassian Team</b>
+		  </p>
+	  </div>
+</body>
+  </html>

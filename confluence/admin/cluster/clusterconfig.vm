@@ -1,0 +1,159 @@
+#* @vtlvariable name="action" type="com.atlassian.confluence.admin.actions.cluster.ClusterConfigurationAction" *#
+<html>
+	<head>
+		<title>$action.getText("cluster.configuration")</title>
+		<meta name="help-path" content="/admin/cluster/help/clusterconfig.vm"/>
+    </head>
+	<body>
+        <content tag="selectedWebItem">clusterconfig</content>
+		#parse ("/template/includes/actionerrors.vm")
+		<table class="admin">
+
+		<tr>
+		    <th>$action.getText("cluster.status")</th>
+		    <td #if ($action.isClusterRunning()) class="status-green"
+		        #else class="status-red" #end >
+		        $action.clusterStatus
+            </td>
+        </tr>
+
+		#if ($action.isClusterRunning())
+		<tr>
+		    <th>$action.getText("cluster.config.name.label")</th>
+		    <td>
+		        $action.clusterName
+		    </td>
+        </tr>
+		<tr>
+            <th>$action.getText("cluster.config.home.label")</th>
+            <td>
+                #if ($action.clusterHome.isDefined())
+                    $action.clusterHome.get().path
+                #else
+                    $action.getText("cluster.config.home.not.configured")
+                #end
+            </td>
+        </tr>
+		<tr>
+		    <th>$action.getText("cluster.multicast.listen.label")</th>
+		    <td>
+		        $action.clusterAddress
+		    </td>
+        </tr>
+		<tr>
+		    <th>$action.getText("cluster.members.label")</th>
+		    <td>
+		        $action.clusterMembers.size()
+		    </td>
+        </tr>
+		#end
+
+        <tr>
+            <th>$action.getText("cluster.permitted.member.count")</th>
+            <td>$action.permittedMemberCount
+
+            #if ($action.clusterLicenseInNonClusteredConfluence)
+                <div class="errorBox">$action.getText("license.cluster.not.supported")</div>
+            #end
+            </td>
+        </tr>
+		</table>
+
+        #set ($clusterableInterfaces = $action.clusterableInterfaces)
+
+		#if (!$action.isClusterRunning() && $action.permittedMemberCount > 0 && !$action.clusterLicenseInNonClusteredConfluence)
+		<p>
+		#if ($clusterableInterfaces.size() > 1)
+		$action.getText("cluster.not.started.can.start.multiple.interfaces")
+		#else
+		$action.getText("cluster.not.started.can.start")
+		#end
+		</p>
+
+        #if ($clusterableInterfaces.size() == 1)
+
+        #applyDecorator("warning")
+            $action.getText("cluster.only.one.network.interface.warning")
+        #end
+
+        #end
+
+		<form name="startcluster" action="startcluster.action">
+            #form_xsrfToken()
+            <table class="admin">
+                #if ($clusterableInterfaces.size() > 1)
+                <tr>
+                    <th>$action.getText("interface.name")</th>
+                    <td>
+                         <select id="selNetworkInterface" name="networkInterface">
+
+                        #foreach ($iface in $clusterableInterfaces)
+                            #set ($address = $iface.inetAddresses.nextElement())
+                            <option value="$iface.name">$iface.name [$address.hostAddress]</option>
+                        #end
+
+                        </select>
+                    </td>
+                </tr>
+                #end
+                <tr>
+                    <th>$action.getText("cluster.config.name.label")</th>
+                    <td><input type="text" name="clusterName"></td>
+                </tr>
+                <tr>
+                    <th>$action.getText("cluster.config.home.label")</th>
+                    <td><input type="text" name="clusterHome"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="controls">
+                        #tag( "Submit" "id=start" "name='start'" "value='cluster.start.label'" "theme='notable'" )
+                    </td>
+                </tr>
+            </table>
+		</form>
+		#end
+
+        #set ($thisNodeId = $action.getThisNodeId())
+
+        #if ($action.isClusterRunning())
+        <h4>$action.getText("cluster.active.nodes")</h4>
+
+            #set ($nodesInfo = $action.clusterNodesInfo)
+            #foreach ($node in $nodesInfo)
+            <table width="100%" class="admin">
+                <tr>
+                    <th>$action.getText('cluster.node.id.label')</th>
+                    <td>$node.nodeInfo.id #if ($thisNodeId == $node.nodeInfo.id) $action.getText('cluster.current.node.label') #end</td>
+                </tr>
+                <tr>
+                    <th>$action.getText('cluster.coherence.listen.label')</th>
+                    <td>$node.nodeInfo.localSocketAddress</td>
+                </tr>
+                <tr>
+                    <th>$action.getText('system.uptime')</th>
+                    <td>$node.nodeStatus.getBuildStats().get('upTime')</td>
+                </tr>
+                <tr>
+                    <th>$action.getText('jvm.version')</th>
+                    <td>$node.nodeStatus.getProps().get('javaVersion')</td>
+                </tr>
+                <tr>
+                    <th>$action.getText('operating.system')</th>
+                    <td>$node.nodeStatus.getProps().get('operatingSystem')</td>
+                </tr>
+                <tr>
+                    <th style="vertical-align: middle">$action.getText('memory.graph.heap')</th>
+                    <td>
+                        #bodytag( "Component" "theme='custom'" "template='memoryusagebar.vm'")
+                            #param ("used" $node.nodeStatus.getJVMstats().get('usedMemoryInMegabytes'))
+                            #param ("total" $node.nodeStatus.getJVMstats().get('totalMemoryInMegabytes'))
+                        #end
+                    </td>
+                </tr>
+            </table>
+            #end
+        #end
+
+        #parse("/breadcrumbs.vm")
+	</body>
+</html>

@@ -1,0 +1,73 @@
+#* @vtlvariable name="action" type="com.atlassian.confluence.setup.actions.SetupClusterAction" *#
+<html>
+	<head>
+		<title>$action.getText("title.setup.cluster")</title>
+    </head>
+	<body>
+
+        <p>$action.getText("setup.step.description.cluster")</p>
+
+	    #parse ( "/template/includes/actionerrors.vm" )
+
+        #set ($clusterableInterfaces = $action.clusterableInterfaces)
+
+        <form method="POST" name="clusterform" action="setupcluster.action" class="aui">
+
+	        #if ($clusterableInterfaces.size() == 1)
+	
+	        #applyDecorator("warning")
+	            $action.getText("cluster.only.one.network.interface.warning")
+	        #end
+	
+	        #end
+	
+	        <h2>$action.getText("cluster.setup.choose.network.interface.title")</h2>
+	        <p>$action.getText("cluster.setup.choose.network.interface.description")</p>
+	        
+	        <div class="field-group">
+	            <label for="selNetworkInterface">$action.getText("cluster.interface.label")</label>
+	            
+	            <select id="selNetworkInterface" name="networkInterface" class="select">
+		            #foreach ($iface in $clusterableInterfaces)
+		                #set ($address = $iface.inetAddresses.nextElement())
+		                <option value="$iface.name">$iface.name [$address.hostAddress]</option>
+		            #end
+	            </select>
+	        </div>
+	
+	        <h2>$action.getText('configure.cluster')</h2>
+	        <p>$action.getText('cluster.name.description')</p>
+	        
+	        <div class="field-group">
+                <label for="clusterName">$action.getText('cluster.setup.name.label')</label>
+                <input name="clusterName" id="clusterName" type="text" class="text" value="$generalUtil.htmlEncode($action.clusterName)">
+                <div class="description">
+                    $action.getText("cluster.setup.name.description")
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label for="clusterAddressString">$action.getText('cluster.setup.address.label')</label>
+                <input name="clusterAddressString" id="clusterAddressString" type="text" class="text" value="$generalUtil.htmlEncode($action.clusterAddressString)">
+                <div class="description">
+                    $action.getText("cluster.setup.address.description")
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label for="clusterHome">$action.getText('cluster.setup.home.label')</label>
+                <input name="clusterHome" id="clusterHome" type="text" class="text" value="$generalUtil.htmlEncode($action.clusterHome)"/>
+                <div class="description">
+                    $action.getText("cluster.setup.home.description")
+                </div>
+            </div>
+            
+            <div class="buttons-container">
+	            <div class="buttons">
+	                <input class="aui-button" type="submit" name="joinCluster" value="$action.getText("clustered.submit")"/>
+                    <input class="aui-button" type="submit" name="newCluster" value="$action.getText("new.cluster")"/>
+	            </div>
+            </div>
+        </form>
+    </body>
+</html>

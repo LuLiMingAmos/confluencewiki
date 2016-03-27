@@ -1,0 +1,1164 @@
+try {
+/* module-key = 'confluence.extra.jira:blueprint-selector', location = 'templates/extra/jira/blueprint-selector.js' */
+(function(){if(!Confluence.Blueprint.Selector){return}Confluence.Blueprint.Selector.registerSelector(function(a){if(a.issueKey&&a.agileMode==="plan"){return"com.atlassian.confluence.plugins.confluence-software-blueprints:requirements-item"}if(a.sprintId&&a.agileMode==="plan"){return"com.atlassian.confluence.plugins.confluence-business-blueprints:meeting-notes-item"}if(a.sprintId&&a.agileMode==="report"){return"com.atlassian.confluence.plugins.confluence-software-blueprints:retrospectives-item"}})})();
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+
+try {
+/* module-key = 'confluence.getting-started:getting-started-resources', location = 'com/atlassian/confluence/plugins/gettingstarted/soy/getting-started.soy' */
+// This file was automatically generated from getting-started.soy.
+// Please don't edit this file by hand.
+
+if (typeof Confluence == 'undefined') { var Confluence = {}; }
+if (typeof Confluence.Templates == 'undefined') { Confluence.Templates = {}; }
+if (typeof Confluence.Templates.GettingStarted == 'undefined') { Confluence.Templates.GettingStarted = {}; }
+
+
+Confluence.Templates.GettingStarted.popularTabEmpty = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<div class="gettingstarted"><div class="main-banner">', "Welcome, looks like you\x26#8217;re new here", '</div><div class="sub-banner">', soy.$$escapeHtml("Take a short tour below or get started on the left."), '</div><div class="movie-container"><div class="movie-container-inner"><a href="', soy.$$escapeHtml("http://www.atlassian.com/software/confluence/videos/55.html"), '" class="movie-link"><span class="play" class="light"></span></a></div></div></div>');
+  return opt_sb ? '' : output.toString();
+};
+
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+
+try {
+/* module-key = 'confluence.getting-started:getting-started-resources', location = 'com/atlassian/confluence/plugins/gettingstarted/js/getting-started.js' */
+AJS.toInit(function ($) {
+
+    function showWelcomeVideo($container) {
+        $container.html(Confluence.Templates.GettingStarted.popularTabEmpty());
+
+        var darken = function(e){
+            $('.gettingstarted .play').removeClass('light').addClass('dark');
+        };
+        var lighten = function(e){
+            $('.gettingstarted .play').removeClass('dark').addClass('light');
+        };
+        $('.gettingstarted .movie-link')
+            .hover(darken, lighten)
+            .fancybox({
+                type: 'iframe',
+                width: 560,
+                height: 315,
+                padding: 0,
+                scrolling: 'no'
+            });
+    }
+
+    // This event is fired by the Confluence Dashboard Macros plugin when the popular tab is otherwise empty
+    AJS.bind("dashboard-recentupdates-popular.no-updates", function (event, data) {
+        showWelcomeVideo(data.container);
+    });
+});
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+
+try {
+/* module-key = 'confluence.web.resources:shared-templates', location = '/includes/soy/user.soy' */
+// This file was automatically generated from user.soy.
+// Please don't edit this file by hand.
+
+if (typeof Confluence == 'undefined') { var Confluence = {}; }
+if (typeof Confluence.Templates == 'undefined') { Confluence.Templates = {}; }
+if (typeof Confluence.Templates.User == 'undefined') { Confluence.Templates.User = {}; }
+
+
+Confluence.Templates.User.userLinkUrl = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append(soy.$$escapeHtml(""), '/display/~', soy.$$escapeUri(opt_data.username));
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.User.logo = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  if (opt_data.profilePictureInfo['default'] && opt_data.username == opt_data.currentUsername) {
+    output.append('<a ', (opt_data.canView) ? ' ' + ((! opt_data.disableUserHover) ? 'class="userLogoLink"' : '') + ' data-username="' + soy.$$escapeHtml(opt_data.username) + '"' : '', ' href="', soy.$$escapeHtml(""), '/users/editmyprofilepicture.action" title="', soy.$$escapeHtml("\u6dfb\u52a0\u5934\u50cf"), '"><img class="userLogo logo defaultLogo" src="', soy.$$escapeHtml("/s/zh_CN/5515/dc14a8a1bb8ff5f410b8fec10fffebe66c51617e.25/_"), '/images/icons/profilepics/add_profile_pic.png" alt="', soy.$$escapeHtml("\u7528\u6237\u56fe\u6807"), ': ', soy.$$escapeHtml("\u6dfb\u52a0\u5934\u50cf"), '"></a>');
+  } else {
+    if (opt_data.profilePictureInfo.anonymous) {
+      output.append('<img class="userLogo logo anonymous" src="', soy.$$escapeHtml("/s/zh_CN/5515/dc14a8a1bb8ff5f410b8fec10fffebe66c51617e.25/_"), '/images/icons/profilepics/anonymous.png" alt="', soy.$$escapeHtml("\u7528\u6237\u56fe\u6807"), ': ', soy.$$escapeHtml("\u533f\u540d"), '" title="', soy.$$escapeHtml("\u533f\u540d"), '">');
+    } else if (opt_data.canView) {
+      output.append('<a ', (! opt_data.disableUserHover) ? 'class="userLogoLink"' : '', ' data-username="', soy.$$escapeHtml(opt_data.username), '" href="');
+      Confluence.Templates.User.userLinkUrl(opt_data, output);
+      output.append('"><img class="userLogo logo" src="', soy.$$escapeHtml(""), soy.$$escapeHtml(opt_data.profilePictureInfo.downloadPath), '" alt="', soy.$$escapeHtml("\u7528\u6237\u56fe\u6807"), ': ', soy.$$escapeHtml(opt_data.username), '" title="', soy.$$escapeHtml(opt_data.username), '"></a>');
+    } else {
+      output.append('<img class="userLogo logo anonymous" src="', soy.$$escapeHtml("/s/zh_CN/5515/dc14a8a1bb8ff5f410b8fec10fffebe66c51617e.25/_"), '/images/icons/profilepics/anonymous.png" alt="', soy.$$escapeHtml("\u7528\u6237\u56fe\u6807"), ': ', soy.$$escapeHtml(opt_data.username), '" title="', soy.$$escapeHtml(opt_data.username), '">');
+    }
+  }
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.User.usernameLink = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  if (opt_data.username && opt_data.username != '') {
+    output.append('<a href="');
+    Confluence.Templates.User.userLinkUrl(opt_data, output);
+    output.append('"', (opt_data.canView) ? 'class="url fn confluence-userlink" data-username="' + soy.$$escapeHtml(opt_data.username) + '"' : 'class="url fn"', '>', (opt_data.fullName && opt_data.fullName != '') ? soy.$$escapeHtml(opt_data.fullName) : soy.$$escapeHtml(opt_data.username), '</a>');
+  } else {
+    output.append(soy.$$escapeHtml("\u533f\u540d\u7528\u6237"));
+  }
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.User.fullNameOrAnonymous = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append((opt_data.user && opt_data.user.fullName) ? soy.$$escapeHtml(opt_data.user.fullName) : soy.$$escapeHtml("\u533f\u540d\u7528\u6237"));
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.User.usernameOrAnonymous = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append((opt_data.user && opt_data.user.name) ? soy.$$escapeHtml(opt_data.user.name) : soy.$$escapeHtml("\u533f\u540d\u7528\u6237"));
+  return opt_sb ? '' : output.toString();
+};
+
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+
+try {
+/* module-key = 'confluence.web.resources:shared-templates', location = '/includes/soy/icons.soy' */
+// This file was automatically generated from icons.soy.
+// Please don't edit this file by hand.
+
+if (typeof Confluence == 'undefined') { var Confluence = {}; }
+if (typeof Confluence.Templates == 'undefined') { Confluence.Templates = {}; }
+if (typeof Confluence.Templates.Icons == 'undefined') { Confluence.Templates.Icons = {}; }
+
+
+Confluence.Templates.Icons.contentIcon = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append((opt_data.content.type == 'trackback') ? '<a' + ((opt_data.linkColour) ? ' ' + soy.$$escapeHtml(opt_data.linkColour) : '') + ' href="' + soy.$$escapeHtml(opt_data.linkHref) + '" class="icon icon-trackback" title="' + soy.$$escapeHtml("\u56de\u6eaf") + '">' + soy.$$escapeHtml("\u56de\u6eaf") + ':</a>' : '<a' + ((opt_data.linkColour) ? ' ' + soy.$$escapeHtml(opt_data.linkColour) : '') + ' href="' + soy.$$escapeHtml(opt_data.linkHref) + '" class="icon ' + soy.$$escapeHtml(opt_data.iconCss) + '" title="' + soy.$$escapeHtml(opt_data.iconTitle) + '">' + soy.$$escapeHtml(opt_data.iconTitle) + '</a>');
+  return opt_sb ? '' : output.toString();
+};
+
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+
+try {
+/* module-key = 'confluence.macros.dashboard:dashboard-macros-resources', location = 'com/atlassian/confluence/plugins/macros/dashboard/js/dashboard-macros.js' */
+/*
+ This js file handles all the JavaScript for the dashboard macros
+*/
+AJS.toInit(function($) {
+
+    var waiting = []; // used to prevent the user from triggering off another labelling operation when one is in progress
+    var contextPath = AJS.Meta.get("context-path");
+    var UPDATES_REST_URL = contextPath + '/rest/dashboardmacros/1.0';
+
+    // Space List Macro JS:
+
+    /**
+     * Check whether a space is favourited given the favourite icon for that space
+     * @param button the space's favourite icon (jQuery object)
+     */
+    var spaceIsFavourited = function(button) {
+        return button.hasClass("icon-remove-fav"); // Anchor version
+    };
+
+    /**
+     * Add/Remove a space from the user's favourites. This is used when displaying spaces on the dashboard (in dash macros).
+     * @param spaceKey - The space key of the space to add as favourite
+     * @param button - The button that was clicked (anchor element jQuery object)
+     */
+    var toggleFavouriteSpace = function(spaceKey, button) {
+        var wasFavourited = spaceIsFavourited(button),
+            waitIndicator = button.parent().find(".icon-wait");
+        var url = contextPath + "/json/" +
+            (wasFavourited ? "removespacefromfavourites.action" : "addspacetofavourites.action");
+
+        button.addClass("hidden");
+        waitIndicator.removeClass("hidden");
+
+        AJS.safe.ajax({
+            url: url,
+            type: "POST",
+            data: { "key" : spaceKey },
+            success: function(labelsArr) {
+                waitIndicator.addClass("hidden");
+                button.parent().find(wasFavourited? ".icon-add-fav" : ".icon-remove-fav").removeClass("hidden");
+                delete waiting[spaceKey];
+            },
+            error: function(xhr, text, error) {
+                // TODO CONF-20780 Notify the user of the problem (will need to be internationalised)
+                waitIndicator.addClass("hidden");
+                button.parent().find(wasFavourited? ".icon-remove-fav" : ".icon-add-fav").removeClass("hidden");
+                AJS.logError("Error Toggling Favourite Space: " + text);
+                delete waiting[spaceKey];
+            }
+        });
+    };
+
+    /**
+     * If the user switches tabs while spaces are still being labelled, this function will prevent this from
+     * happening. Allowing a location change in the middle of xmlhttp requests causes exceptions to be thrown in
+     * Firefox (although, they seem to be ignored by IE). This is important in high latency environments where
+     * users may get impatient.
+     */
+    var gotoUrl = function(url) {
+        if ($.isEmptyObject(waiting)) {
+            AJS.log("Busy toggling favourite for space '" + spaceKey + "'. Ignoring request to change tab.");
+            return;
+        }
+        window.location = url;
+    };
+
+
+    // Override AUI tab click behaviour for spaces list because we don't preload tab content as AUI expects
+    $(".spaceList.aui-tabs ul.tabs-menu").undelegate("a", "click");
+
+    $(".spaceList .tabs a").click(function() {
+        gotoUrl(this.href);
+        return false;
+    });
+
+    $(".spaceList").delegate(".icon-add-fav, .icon-remove-fav", "click", function(e) {
+        var button = $(e.target);
+        var spaceKey = button.closest("tr").attr("data-space-key");
+        if (waiting[spaceKey]) {
+            AJS.log("Already busy toggling favourite space for '" + spaceKey + "'. Ignoring request.");
+            return;
+        }
+        waiting[spaceKey] = true;
+        toggleFavouriteSpace(spaceKey, button);
+        return false;
+    });
+
+    $(".spaceList select.selectedTeam").change(function() {
+        var dropDown = $(this);
+        var baseUrl = dropDown.attr("data-base-url");
+        var selectedTab = dropDown.attr("data-selected-tab");
+        window.location = baseUrl + 'spacesSelectedTab=' + encodeURIComponent(selectedTab)
+            + '&spacesSelectedTeam=' + encodeURIComponent(this.value);
+    });
+
+
+    // Dashboard Recently Updated Content Macro JS:
+
+    var $recentUpdates = $("#recent-updates");
+    var $recentUpdatesTabMenu = $recentUpdates.find("ul.tabs-menu");
+    var $container = $recentUpdates.find(".tabs-pane.active-pane");
+    var $showMoreLessButtonContainer = $recentUpdatesTabMenu.find(".tabletitleops");
+
+    var getPageSize = function() {
+        return parseInt($recentUpdates.attr("data-num-updates"), 10);
+    };
+
+    var setPageSize = function(newPageSize) {
+        return $recentUpdates.attr("data-num-updates", newPageSize);
+    };
+
+    var getUpdatesStepSize = function() {
+        return parseInt($recentUpdates.attr("data-updates-step-size"), 10);
+    };
+
+    var getMinPageSize = function() {
+        return parseInt($recentUpdates.attr("data-min-updates"), 10);
+    };
+
+    var getMaxPageSize = function() {
+        return parseInt($recentUpdates.attr("data-max-updates"), 10);
+    };
+
+    var getActiveTab = function() {
+        return $recentUpdatesTabMenu.find("li.active-tab");
+    };
+
+    var getActiveTabKey = function() {
+        return getActiveTab().attr("data-tab-key");
+    };
+
+    var getSelectedCategory = function() {
+        var $categorySelect = $recentUpdates.find("#updatesSelectedCategory");
+        return $categorySelect.length > 0 ? $categorySelect.val() : "";
+    };
+
+    var fetchPopularContent = function() {
+        // The popular tab handles its own content sizing
+        $showMoreLessButtonContainer.hide();
+        Confluence.Dashboard.reloadPopularStream();
+        // Set the popular tab as the default
+        $.ajax({
+            url: UPDATES_REST_URL + '/default',
+            type: 'PUT',
+            data: {
+                tab: 'popular'
+            }
+        });
+    };
+
+    var fetchUpdatesClickHandler = function() {
+        var activeTabKey = getActiveTabKey();
+
+        if (activeTabKey === "popular") {
+            fetchPopularContent();
+            return;
+        }
+
+        var selectedCategory = getSelectedCategory();
+        Confluence.Dashboard.showSpinner($container);
+        $showMoreLessButtonContainer.show();
+
+        var showProfilePic = ($recentUpdates.attr("data-show-profile-pic") === "true");
+        var showSpaceName = ($recentUpdates.attr("data-show-space-name") === "true");
+        var maxUpdates = getPageSize();
+
+        $.post(UPDATES_REST_URL + '/updates', {
+            maxResults: maxUpdates,
+            tab: activeTabKey,
+            showProfilePic: showProfilePic,
+            labels: $recentUpdates.attr("data-labels-filter")? $recentUpdates.attr("data-labels-filter") : "",
+            spaces: $recentUpdates.attr("data-spaces-filter")? $recentUpdates.attr("data-spaces-filter") : "",
+            users: $recentUpdates.attr("data-users-filter")? $recentUpdates.attr("data-users-filter") : "",
+            types: $recentUpdates.attr("data-types-filter")? $recentUpdates.attr("data-types-filter") : "",
+            category: selectedCategory,
+            spaceKey: AJS.Meta.get("space-key")? AJS.Meta.get("space-key") : ""
+        }).success(function(data) {
+            // Ignore responses from the server if they don't match the currently selected tab so we don't have
+            // concurrency issues.
+            if (getActiveTabKey() !== data.tabKey) {
+                AJS.log("Ignoring response from server because selected tab is not " + data.tabKey);
+                return;
+            }
+
+            $container.html(Confluence.Templates.Dashboard.Updates.updates({
+                contextPath: contextPath,
+                staticResourceUrlPrefix: AJS.params.staticResourceUrlPrefix,
+                currentUsername: AJS.params.remoteUser,
+                maxUpdates: maxUpdates,
+                selectedTab: activeTabKey,
+                viewableCategories: data.viewableCategories,
+                selectedCategory: data.selectedCategory,
+                showProfilePic: showProfilePic,
+                showSpaceName: showSpaceName,
+                changeSets: data.changeSets,
+                noContentMessage: data.noContentMessage
+            }));
+
+            Confluence.Binder.userHover();
+            bindCategorySelector();
+        }).error(function(jqXHR, textStatus, errorThrown) {
+            $recentUpdates.find(".tabs-pane.active-pane").empty();
+            AJS.log("Failed to retrieve updates. Status: " + textStatus + ", Error: " + errorThrown);
+            AJS.messages.error("#recent-updates .tabs-pane.active-pane", {
+                title: "Failed to retrieve updates",
+                body: "<p>" + "Updates could not be retrieved at this time. Please try again later." + "</p>",
+                closeable: false
+            });
+        });
+    };
+
+    var updatePageSize = function(newPageSize) {
+        var stepSize = getUpdatesStepSize();
+        var minPageSize = getMinPageSize();
+        var maxPageSize = getMaxPageSize();
+
+        var $moreButton = $recentUpdatesTabMenu.find(".icon-show-more");
+        var $lessButton = $recentUpdatesTabMenu.find(".icon-show-less");
+        var moreButtonPageSize = (newPageSize + stepSize);
+        var lessButtonPageSize = (newPageSize - stepSize);
+
+        setPageSize(newPageSize);
+        $moreButton.attr("href", $moreButton.attr("href").replace(/[\?\&]maxRecentlyUpdatedPageCount=\d+/, "maxRecentlyUpdatedPageCount=" + moreButtonPageSize));
+        $lessButton.attr("href", $lessButton.attr("href").replace(/[\?\&]maxRecentlyUpdatedPageCount=\d+/, "maxRecentlyUpdatedPageCount=" + lessButtonPageSize));
+        if (moreButtonPageSize > maxPageSize) {
+            $moreButton.addClass("disabled");
+        } else {
+            $moreButton.removeClass("disabled");
+        }
+        if (lessButtonPageSize < minPageSize) {
+            $lessButton.addClass("disabled");
+        } else {
+            $lessButton.removeClass("disabled");
+        }
+    };
+
+    var bindCategorySelector = function() {
+        $recentUpdates.find('select[name="updatesSelectedTeam"]').change(function() {
+            fetchUpdatesClickHandler();
+        });
+    };
+
+    // Override AUI tab click behaviour for recent updates because we don't preload tab content as AUI expects
+    // and because we have other links (+/-) in the tab menu that AUI shouldn't handle
+    $recentUpdatesTabMenu.undelegate("a", "click");
+
+    // AJAX switch tab binding
+    $recentUpdatesTabMenu.delegate("li.menu-item a", "click", function(e) {
+        e.preventDefault();
+        // Don't do anything if the user clicks on the active tab
+        var $clickedTab = $(this).parent("li");
+        if ($clickedTab.hasClass("active-tab")) {
+            return;
+        }
+
+        // display the loading message so we're not at any point showing another tab's content in this tab
+        Confluence.Dashboard.showSpinner($container);
+
+        var $activeTab = getActiveTab();
+        $activeTab.removeClass("active-tab");
+        $clickedTab.addClass("active-tab");
+        fetchUpdatesClickHandler();
+    });
+
+    // AJAX page size bindings
+    $recentUpdatesTabMenu.find(".icon-show-less").click(function(e) {
+        e.preventDefault();
+        if ($(this).hasClass("disabled")) {
+            return;
+        }
+
+        updatePageSize(getPageSize() - getUpdatesStepSize());
+        fetchUpdatesClickHandler();
+    });
+    $recentUpdatesTabMenu.find(".icon-show-more").click(function(e) {
+        e.preventDefault();
+        if ($(this).hasClass("disabled")) {
+            return;
+        }
+
+        updatePageSize(getPageSize() + getUpdatesStepSize());
+        fetchUpdatesClickHandler();
+    });
+
+    // Twixie for thumbnails
+    $recentUpdates.delegate("li.update-item .update-item-icons .update-item-arrow", "click", function(e) {
+        var thumbnailId = $(e.currentTarget).attr("data-thumbnail-id");
+        $('#twixie-' + thumbnailId).toggleClass("icon-section-opened icon-section-closed");
+        $('#thumbnail-' + thumbnailId).toggle("fast");
+        return false;
+    });
+
+    bindCategorySelector();
+});
+
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+
+try {
+/* module-key = 'confluence.macros.dashboard:dashboard-macros-resources', location = 'com/atlassian/confluence/plugins/macros/dashboard/soy/stream-items.soy' */
+// This file was automatically generated from stream-items.soy.
+// Please don't edit this file by hand.
+
+if (typeof Confluence == 'undefined') { var Confluence = {}; }
+if (typeof Confluence.Templates == 'undefined') { Confluence.Templates = {}; }
+if (typeof Confluence.Templates.Dashboard == 'undefined') { Confluence.Templates.Dashboard = {}; }
+
+
+Confluence.Templates.Dashboard.streamItems = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<ol id="stream-items">');
+  Confluence.Templates.Dashboard.streamItemsContents(opt_data, output);
+  output.append('</ol>', (opt_data.nextPageOffset) ? '<div class="stream-button-group"><a href="" data-next-page-offset="' + soy.$$escapeHtml(opt_data.nextPageOffset) + '" class="more-trigger button aui-button aui-button-link">' + soy.$$escapeHtml("Show more") + '</a></div><div class="stream-items-loading" style="display: none">' + soy.$$escapeHtml("Loading\u2026") + '</div>' : '');
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Dashboard.streamItemsContents = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  var streamItemList17 = opt_data.streamItems;
+  var streamItemListLen17 = streamItemList17.length;
+  for (var streamItemIndex17 = 0; streamItemIndex17 < streamItemListLen17; streamItemIndex17++) {
+    var streamItemData17 = streamItemList17[streamItemIndex17];
+    Confluence.Templates.Dashboard.compactStreamItem({streamItem: streamItemData17}, output);
+  }
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Dashboard.titleFirstStreamItem = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<li class="stream-item title-first ', soy.$$escapeHtml(opt_data.streamItem.contentCssClass), '"><h1><a href="', soy.$$escapeHtml(opt_data.streamItem.url), '">', soy.$$escapeHtml(opt_data.streamItem.title), '</a></h1><div class="two-column-left-auto"><div class="valign-middle-container"><img class="avatar userLogo logo" src="', soy.$$escapeHtml(opt_data.streamItem.author.avatarUrl), '"><span class="by-line">by <a class="confluence-userlink" data-username="', soy.$$escapeHtml(opt_data.streamItem.author.userName), '" href="', soy.$$escapeHtml(opt_data.streamItem.author.url), '">', soy.$$escapeHtml(opt_data.streamItem.author.fullName), '</a></span></div>');
+  var countItemList37 = opt_data.streamItem.counts;
+  var countItemListLen37 = countItemList37.length;
+  for (var countItemIndex37 = 0; countItemIndex37 < countItemListLen37; countItemIndex37++) {
+    var countItemData37 = countItemList37[countItemIndex37];
+    output.append('<div class="count-container valign-middle-container"><span class="icon ', soy.$$escapeHtml(countItemData37.cssClass), '"></span><span class="count">', soy.$$escapeHtml(countItemData37.count), '</span></div>');
+  }
+  output.append('</div>', (opt_data.streamItem.imageUris.length > 0 || opt_data.streamItem.excerpt) ? '<div>' + ((opt_data.streamItem.imageUris.length > 0) ? '<div class="thumbnails thumbnail-layout"><div><img src="' + soy.$$escapeHtml(opt_data.streamItem.imageUris[0]) + '"></div></div>' : '') + ((opt_data.streamItem.excerpt) ? '<div class="excerpt">' + opt_data.streamItem.excerpt + '</div>' : '') + '</div>' : '', '</li>');
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Dashboard.compactStreamItem = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<li class="stream-item stream-item-layout ', soy.$$escapeHtml(opt_data.streamItem.contentCssClass), '"><div class="avatar-container">', (! opt_data.streamItem.author.anonymous) ? '<a class="confluence-userlink" data-username="' + soy.$$escapeHtml(opt_data.streamItem.author.userName) + '" href="' + soy.$$escapeHtml(opt_data.streamItem.author.url) + '">' : '', '<img class="avatar userLogo logo" src="', soy.$$escapeHtml(opt_data.streamItem.author.avatarUrl), '">', (! opt_data.streamItem.author.anonymous) ? '</a>' : '', '</div><div class="stream-item-body-container"><div class="compact-stream-item-layout"><div class="stream-icon-container"><span class="', soy.$$escapeHtml(opt_data.streamItem.iconCssClass), '"></span></div><div class="stream-heading-container"><a class="stream-item-heading visitable" href="', soy.$$escapeHtml(opt_data.streamItem.url), '">', soy.$$escapeHtml(opt_data.streamItem.title), '</a></div>');
+  var countItemList85 = opt_data.streamItem.counts;
+  var countItemListLen85 = countItemList85.length;
+  for (var countItemIndex85 = 0; countItemIndex85 < countItemListLen85; countItemIndex85++) {
+    var countItemData85 = countItemList85[countItemIndex85];
+    output.append('<div class="count-container valign-middle-container"><span class="icon ', soy.$$escapeHtml(countItemData85.cssClass), '"></span><span class="count">', soy.$$escapeHtml(countItemData85.count), '</span></div>');
+  }
+  output.append('</div><div class="flush-with-heading-container"><div class="stream-item-meta"><ol class="middot-list"><li>', (opt_data.streamItem.author.anonymous) ? '<span class="anonymous-user">' + soy.$$escapeHtml(opt_data.streamItem.author.fullName) + '</span>' : (opt_data.streamItem.author.unknownUser) ? '<span class="unknown-user">' + soy.$$escapeHtml(opt_data.streamItem.author.fullName) + '</span>' : '<a class="confluence-userlink" data-username="' + soy.$$escapeHtml(opt_data.streamItem.author.userName) + '" href="' + soy.$$escapeHtml(opt_data.streamItem.author.url) + '">' + soy.$$escapeHtml(opt_data.streamItem.author.fullName) + '</a>', '</li></ol><span class="stream-item-date">', soy.$$escapeHtml(opt_data.streamItem.friendlyDate), '</span></div>', (opt_data.streamItem.imageUris && opt_data.streamItem.imageUris.length > 0) ? '<div class="thumbnails thumbnail-layout"><div><img src="' + soy.$$escapeHtml(opt_data.streamItem.imageUris[0]) + '"></div></div>' : '', (opt_data.streamItem.excerpt) ? '<div class="excerpt">' + opt_data.streamItem.excerpt + '</div>' : '', '</div></div></li>');
+  return opt_sb ? '' : output.toString();
+};
+
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+
+try {
+/* module-key = 'confluence.macros.dashboard:dashboard-macros-resources', location = 'com/atlassian/confluence/plugins/macros/dashboard/soy/recently-updated-dashboard.soy' */
+// This file was automatically generated from recently-updated-dashboard.soy.
+// Please don't edit this file by hand.
+
+if (typeof Confluence == 'undefined') { var Confluence = {}; }
+if (typeof Confluence.Templates == 'undefined') { Confluence.Templates = {}; }
+if (typeof Confluence.Templates.Dashboard == 'undefined') { Confluence.Templates.Dashboard = {}; }
+if (typeof Confluence.Templates.Dashboard.Updates == 'undefined') { Confluence.Templates.Dashboard.Updates = {}; }
+
+
+Confluence.Templates.Dashboard.Updates.streamLoading = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<div class="loading-container"><div class="loading-text wait"></div></div>');
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Dashboard.Updates.tabs = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<div id="recent-updates" class="aui-tabs horizontal-tabs" data-aui-tab-events-bound="true" data-num-updates="', soy.$$escapeHtml(opt_data.numUpdates), '" data-max-updates="', soy.$$escapeHtml(opt_data.updatesMaxSize), '" data-min-updates="', soy.$$escapeHtml(opt_data.updatesMinSize), '" data-updates-step-size="', soy.$$escapeHtml(opt_data.updatesStepSize), '" data-show-profile-pic="', soy.$$escapeHtml(opt_data.showProfilePic), '" data-show-space-name="', soy.$$escapeHtml(opt_data.showSpaceName), '"', (opt_data.macroParamsLabelsFilter) ? ' data-labels-filter="' + soy.$$escapeHtml(opt_data.macroParamsLabelsFilter) + '"' : '', (opt_data.macroParamsSpacesFilter) ? ' data-spaces-filter="' + soy.$$escapeHtml(opt_data.macroParamsSpacesFilter) + '"' : '', (opt_data.macroParamsUsersFilter) ? ' data-users-filter="' + soy.$$escapeHtml(opt_data.macroParamsUsersFilter) + '"' : '', (opt_data.macroParamsTypesFilter) ? ' data-types-filter="' + soy.$$escapeHtml(opt_data.macroParamsTypesFilter) + '"' : '', '>');
+  if (opt_data.nonExistentLabels && opt_data.nonExistentLabels.length > 0) {
+    output.append('<div class="nonexistent-labels">', soy.$$escapeHtml("\u8fd9\u4e9b\u6807\u7b7e\u4e0d\u5b58\u5728\u4e14\u88ab\u5ffd\u7565\uff1a"), '<ul>');
+    var labelList44 = opt_data.nonExistentLabels;
+    var labelListLen44 = labelList44.length;
+    for (var labelIndex44 = 0; labelIndex44 < labelListLen44; labelIndex44++) {
+      var labelData44 = labelList44[labelIndex44];
+      output.append('<li>', soy.$$escapeHtml(labelData44), '</li>');
+    }
+    output.append('</ul></div>');
+  }
+  output.append('<ul class="tabs-menu">');
+  var tabList51 = opt_data.tabs;
+  var tabListLen51 = tabList51.length;
+  for (var tabIndex51 = 0; tabIndex51 < tabListLen51; tabIndex51++) {
+    var tabData51 = tabList51[tabIndex51];
+    if (tabIndex51 == 0) {
+      Confluence.Templates.Dashboard.Updates.updatesTab({tab: tabData51, selectedTab: opt_data.selectedTab, cssClass: 'first'}, output);
+    } else {
+      Confluence.Templates.Dashboard.Updates.updatesTab({tab: tabData51, selectedTab: opt_data.selectedTab, cssClass: ''}, output);
+    }
+  }
+  output.append('<!--<li class="tabletitleops"><a class="tabletitleop icon icon-show-more', (! opt_data.showMoreEnabled) ? ' disabled' : '', '" href="', soy.$$escapeHtml(opt_data.showMoreUrl), '" title="', soy.$$escapeHtml("\u663e\u793a\u66f4\u591a"), '">', soy.$$escapeHtml("\u663e\u793a\u66f4\u591a"), '</a><a class="tabletitleop icon icon-show-less', (! opt_data.showLessEnabled) ? ' disabled' : '', '" href="', soy.$$escapeHtml(opt_data.showLessUrl), '" title="', soy.$$escapeHtml("\u663e\u793a\u66f4\u5c11"), '">', soy.$$escapeHtml("\u663e\u793a\u66f4\u5c11"), '</a></li>--></ul><div class="tabs-pane active-pane">');
+  Confluence.Templates.Dashboard.Updates.updates(opt_data, output);
+  output.append('</div></div>');
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Dashboard.Updates.updatesTab = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<li class="menu-item ', soy.$$escapeHtml(opt_data.tab.name), (opt_data.cssClass) ? ' ' + soy.$$escapeHtml(opt_data.cssClass) : '', (opt_data.selectedTab == opt_data.tab.name) ? ' active-tab' : '', '" data-tab-key="', soy.$$escapeHtml(opt_data.tab.name), '"><a href="', soy.$$escapeHtml(opt_data.tab.url), '"><strong>', soy.$$escapeHtml(opt_data.tab.displayName), '</strong></a></li>');
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Dashboard.Updates.updates = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  if (opt_data.actionErrors && opt_data.actionErrors.length > 0) {
+    Confluence.Templates.Dashboard.Updates.displayErrors(opt_data, output);
+  } else if (opt_data.changeSets.length == 0) {
+    output.append('<div class="loading-container"><div class="loading-text">', soy.$$escapeHtml(opt_data.noContentMessage), '</div></div>');
+  } else {
+    if (opt_data.selectedTab == 'team') {
+      if (opt_data.viewableCategories.length > 0) {
+        output.append('<div class="team-selection"><form class="aui"><label for="updatesSelectedCategory">', soy.$$escapeHtml("\u9009\u62e9\uff1a"), '</label><select id="updatesSelectedCategory" name="updatesSelectedTeam" class="select">');
+        var categoryLabelList121 = opt_data.viewableCategories;
+        var categoryLabelListLen121 = categoryLabelList121.length;
+        for (var categoryLabelIndex121 = 0; categoryLabelIndex121 < categoryLabelListLen121; categoryLabelIndex121++) {
+          var categoryLabelData121 = categoryLabelList121[categoryLabelIndex121];
+          output.append('<option value="', soy.$$escapeHtml(categoryLabelData121.name), '" ', (categoryLabelData121.name == opt_data.selectedCategory) ? 'selected' : '', '>', soy.$$escapeHtml(categoryLabelData121.capitalised), '</option>');
+        }
+        output.append('</select></form></div>');
+      } else {
+        output.append('<div class="loading-container"><div class="loading-text">', soy.$$escapeHtml("\u6ca1\u6709\u5efa\u7acb\u5206\u7ec4\uff0c\u7528\u4e8e\u5206\u7ec4\u7ec4\u7ec7\u7a7a\u95f4\uff0c \u7a7a\u95f4\u6216\u7f51\u7ad9\u7ba1\u7406\u5458\u9700\u8981\u8bbe\u7f6e\u5206\u7ec4\u7684\u7c7b\u578b\uff0c\u8fd9\u53ef\u4ee5\u901a\u8fc7\u5728\u7f16\u8f91\u7a7a\u95f4\u6807\u7b7e\u5b9e\u73b0\u7f16\u8f91\u7684\u9875\u9762\u5728\u7a7a\u95f4\u7ba1\u7406\u5458\u9875\u9762\u4e2d\u3002"), '</div></div>');
+      }
+    }
+  }
+  if (opt_data.showProfilePic) {
+    output.append('<ul class="results-container update-groupings">');
+    var changeSetList140 = opt_data.changeSets;
+    var changeSetListLen140 = changeSetList140.length;
+    for (var changeSetIndex140 = 0; changeSetIndex140 < changeSetListLen140; changeSetIndex140++) {
+      var changeSetData140 = changeSetList140[changeSetIndex140];
+      output.append('<li class="grouping"><div class="update-item-profile">');
+      Confluence.Templates.User.logo({canView: changeSetData140.canViewProfile, currentUsername: opt_data.currentUsername, username: (changeSetData140.modifier) ? changeSetData140.modifier.name : '', profilePictureInfo: changeSetData140.profilePictureInfo}, output);
+      output.append('</div><div class="update-items"><h4>');
+      Confluence.Templates.User.usernameLink({canView: changeSetData140.canViewProfile, username: (changeSetData140.modifier) ? changeSetData140.modifier.name : '', fullName: (changeSetData140.modifier) ? changeSetData140.modifier.fullName : ''}, output);
+      output.append('</h4><ul>');
+      var changeItemList165 = changeSetData140.recentUpdates;
+      var changeItemListLen165 = changeItemList165.length;
+      for (var changeItemIndex165 = 0; changeItemIndex165 < changeItemListLen165; changeItemIndex165++) {
+        var changeItemData165 = changeItemList165[changeItemIndex165];
+        Confluence.Templates.Dashboard.Updates.updateItem({changeItem: changeItemData165, changeSetNumber: changeSetIndex140, changeItemNumber: changeItemIndex165}, output);
+      }
+      output.append('</ul></div></li>');
+    }
+    output.append('</ul>');
+  } else {
+    output.append('<ul class="results-container updates-no-pics">');
+    var changeSetList176 = opt_data.changeSets;
+    var changeSetListLen176 = changeSetList176.length;
+    for (var changeSetIndex176 = 0; changeSetIndex176 < changeSetListLen176; changeSetIndex176++) {
+      var changeSetData176 = changeSetList176[changeSetIndex176];
+      var changeItemList177 = changeSetData176.recentUpdates;
+      var changeItemListLen177 = changeItemList177.length;
+      for (var changeItemIndex177 = 0; changeItemIndex177 < changeItemListLen177; changeItemIndex177++) {
+        var changeItemData177 = changeItemList177[changeItemIndex177];
+        Confluence.Templates.Dashboard.Updates.updateItemNoPics({changeSet: changeSetData176, changeItem: changeItemData177, showSpaceName: opt_data.showSpaceName}, output);
+      }
+    }
+    output.append('</ul>');
+  }
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Dashboard.Updates.displayErrors = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  if (opt_data.actionErrors && opt_data.actionErrors.length > 0) {
+    output.append('<div class="aui-message error"><span class="svg-icon error size-18"></span><strong>', soy.$$escapeHtml("\u53d1\u751f\u5982\u4e0b\u9519\u8bef\uff1a"), '</strong><ul>');
+    var errorList191 = opt_data.actionErrors;
+    var errorListLen191 = errorList191.length;
+    for (var errorIndex191 = 0; errorIndex191 < errorListLen191; errorIndex191++) {
+      var errorData191 = errorList191[errorIndex191];
+      output.append('<li>', soy.$$escapeHtml(errorData191), '</li>');
+    }
+    output.append('</ul></div>');
+  }
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Dashboard.Updates.updateItem = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<li class="update-item"><div class="update-item-icons">', (opt_data.changeItem.thumbnailable) ? '<a id="twixie-' + soy.$$escapeHtml(opt_data.changeSetNumber) + soy.$$escapeHtml(opt_data.changeItemNumber) + '" href="" data-thumbnail-id="' + soy.$$escapeHtml(opt_data.changeSetNumber) + soy.$$escapeHtml(opt_data.changeItemNumber) + '" class="update-item-arrow icon icon-section-closed"></a>' : '<span class="update-item-arrow"></span>');
+  Confluence.Templates.Icons.contentIcon({content: opt_data.changeItem.entity, iconTitle: opt_data.changeItem.friendlyContentType, iconCss: opt_data.changeItem.iconCss, linkHref: opt_data.changeItem.urlPath}, output);
+  output.append('</div><div class="update-item-content"><span class="update-item-title">', opt_data.changeItem.html, '</span>', (opt_data.changeItem.summary) ? '<p class="update-item-summary">' + soy.$$escapeHtml(opt_data.changeItem.summary) + '</p>' : '', '<div><span class="update-item-date">', soy.$$escapeHtml(opt_data.changeItem.updateDescription), '</span>', (opt_data.changeItem.viewChangesLink) ? '&nbsp;<span class="update-item-changes">(<a href="' + soy.$$escapeHtml(opt_data.changeItem.viewChangesLink) + '">' + soy.$$escapeHtml("\u67e5\u770b\u53d8\u52a8") + '</a>)</span>' : '', '</div>', (opt_data.changeItem.thumbnailable) ? '<div class="update-item-thumbnail-container"><a href="' + soy.$$escapeHtml(opt_data.changeItem.imageUrl) + '"><img id="thumbnail-' + soy.$$escapeHtml(opt_data.changeSetNumber) + soy.$$escapeHtml(opt_data.changeItemNumber) + '" class="thumbnail" src="' + soy.$$escapeHtml(opt_data.changeItem.thumbnailUrl) + '" width="' + soy.$$escapeHtml(opt_data.changeItem.thumbnailWidth) + '" height="' + soy.$$escapeHtml(opt_data.changeItem.thumbnailHeight) + '" style="display: none" /></a></div>' : '', '</div></li>');
+  return opt_sb ? '' : output.toString();
+};
+
+
+Confluence.Templates.Dashboard.Updates.updateItemNoPics = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<li>');
+  Confluence.Templates.Icons.contentIcon({content: opt_data.changeItem.entity, iconTitle: opt_data.changeItem.friendlyContentType, iconCss: opt_data.changeItem.iconCss, linkHref: opt_data.changeItem.urlPath}, output);
+  output.append(' ', opt_data.changeItem.html);
+  if (opt_data.showSpaceName) {
+    output.append(' ');
+    if (opt_data.changeItem.contentType == 'userinfo') {
+      output.append('<span class="smalltext">(');
+      Confluence.Templates.User.usernameOrAnonymous({user: opt_data.changeSet.modifier}, output);
+      output.append(')</span>');
+    } else if (opt_data.changeItem.contentType == 'status') {
+      output.append('<span class="smalltext">(');
+      Confluence.Templates.User.fullNameOrAnonymous({user: opt_data.changeSet.modifier}, output);
+      output.append(')</span>');
+    } else {
+      output.append('<span class="smalltext">(', soy.$$escapeHtml(opt_data.changeItem.spaceName), ')</span>');
+    }
+  }
+  output.append('<div style="float:right;" class="smalltext">');
+  Confluence.Templates.User.usernameLink({canView: opt_data.changeSet.canViewProfile, username: (opt_data.changeSet.modifier) ? opt_data.changeSet.modifier.name : '', fullName: (opt_data.changeSet.modifier) ? opt_data.changeSet.modifier.fullName : ''}, output);
+  output.append(' (', soy.$$escapeHtml(opt_data.changeItem.friendlyUpdateTime), ')</div></li>');
+  return opt_sb ? '' : output.toString();
+};
+
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+
+try {
+/* module-key = 'confluence.macros.dashboard:dashboard-macros-resources', location = 'com/atlassian/confluence/plugins/macros/dashboard/js/popular.js' */
+var Confluence = window.Confluence || {};
+Confluence.Dashboard = Confluence.Dashboard || (function ($) {
+    var POPULAR_STREAM_URL = AJS.Meta.get("context-path") + "/rest/popular/1/stream/content";
+
+    function get(url, $container, append, options) {
+        options = options || {};
+
+        var ajaxData = {
+                days: 7,
+                pageSize: 20
+            };
+
+        ajaxData = $.extend(ajaxData, options);
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: ajaxData,
+            contentType : "application/json; charset=utf-8",
+            dataType : "json"
+        }).success(function (data) {
+            if (data.streamItems && data.streamItems.length === 0) {
+                // This event is listened for in confluence-getting-started plugin which displays the welcome video
+                AJS.trigger("dashboard-recentupdates-popular.no-updates", {container:$container})
+                $(".loading-text").html("This tab shows popular content. Create, comment on or like content to see it appear here.");
+                return false;
+            }
+
+            var $streamItems;
+            if (append) {
+                $streamItems = $(Confluence.Templates.Dashboard.streamItemsContents(data));
+                var $streamItemsEl = $container.find("#stream-items");
+                $streamItemsEl.append($streamItems);
+
+                var $moreLink = $container.find(".more-trigger");
+                $(".stream-items-loading").hide();
+                if (data.nextPageOffset) {
+                    $moreLink.show();
+                    $moreLink.attr("data-next-page-offset", data.nextPageOffset);
+                } else {
+                    $moreLink.remove();
+                }
+            } else {
+                $streamItems = $(Confluence.Templates.Dashboard.streamItems(data));
+                $container.html($streamItems);
+
+                $container.find(".more-trigger").click(function () {
+                    $(".stream-items-loading").show();
+                    $(this).hide();
+
+                    get(POPULAR_STREAM_URL, $container, true, {
+                        nextPageOffset: $(this).attr("data-next-page-offset")
+                    });
+
+                    return false;
+                });
+            }
+
+            Confluence.Binder.userHover();
+        });
+    }
+
+    function showSpinner(container) {
+        $(container).html(Confluence.Templates.Dashboard.Updates.streamLoading());
+        $(container).find('.loading-text').spin('large');
+    }
+
+    function loadPopularStream(options) {
+        var $container = $("#recent-updates .tabs-pane.active-pane");
+        showSpinner($container);
+        get(POPULAR_STREAM_URL, $container, false, options);
+    }
+
+    return {
+        reloadPopularStream: function (options) {
+            if ($("#recent-updates .menu-item.popular").hasClass("active-tab")) {
+                loadPopularStream(options);
+            }
+        },
+        showSpinner: showSpinner
+    };
+})(AJS.$);
+
+AJS.toInit(function($) {
+    Confluence.Dashboard.reloadPopularStream();
+});
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+
+try {
+/* module-key = 'confluence.macros.dashboard:dashboard-macros-resources', location = 'com/atlassian/confluence/plugins/macros/dashboard/js/drafts.js' */
+AJS.$(function ($) {
+
+    $draftsCount = $(".drafts-section .more-entities");
+
+    var totalDraftsCount = AJS.Meta.get("drafts-count");
+
+    var reenableDraftRow = function($row) {
+        // Remove pointer events so the user can't navigate to the link while it is waiting to delete.
+        $row.css("pointer-events", "auto");
+        $row.find(".icon-wait").removeClass("icon-wait").addClass("icon-remove");
+    }
+
+    var removeDraftRow = function($row) {
+        $row.css("pointer-events", "none");
+        $row.find(".icon-remove").removeClass("icon-remove").addClass("icon-wait");
+    }
+
+
+    $(".discard-draft").one("click", function () {
+        var $li = $(this).closest("li");
+        var id = $(this).data("id");
+        var message = "Are you sure you want to discard this draft?";
+
+        if (confirm(message)) {
+
+            removeDraftRow($li);
+
+            AJS.safeAjax({
+                url: Confluence.getContextPath() + "/json/deletedraft.action",
+                type: "GET",
+                dataType: "json",
+                data: {
+                    draftId: id
+                },
+                success: function (data) {
+                    if (data.actionErrors) {
+                        var errorHtml = ["<ul>"],
+                            errors = data.actionErrors;
+
+                        for (var i = 0; i < errors.length; i++) {
+                            AJS.log("error: " + (errors[i]));
+                            errorHtml.push("<li>" + errors[i] + "</li>");
+                        }
+                        errorHtml.push("</ul>");
+
+                        AJS.messages.error({
+                            title: "Error",
+                            body: "There were errors discarding your draft." + " " + errorHtml.join("\n")
+                        });
+
+                        reenableDraftRow($li);
+                    } else {
+
+                        $li.fadeOut(1e3, function() {
+                            $draftsCount.text(AJS.format("Showing {0} of {1}", $li.siblings().length, --totalDraftsCount));
+                            $(this).remove();
+                        });
+                    }
+                },
+                error: function (data) {
+                    reenableDraftRow($li);
+
+                    AJS.messages.error({
+                        title: "Error",
+                        body: data["errors"] || "An unknown error has occurred. Please check your logs."
+                    });
+
+                }
+            });
+        }
+    });
+
+});
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+
+try {
+/* module-key = 'com.atlassian.confluence.plugins.confluence-easyuser-admin:easyuser', location = 'js/easyuser.js' */
+AJS.toInit(function ($) {
+
+    var $sendInvitationsForm = $('#easyuser-send-invites-form'),
+        resetButton = $('#reset-invite-token'),
+        inviteLinkField = $('#invite-link'),
+        inviteEmail = $('#inviteEmail'),
+        $messageContainer = $("#invite-user-errors"),
+        $sendInvitationsSubmitButton = $sendInvitationsForm.find('input[type="submit"]');
+	
+    function msg(text, type) {
+        AJS.MessageHandler.message($messageContainer, text, type);
+    }
+
+    function errorMsg(text, statusText, error) {
+        AJS.MessageHandler.error($messageContainer, text);
+        if (statusText)
+            AJS.log(text + ": [statusText = '" + statusText + "'], [error = '" + error + "']");
+    }
+
+    function postJson(options) {
+        msg(options.loadingMessage, 'info');
+        return $.ajax({
+            url: Confluence.getContextPath() + options.url,
+            type: 'POST',
+            dataType: 'json',
+            data: options.data,
+            contentType: 'application/json',
+            success: options.success,
+            error: options.error,
+            statusCode: {
+                401: function () {
+                    errorMsg("Your session has timed out. Please refresh this page and try again.");
+                }
+            }
+        });
+    }
+
+    function undoTokenReset() {
+        resetButton.prop('disabled', true);
+
+        postJson({
+            url: "/rest/easyuser/latest/undoTokenReset",
+            data: null,
+            success: function (data) {
+                var previousUrl = data.signupUrl;
+                inviteLinkField.attr("href", previousUrl).text(previousUrl);
+                msg("The invitation URL has been restored to its previous value.");
+            },
+            error: function (xhr, statusText, error) {
+                errorMsg("The previous invitation URL could not be restored.", status, error);
+            },
+            loadingMessage: "Saving your changes..."
+        }).always(function () {
+            resetButton.removeProp('disabled');
+        });
+    }
+
+    AJS.MessageHandler.closeOnNew(true);
+
+    resetButton.click(function () {
+        resetButton.prop('disabled', true);
+
+        postJson({
+            url: '/rest/easyuser/latest/refreshToken',
+            data: null,
+            success: function (data) {
+                inviteLinkField.attr("href", data.signupUrl).text(data.signupUrl);
+
+                msg("The invitation URL has been reset. Users will be unable to sign up with the old one.");
+                $messageContainer.find('.success').first().append(
+                        $('<a>').prop('href', '#').text("Restore previous URL.").prop('id', 'undo-reset-token').click(undoTokenReset));
+            },
+            error: function (xhr, statusText, error) {
+                errorMsg("There was an error generating a new invitation URL.", status, error);
+            },
+            loadingMessage: "Saving your changes..."
+        })
+        .always(function () {
+            resetButton.removeProp('disabled');
+        });
+        return false;
+    });
+
+    inviteEmail.click(function () {
+        inviteEmail.prop('disabled', true);
+        var notify = inviteEmail.prop('checked');
+
+        postJson({
+            url: "/rest/easyuser/latest/sendEmailOnInvite",
+            data: $.toJSON(notify),
+            success: function (notifySaved) {
+                var text = notifySaved ? "Administrators will now receive emails when users sign up." :
+                        "Administrators will no longer receive emails when users sign up.";
+                msg(text);
+            },
+            error: function (xhr, statusText, error) {
+                errorMsg("There was an error updating when sign up emails will be sent.", status, error);
+            },
+            loadingMessage: "Saving your changes..."
+        })
+        .always(function () {
+            inviteEmail.removeProp('disabled');
+        });
+    });
+
+    $sendInvitationsSubmitButton.click(function () {
+        var emailMessage = $('#invite-user-email-content').val(),
+            recipients = $.trim($('#recipient-list').val());
+
+        if (!recipients) {
+            errorMsg("You need to specify at least one email address to send an invitation.");
+            return false;
+        }
+
+        recipients = recipients.split(',');
+
+        postJson({
+            url: '/rest/easyuser/latest/sendUserInvites',
+            data: $.toJSON({
+                emailMessage: emailMessage,
+                recipientList: recipients
+            }),
+            success: function (response) {
+                // Show number of sent emails OR a mix of email addresses sent and failed
+                var happyText = response.sentAddresses.length && '<span id="sent-invitations-count">' + response.sentAddresses.length + '</span>';
+                var sadText = response.failedAddresses.length && '<span id="failed-invitations">' + response.failedAddresses.join(', ') + '</span>';
+                if (!sadText) {
+                    msg(AJS.format("Successfully sent {0} invitation(s).", happyText));
+                } else if (!happyText) {
+                    errorMsg(AJS.format("Failed to send invitation emails, no valid email addresses found: {0}.", sadText));
+                } else {
+                    errorMsg(AJS.format("Successfully sent {0} invitation(s), but some supplied email addresses were invalid: {1}.", happyText, sadText));
+                }
+            },
+            error: function (xhr, statusText, error) {
+                errorMsg("There was an error sending your invitations.", status, error);
+            },
+            loadingMessage: "Sending email invitations..."
+        });
+
+        return false;
+    });
+});
+
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+
+try {
+/* module-key = 'com.atlassian.confluence.plugins.confluence-easyuser-admin:easyuser', location = 'js/easyusersignupsettings.js' */
+AJS.toInit(function ($) {
+	var $formsContainer = $('#easyuser-forms-container'),
+		$signupMessageContainer = $('#signup-user-errors'),
+		$saveButton = $('#save'),
+		$modeSelect = $('input[name="signupMode"]'),
+		$domainsSignupContainer = $("#domains-signup-container"),
+		$domains = $('#domains-signup'),
+		$signupEnabledCheckbox = $('#isSignupEnabled'),
+		$publicOptionsContainer = $('#restrictedModesBorder-container'),
+		$smtpMessage = $('#configure-smtp-msg-signup'),
+        $signupModeRestricted = $('#signupMode-restricted');
+	
+	if($smtpMessage.length) {
+		AJS.MessageHandler.message($signupMessageContainer, $smtpMessage.html(), 'warning');
+	}
+
+	var checkDomains = function(){
+		var val = $domains.val();
+		if (!val || /^\s*$/.test(val)){
+			$saveButton.prop('disabled', true);
+		}
+		else{
+			$saveButton.prop('disabled', false);
+		}
+	};
+	
+	$('#easyuser-signup-domains-form').submit(function() {
+		var mode = $('input:radio[name=signupMode]:checked').val(),
+			notifyAdmin = $('#notifyAdmin').prop('checked');
+
+        if (!$('#isSignupEnabled').prop('checked')) {
+            mode = "private";
+        }
+		
+		if (mode != 'restricted'){
+			$domains.val('');
+		}
+		var domains = $domains.val();
+		var dataObj = {enabled: mode === 'public', domains: domains, notifyAdmin : notifyAdmin};
+
+		$saveButton.prop('disabled', true);
+		
+		$.ajax({
+            url: Confluence.getContextPath() + '/rest/easyuser/latest/signup/setSignupSettings',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            processData: false,
+            data: $.toJSON(dataObj),
+            success: function (data) {
+                $saveButton.prop('disabled', false);
+                AJS.MessageHandler.message($signupMessageContainer, "Successfully saved signup settings.");
+                
+                $formsContainer.toggleClass('private-signup', mode === 'private' || mode === 'restricted');
+                $formsContainer.toggleClass('public-signup', mode === 'public');
+                //$formsContainer.toggleClass('disabled-signup', mode === 'disabled');
+                
+            },
+            error: function (xhr, statusText, error) {
+            	$saveButton.removeProp('disabled');
+            	AJS.log("Saving sign up settings errors: [statusText = '" + statusText + "'], [error = '" + error + "']");
+                AJS.MessageHandler.message($signupMessageContainer, "There was an error saving the signup settings.", 'error');
+            },
+            statusCode: {
+                401: function () {
+                    AJS.MessageHandler.message($messageContainer, "Your session has timed out. Please refresh this page and try again.", 'error');
+                }
+            }
+        });
+		return false;
+	});
+
+	$modeSelect.change(function() {
+		var mode = this.value;
+
+		$('input:radio[name=signupMode]').prop('checked', false);
+		$(this).prop('checked', true);
+		
+		if (mode === 'restricted'){
+			checkDomains();
+			$domainsSignupContainer.show();
+			$domains.focus();
+		} else {
+			$domainsSignupContainer.hide();
+			$saveButton.prop('disabled', false);
+		}
+	});
+	
+	$domains.keyup(function(){
+		checkDomains();
+	});
+
+    $signupEnabledCheckbox.change(function() {
+        var isChecked = this.checked;
+
+        if (isChecked === true) { // public/domain restricted signup
+            $publicOptionsContainer.css({opacity : 1});
+            $modeSelect.enable();
+            if(!$signupModeRestricted.data("ajs-capable")) {
+                $signupModeRestricted.disable()
+            }
+        } else { // private signup
+            $modeSelect.change();
+            $modeSelect.disable();
+            $saveButton.prop('disabled', false);
+            $publicOptionsContainer.css({opacity : 0.5})
+        }
+    });
+});
+} catch (err) {
+    if (console && console.log && console.error) {
+        console.log("Error running batched script.");
+        console.error(err);
+    }
+}
+
+

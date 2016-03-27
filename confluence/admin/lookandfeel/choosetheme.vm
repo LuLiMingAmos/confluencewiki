@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>$action.getActionName($action.getClass().getName())</title>
+		<meta name="help-path" content="/admin/lookandfeel/help/choosetheme.vm"/>
+	</head>
+
+	<body>
+        <content tag="selectedWebItem">theme</content>
+        <form method="POST" action="dochoosetheme.action" name="choosethemeform" id="choosethemeform">
+            #parse ( "/template/includes/actionerrors.vm" )
+            #parse ("/includes/common-choosetheme.vm")
+            <input type="hidden" name="changesSaved" value="true">
+            #tag ("Submit" "value='confirm.name'" "align='center'" "theme='notable'" "template='submit.vm'")
+            #form_xsrfToken()
+        </form>
+
+        #parse ( "/breadcrumbs.vm" )
+
+    </body>
+</html>

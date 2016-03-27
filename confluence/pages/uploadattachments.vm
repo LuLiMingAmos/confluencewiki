@@ -1,0 +1,31 @@
+#parse ("/includes/alert-anonymous.vm")
+
+<h2>$action.getText("attach.file")</h2>
+
+<form method="post" id="upload-attachments" action="doattachfile.action?pageId=$page.id" enctype="multipart/form-data" class="aui">
+    #form_xsrfToken()
+    #set ($extraAttachments = $maxAttachments - 1)
+    <div id="upload-files">
+        <ol>
+            #foreach ($count in [0..$extraAttachments])
+                <li#if ($count > 0) class="more-attachments hidden"#end>
+                    <div class="field-group">
+                        <label for="file_${count}">$action.getText("link.browser.file.attach")</label>
+                        <input type="file" name="file_${count}" id="file_${count}" size="15" class="file upfile">
+                    </div>
+
+                    #tag ( "TextField" "label='comment.name'" "name='comment_${count}'" "id=comment_${count}" "theme='aui'")
+                </li>
+            #end
+        </ol>
+        #parse ("/pages/includes/captcha-form-elements.vm")
+        <div class="submit-button-and-more-link-container">
+            #if ($extraAttachments > 0)&nbsp;<a href="#" id="more-attachments-link">$action.getText('attach.more.files')</a>#end
+            #bodytag("Submit" "theme='aui'")
+                #param("editValue" "$i18n.getText('attach.file.button')")
+                #param("editName" "confirm")
+            #end
+        </div>
+    </div>
+    <div id="extension-container"></div>
+</form>

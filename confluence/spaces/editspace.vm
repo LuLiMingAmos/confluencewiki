@@ -1,0 +1,65 @@
+#* @vtlvariable name="action" type="com.atlassian.confluence.spaces.actions.EditSpaceEntryAction" *#
+#requireResource("confluence.web.resources:space-admin")
+
+<html>
+<head>
+    <title>$action.getText("title.edit.space.details")</title>
+
+
+</head>
+
+#applyDecorator("root")
+#decoratorParam("helper" $action.helper)
+#decoratorParam("context" "space-administration")
+#decoratorParam("mode" "view-space-administration")
+
+#applyDecorator ("root")
+#decoratorParam ("context" "spaceadminpanel")
+#decoratorParam ("selection" "editspace")
+#decoratorParam ("title" $action.getText("action.name"))
+#decoratorParam ("selectedTab" "admin")
+#decoratorParam ("selectedSpaceToolsWebItem" "spacedetails")
+#decoratorParam("helper" $action.helper)
+
+#if( !$remoteUser )
+#parse ("/includes/alert-anonymous.vm")
+#end
+
+<form name="editspace" method="POST" action="doeditspace.action?key=$generalUtil.urlEncode($space.key)" class="aui edit-space-details">
+    <h2>$action.getText('title.edit.space.details')</h2>
+    #form_xsrfToken()
+    <div class="field-group">
+        <label for="name">$action.getText("space-name"):</label>
+        <input type="text" class="text" id="name" name="name" value="$!name">
+    </div>
+    <div class="field-group">
+        <label for="description">$action.getText("space-desc"):</label>
+        <textarea class="textarea" id="description" name="description" rows="4">$!action.description</textarea>
+    </div>
+    <div class="field-group">
+        <label for="spaceArchived">$action.getText("space-status"):</label>
+        <select class="select" id="spaceArchived" name="archived">
+            <option value="false" #if(!$action.archived)selected#end>$action.getText("space.current")</option>
+            <option value="true" #if($action.archived)selected#end>$action.getText("space.archived")</option>
+        </select>
+        <!-- CONFDEV-8121 - temporarily elide changes that required new i18n keys
+        <div class="description">$action.getText("text.space.status")</div>
+        -->
+    </div>
+    <div class="field-group">
+        <label for="homePageTitle">$i18n.getText("space-homepage"):</label>
+        <div class="value homePageTitle-value">
+            <input data-spacekey="$action.spaceKey" type="text" class="text autocomplete-page" id="homePageTitle" data-max="10" data-none-message="No results" name="homePageTitle" autocomplete="off" value="$action.currentHomePageTitle">
+            <div id="homepage-description" class="description">$i18n.getText("text.space.home")</div>
+        </div>
+    </div>
+    <div class="buttons-container">
+      <div class="buttons">
+         <input class="aui-button aui-button-primary" type="submit" id="confirm" name="confirm" value="$action.getText("update.name")">
+         <a class="aui-button-link aui-button" href="viewspacesummary.action?key=${key}">$action.getText("cancel.name")</a>
+      </div>
+    </div>
+</form>
+</html>
+#end
+#end

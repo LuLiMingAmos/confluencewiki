@@ -1,0 +1,89 @@
+## GLOBAL DECORATOR
+##    This decorator handles a global context, i.e. information which is independent of space.
+##    Supports modes: 'dashboard', 'userdir', 'rss'.
+
+#set ($mode     = $params.get("mode"))
+#set ($context  = $params.get("context"))
+#set ($helper  = $params.get("helper"))
+#set ($infoPanelWidth = $params.get("infopanel-width"))
+#set ($maxFavouritePages = "20")  ## Change this value to increase the default number of favourite pages displayed on the Dashboard
+
+#infoPanelInitFromParams()
+
+#requireResourcesForContext("global")
+
+<!-- GENERAL PAGE DECORATING BEGINS -->
+#assistiveSkipLink("assistive.skiplink.to.dashboard.recent.updates" "dashboard-recently-updated")
+<div class="pagebody">
+    #parse ( "/template/includes/actionerrors.vm" )
+
+    <div class="dashboard">
+        <div class="dashboard-section">
+            #if ($mode == "dashboard")
+                #parse ("/decorators/includes/dashboard-navigation.vm")
+                #requireResourcesForContext("dashboard")
+                #rssautodiscovery($action.rssDescriptor)
+                #permitSearchEngines()
+
+                <div class="dashboard-group left">
+                    <div class="dashboard-item welcome-message wiki-content">
+                        $action.welcomeMessage
+                    </div>
+                    #if($permissionHelper.isConfluenceAdministrator($remoteUser))
+                    <div class="dashboard-item wiki-content">
+                        <h2>$i18n.getText("getstarted.heading")</h2>
+                        <ol id="dashboard-get-started">
+                            <li class="create-space">
+                                <h3><a href="$req.contextPath/spaces/createspace-start.action">$i18n.getText("getstarted.add.space")</a></h3>
+                                <p>$i18n.getText("getstarted.add.space.desc")</p>
+                            </li>
+                            <li class="add-users">
+                                <h3><a href="$req.contextPath/admin/users/browseusers.action">$i18n.getText("getstarted.add.users")</a></h3>
+                                <p>$i18n.getText("getstarted.add.users.desc")</p>
+                            </li>
+                            <li class="user-profile">
+                                <h3><a href="$req.contextPath/users/editmyprofilepicture.action">$i18n.getText("getstarted.choose.profile.picture")</a></h3>
+                                <p>$i18n.getText("getstarted.choose.profile.picture.desc")</p>
+                            </li>
+                        </ol>
+                    </div>
+                    #end
+                    #dashboard_renderGlobalActions("dashboardActionsId", ["system.dashboard"] )
+
+                    #foreach ($webPanel in $webInterfaceManager.getDisplayableWebPanels("atl.dashboard.left", {}))
+                        <div class="dashboard-item">
+                            $!webPanel.getHtml($req.getParameterMap())
+                        </div>
+                    #end
+                </div>## left
+                <div class="dashboard-group right wiki-content">
+                    $helper.renderConfluenceMacro("{recently-updated-dashboard:showProfilePic=true}")
+                </div>## right
+            #else
+                #if ($params.get("suppress-default-navigation") != "true")
+                <content tag="content-navigation">
+                    <div id="navigation" class="content-navigation">
+                        <ul class="ajs-menu-bar">
+                            #menuMacros_renderButton("system.${mode}.button")
+                        </ul>
+                    </div>
+                </content>
+                #end
+                <div class="dashboard-group $!mode">
+                    $body
+                </div>
+            #end
+
+            ## INFO PANEL FOR ANY PAGE
+            #if ($infoPanelRequired)
+            <div style="width: $infoPanelWidth" id="helptd">
+                #infoPanel(true true true true)
+            </div>
+            #end
+
+        </div><!-- .dashboard-section -->
+    </div><!-- .dashboard -->
+</div>
+#parse ( "/breadcrumbs.vm" )
+
+<!-- GENERAL PAGE DECORATING ENDS -->

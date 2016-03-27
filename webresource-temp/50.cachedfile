@@ -1,0 +1,2 @@
+/* module-key = 'com.atlassian.confluence.plugins.confluence-business-blueprints:sharelinks-urlmacro-editor-resources', location = 'com/atlassian/confluence/plugins/sharelinksurlmacro/css/sharelinks-urlmacro-editor.css' */
+.editor-inline-macro[data-macro-name='sharelinks-urlmacro']{border:0}

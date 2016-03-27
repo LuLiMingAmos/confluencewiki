@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>$action.getActionName($action.getClass().getName())</title>
+</head>
+
+<body>
+    #parse ( "/template/includes/actionerrors.vm" )
+
+    <p>$action.getText("com.atlassian.confluence.setup.actions.SetupDatasourceAction.action.description")</p>
+
+    #if ($dbConfigInfo.dbNotes.size() > 0)
+        #foreach ($dbNote in $dbConfigInfo.dbNotes)
+            #applyDecorator("warning" "")
+                $dbNote
+            #end
+        #end
+    #end
+
+    <form name="setupdatasourcedbform" method="POST" action="setupdatasourcedb.action" class="aui">
+        <h2>$action.getText("setup.datasource.database.title")</h2>
+        <p>$action.getText("setup.datasource.database.description")</p>
+        #fielderror ("datasourceName")
+        #bodytag( "TextField" "label='datasource.name'" "name='datasourceName'" "theme='aui'" "cssClass='long-field'")
+        #end
+        #tag( "Hidden" "name='database'" )
+        #bodytag( "Submit" "theme='aui'")
+            #param ("editValue" "$action.getText('move.page.dialog.next')")
+        #end
+    </form>
+</body>
+</html>

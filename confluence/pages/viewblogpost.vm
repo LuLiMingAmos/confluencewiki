@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>$!page.title</title>
+
+
+    </head>
+    <content tag="bodyClass">view-blog-post</content>
+
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("mode" "view")
+        #decoratorParam("context" "blogpost")
+        #decoratorParam("calendar-width" "150px")
+
+        <div class="wiki-content">
+            $action.pageXHtmlContent
+        </div>
+
+        #if ($darkFeatures.isFeatureEnabled('blog-perms'))
+            #webPanelForLocation('atl.confluence.grant.access' $action.context)
+        #end
+
+    #end
+</html>

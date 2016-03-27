@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>$action.getText("daily.backup.action.name")</title>
+        <meta name="help-path" content="/admin/help/dailybackup.vm"/>
+        #requireResource("confluence.web.resources:backupadmin")
+        #requireResource("confluence.web.resources:aui-forms")
+	</head>
+    <content tag="selectedWebItem">dailybackup</content>
+    <content tag="subtitleDescription">daily.backup.subtitle</content>
+	<body>
+		#parse ( "/template/includes/actionerrors.vm" )
+
+        #if ($vanilla)
+            #applyDecorator("form-aui")
+                #decoratorParam("editMode" $editMode)
+                #decoratorParam("formName" "dailybackup")
+                #decoratorParam("submitAction" "doeditdailybackupsettings.action")
+                #decoratorParam("editAction" "editdailybackupsettings.action")
+                #decoratorParam("formStyle" "long-label")
+
+                #form_xsrfToken()
+                <h2>$action.getText("backup.settings.form.heading")</h2>
+
+                    #if (!$editMode)
+                        #applyDecorator ("message")
+                            #decoratorParam("type" "warning")
+                            $action.getText('backup.warning', [$docBean.getLink("help.configuring.daily.backups")])
+                        #end
+
+                        #bodytag ("TextField" "label='backup.daily.on'" "name='dailyBackupStatus'" "theme='aui'" "value=#if($backupEnabled)'Enabled'#else'Disabled'#end")
+                            #param ("description" $action.getText('backup.disable.tip', ["$req.contextPath/admin/scheduledjobs/viewscheduledjobs.action"]))
+                        #end
+                        #tag ("TextField" "label='backup.file.pattern'" "name='dailyBackupFilePrefixPreview'" "theme='aui'" "value='$dailyBackupFilePrefix$action.getExampleOfDatePattern()'")
+                    #end
+                    #tag ("TextField" "label='backup.file.prefix'" "name='dailyBackupFilePrefix'" "theme='aui'")
+                    #tag ("TextField" "label='backup.file.date.pattern'" "name='dailyBackupDateFormatPattern'" "theme='aui'")
+
+                    #if (!$customLocationAllowed)
+                        <input type="hidden" name="backupOption" value="default"/>
+                        #set( $backupDescription = "$action.getText('custom.backup.path.disabled') #doc('help.configuring.daily.backup.path' $action.getText('custom.backup.path.help'))")
+                        #bodytag ("TextField" "label='backup.path'" "name='backup'" "value='$defaultBackupPath'" "theme='aui'")
+                            #param ("disabled" "true")
+                            #param ("description" $backupDescription)
+                        #end
+                    #else
+                        #if ($editMode)
+                            <input type="hidden" id="defaultPath" value="$defaultBackupPath"/>
+                            #tag ("Radio" "label='backup.path'" "list=backupOptions" "value=backupOption" "name='backupOption'" "listKey=key" "listValue=value" "theme='aui'" "template='radiolist.vm'")
+                            #bodytag( "TextField" "name='backupPath'" "theme='aui'")
+                                #param ("description" "$action.getText('backup.path.text.description')")
+                                #param ("fieldGroupId" "backupPathBox")
+                                #if ($backupOption == 'default')
+                                    #param ("disabled" "true")
+                                #end
+                            #end
+
+                        #else
+                            #tag ("TextField" "label='backup.path'" "value='$backupPath'" "theme='aui'")
+                        #end
+                    #end
+                    #tag ("Component" "label='backup.attachments'" "name='backupAttachments'" "value=backupAttachments" "theme='aui'" "template='onofflist.vm'")
+
+                    #bodytag( "Submit" "theme='aui'")
+                        #param ("editMode" $editMode)
+                    #end
+            #end
+        #else
+            <h2 class="aui-style">$action.getText("backup.settings.form.heading")</h2>
+            #applyDecorator ("message")
+                #decoratorParam("type" "error")
+                $action.getText("backup.disabled.ondemand")
+            #end
+        #end
+
+		#parse("/breadcrumbs.vm")
+	</body>
+</html>

@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<title>$action.getText("title.setup.standard.database.failed")</title>
+	</head>
+
+	<body>
+        #parse ( "/template/includes/actionerrors.vm" )
+	
+		<p>$action.getText("setup.standard.database.failed.message")</p>
+		
+        <div class="aui-panel">
+            <form class="aui">
+                <a href="$req.contextPath/setup/setupstandarddb-start.action?database=$database" class="button submit">$action.getText("setup.standard.database.again")</a>
+                <a href="$req.contextPath/setup/setupdb-start.action?database=$database" class="cancel">$action.getText("restart.database.setup")</a>
+            </form>
+        </div>
+	</body>
+</html>

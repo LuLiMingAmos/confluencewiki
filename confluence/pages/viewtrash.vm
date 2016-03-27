@@ -1,0 +1,74 @@
+#if (!$pageTitle) #set ($pageTitle = $action.getActionName($action.getClass().getName())) #end
+#if (!$trashDesc) #set ($trashDesc = $action.getText('text.trash.desc')) #end
+#if (!$trashList) #set ($trashList = $action.getTrash()) #set ($viewingAllTrash = true) #end
+#set ($linkPrefix = "${req.getContextPath()}/pages/")
+
+<html>
+    <head>
+        <title>$pageTitle</title>
+    </head>
+
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("context" "space-administration")
+        #decoratorParam("mode"  "view-space-administration")
+
+
+        <body>
+
+        #applyDecorator ("root")
+            #decoratorParam ("context" "spaceadminpanel")
+            #decoratorParam ("selection" "trash")
+            #decoratorParam ("title" $pageTitle)
+            #decoratorParam ("selectedTab" "admin")
+            #decoratorParam ("selectedSpaceToolsWebItem" "trash")
+            #decoratorParam("helper" $action.helper)
+
+            <p class="stepdesc">
+                $trashDesc
+            </p>
+
+            #if ($trashList.size() > 0 && $viewingAllTrash)
+            <ul class="static-menu">
+                <li><strong><a href="${linkPrefix}emptytrash.action?key=$generalUtil.urlEncode($key)">$action.getText('purge.all')</a></strong> &ndash; $action.getText('text.purge.all.desc')</li>
+            </ul>
+            #elseif (!$viewingAllTrash)
+            <ul class="static-menu">
+                <li><strong><a href="${linkPrefix}viewtrash.action?key=$generalUtil.urlEncode($key)">$action.getText('view.trash')</a></strong> &ndash; $action.getText('view.trash.desc')</li>
+            </ul>
+            #end
+
+            <table cellspacing="1" class="tableview aui" width="100%">
+            <thead>
+                <tr>
+                    <th width="80%">
+                        $action.getText("heading.page.title")
+                        <span class="smalltext">($action.getText("heading.page.space"))</span>
+                    </th>
+                    <th>$action.getText("heading.operations")</th>
+                </tr>
+            </thead>
+
+            #if ($trashList.size() > 0)
+                #foreach ($trash in $trashList)
+                    <tr #alternateRowColors()>
+                        <td width="80%" valign="top">
+                            #contentIcon($trash) $!trash.title
+                        </td>
+                        <td align="center" nowrap>
+                            <a href="${linkPrefix}restoretrashitem.action?key=$generalUtil.urlEncode($key)&contentId=$trash.id">$action.getText('restore.name')</a> &middot; <a href="${linkPrefix}purgetrashitem.action?key=$generalUtil.urlEncode($key)&contentId=$trash.id">$action.getText('purge.name')</a>
+                        </td>
+                    </tr>
+                #end
+            #else
+                <tr>
+                    <td colspan="3">$action.getText("no.trashed.items")</td>
+                </tr>
+            #end
+            </table>
+        #end
+        </body>
+
+    #end
+</html>
+

@@ -1,0 +1,87 @@
+## Used in browseusers.vm
+#* @vtlvariable name="action" type="com.atlassian.confluence.user.actions.SearchUsersAction" *#
+
+<div id="user-forms-container">
+<input type="hidden" id="" value="">
+<div class="pageSection" id="user-search">
+    <form method="POST" action="dosearchusers.action" name="searchusers" class="aui">
+        <h2>$action.getText('find.user')</h2>
+    #if ($action.isSupportsSimpleSearch())
+        <div class="field-group">
+            #bodytag( "Component" "label='find.user'" "id=searchTerm" "name='searchTerm'" "theme='aui'" "template='text-inline.vm'")
+                #param("description" "$i18n.getText('find.user.description')")
+            #end
+        </div>
+    #else
+        <div class="field-group">
+            #tag( "TextField" "label='username.name'" "id=usernameTerm" "name='usernameTerm'" "theme='aui'" "template='text-inline.vm'" )
+        </div>
+        #tag( "TextField" "label='fullname.name'" "id=fullnameTerm" "name='fullnameTerm'" "theme='aui'" )
+        #tag( "TextField" "label='email.name.withdash'" "id=emailTerm" "name='emailTerm'" "theme='aui'" )
+    #end
+        <div class="buttons-container">
+            <div class="buttons">
+                <input type="submit" class="aui-button aui-button-primary" value="$action.getText('search.name')">
+                #if(!$action.isShowAll())
+                    <a href="showallusers.action?reset=true" class="aui-button aui-button-link">$action.getText('show.all.users')</a>
+                #end
+            </div>
+        </div>
+    </form>
+    #set($users = $action.paginationSupport.page)
+    #set ($filter = "")
+    #if ($emailPattern)
+        #set ($filter = "emailPattern=$emailPattern")
+    #elseif ($groupName)
+        #set ($filter = "groupName=$groupName")
+    #end
+
+    #if($stringUtils.isNotEmpty($usernameTerm) || $stringUtils.isNotEmpty($fullnameTerm) || $stringUtils.isNotEmpty($emailTerm) || $stringUtils.isNotEmpty($searchTerm))
+        #if( $users.isEmpty())
+            $action.getText("there.are.no.users")
+        #else
+            #set ($paginationUrl="?searchTerm=$!{searchTerm}&usernameTerm=$!{usernameTerm}&fullnameTerm=$!{fullnameTerm}&emailTerm=$!{emailTerm}&resultsPerPage=$!{resultsPerPage}&advanced=$!{advanced}&")
+
+            #entityPagination($action.paginationSupport $paginationUrl)
+            #set ($currentIndex = $action.paginationSupport.startIndex)
+            <div id="show-options" class="pagination">
+                <h5>$action.getText("show.word"):</h5>
+                <ul class="pagination">
+                    #foreach ($item in $resultsPerPageOptions)
+                        #if ($item.key == $resultsPerPage)
+                            <li><span class="pagination-curr">$!{item.key}</span></li>
+                        #else
+                            <li><a href="?searchTerm=$!{searchTerm}&usernameTerm=$!{usernameTerm}&fullnameTerm=$!{fullnameTerm}&emailTerm=$!{emailTerm}&resultsPerPage=$!{item.key}&startIndex=$!{currentIndex}&advanced=$!{advanced}">$!{item.key}</a></li>
+                        #end
+                    #end
+                </ul>
+            </div>
+            <table id="browse-user-table" class="aui user-table">
+                <thead>
+                <tr>
+                    <th width="30%">$action.getText("user.name")</th>
+                    <th width="40%">$action.getText("username.name")</th>
+                    <th width="30%">$action.getText("email.name.withdash")</th>
+                </tr>
+                </thead>
+                <tbody>
+                    #foreach ($user in $action.paginationSupport.page.iterator())
+                        #set($htmlSafeEmail = $!generalUtil.htmlEncode($user.email))
+                        #set($htmlSafeUsername = $!generalUtil.htmlEncode($user.name))
+                        #set($userProfileLink = "viewuser.action?username=$!generalUtil.doubleUrlEncode($user.name)")
+                        #set($userDisabled = $userAccessor.isDeactivated($user))
+                    <tr id="user-row-$htmlSafeUsername" #if ($userDisabled)class="inactive"#end>
+                        <td>
+                            <a href="$userProfileLink" class="confluence-userlink" data-username="$htmlSafeUsername">$!generalUtil.htmlEncode($user.fullName)</a> #if ($userDisabled)<em>$i18n.getText("deactivated.users.label")</em>#end
+                        </td>
+                        <td>$htmlSafeUsername</td>
+                        <td>#if ($user.email)<a href="mailto:$htmlSafeEmail">$htmlSafeEmail</a>#end</td>
+                    </tr>
+                    #end
+                </tbody>
+            </table>
+            #entityPagination($action.paginationSupport $paginationUrl)
+        #end
+    #end
+</div>
+</div>

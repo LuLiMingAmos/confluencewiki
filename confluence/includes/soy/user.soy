@@ -1,0 +1,114 @@
+{namespace Confluence.Templates.User}
+
+/**
+ * Generates the URL to a user.
+ *
+ * NOTE: This is the soy equivalent of #userLinkUrl in macros.vm. If you modify this, you should probably also modify that.
+ *
+ * @param username the username of the user
+ */
+{template .userLinkUrl}
+    {contextPath()}/display/~{$username|escapeUri}
+{/template}
+
+/**
+ * Display the logo for the user with an optional link to set a profile picture if the user
+ * has not set one.
+ *
+ * NOTE: This is the soy equivalent of #userLogoBlock in macros.vm. If you modify this, you should probably also modify
+ *       that. There is also a non-exact duplicate in comments.soy.
+ *
+ * @param currentUsername username of the currently logged in user
+ * @param canView whether or not the current user has permissions to view the user's profile (see PermissionHelper#canView)
+ * @param username the username of the user
+ * @param profilePictureInfo ProfilePictureInfo object that provides downloadPath and default
+ * @param disableUserHover Flag used to indicate whether the user profile flyout should be triggered on hover
+ */
+{template .logo}
+    // if the user profile still has the default picture, AND the usericon getting displayed is the current user, THEN generate a link to set the profile picture
+    {if $profilePictureInfo.default and $username == $currentUsername}
+        <a {if $canView} {if not($disableUserHover)}class="userLogoLink"{/if} data-username="{$username}"{/if} href="{contextPath()}/users/editmyprofilepicture.action" title="{getText('add.a.profile.picture')}">
+            <img class="userLogo logo defaultLogo" src="{staticResourceUrlPrefix()}/images/icons/profilepics/add_profile_pic.png" alt="{getText('accessibility.user.icon')}: {getText('add.a.profile.picture')}">
+        </a>
+    {else}
+        // otherwise, the default case is to display the logo, depending on permissions
+        {if $profilePictureInfo.anonymous}
+            <img class="userLogo logo anonymous" src="{staticResourceUrlPrefix()}/images/icons/profilepics/anonymous.png"
+            alt="{getText('accessibility.user.icon')}: {getText('user.icon.anonymous.title')}" title="{getText('user.icon.anonymous.title')}">
+        {elseif $canView}
+        <a {if not($disableUserHover)}class="userLogoLink"{/if} data-username="{$username}" href="
+            {call Confluence.Templates.User.userLinkUrl}
+                {param username: $username /}
+            {/call}
+        ">
+            <img class="userLogo logo" src="{contextPath()}{$profilePictureInfo.downloadPath}"
+            alt="{getText('accessibility.user.icon')}: {$username}" title="{$username}">
+        </a>
+        {else}
+            // anonymous users with user permission but without view profile permission should not see user logos or be linked to profiles
+            <img class="userLogo logo anonymous" src="{staticResourceUrlPrefix()}/images/icons/profilepics/anonymous.png"
+            alt="{getText('accessibility.user.icon')}: {$username}" title="{$username}">
+        {/if}
+    {/if}
+{/template}
+
+/**
+ * Display a link to a username.
+ *
+ * NOTE: This is the soy equivalent of #usernameLink in macros.vm. If you modify this, you should probably also modify
+ *       that.
+ *
+ * @param canView whether or not the current user has permissions to view the user's profile (see PermissionHelper#canView)
+ * @param username the username of the user
+ * @param fullName the full name of the user
+ */
+{template .usernameLink}
+    {if $username and $username != ''}
+        <a href="
+            {call Confluence.Templates.User.userLinkUrl}
+                {param username: $username /}
+            {/call}
+        "
+        {if $canView}
+            class="url fn confluence-userlink" data-username="{$username}"
+        {else}
+            class="url fn"
+        {/if}>
+            {if $fullName and $fullName != ''}
+                {$fullName}
+            {else}
+                {$username}
+            {/if}
+        </a>
+    {else}
+        {getText('anonymous.name')}
+    {/if}
+{/template}
+
+/**
+ * Displays the full name of a user or "Anonymous" if the user does not exist.
+ *
+ * NOTE: This is the soy equivalent of #fullNameOrAnonymous in macros.vm. If you modify this, you should probably also
+ *       modify that.
+ * @param user the user object
+ */
+{template .fullNameOrAnonymous}
+    {if $user and $user.fullName}
+        {$user.fullName}
+    {else}
+        {getText('anonymous.name')}
+    {/if}
+{/template}
+
+/**
+ * Displays the username of a user or "Anonymous" if the user does not exist.
+ *
+ * @param user the user object
+ */
+{template .usernameOrAnonymous}
+    {if $user and $user.name}
+        {$user.name}
+    {else}
+        {getText('anonymous.name')}
+    {/if}
+{/template}

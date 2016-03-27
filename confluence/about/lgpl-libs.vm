@@ -1,0 +1,18 @@
+
+##Auto-generated. Do not change.
+<ul>
+<li>Atlassian Hibernate 2 Extras (<a href="https://www.gnu.org/licenses/lgpl-2.1.txt" target="_blank">com.atlassian.hibernate:atlassian-hibernate2-extras:jar:4.0.3</a>)</li>
+<li>atlassian-image-consumer (<a href="http://www.gnu.org/licenses/lgpl-2.1.txt" target="_blank">com.atlassian.image:atlassian-image-consumer:jar:1.0.1</a>)</li>
+<li>c3p0:JDBC DataSources/Resource Pools (<a href="http://www.gnu.org/licenses/lgpl-3.0.txt" target="_blank">c3p0:c3p0:jar:0.9.1.2</a>)</li>
+<li>CSS Parser (<a href="http://www.gnu.org/licenses/lgpl.txt" target="_blank">net.sourceforge.cssparser:cssparser:jar:0.9.5</a>)</li>
+<li>Hibernate 2.1.8 (Atlassian fork) (<a href="http://www.gnu.org/licenses/lgpl-2.1.txt" target="_blank">hibernate:hibernate:jar:2.1.8-atlassian-21</a>)</li>
+<li>image4j (<a href="http://www.gnu.org/licenses/lgpl.txt" target="_blank">org.jclarion:image4j:jar:0.7</a>)</li>
+<li>jcaptcha-all (<a href="http://www.gnu.org/licenses/lgpl.txt" target="_blank">com.octo.captcha:jcaptcha-all:jar:1.0-RC6</a>)</li>
+<li>jStyleparser (<a href="http://www.gnu.org/licenses/lgpl-3.0.txt" target="_blank">net.sourceforge.cssbox:jstyleparser:jar:1.13-atlassian-2</a>)</li>
+<li>jtds (<a href="http://www.gnu.org/copyleft/lesser.html" target="_blank">net.sourceforge.jtds:jtds:jar:1.2.2</a>)</li>
+<li>PDF renderer -  Atlassian patched (pdf-renderer:pdf-renderer:jar:1.13-atlassian-6)</li>
+<li>Streaming API for XML (<a href="http://www.gnu.org/licenses/gpl.txt" target="_blank">javax.xml.stream:stax-api:jar:1.0-2</a>)</li>
+<li>syntaxhighligher (<a href="https://code.google.com/p/syntaxhighlighter/" target="_blank">1.5</a>)</li>
+<li>TinyMCE-TinyMCE (<a href="http://sourceforge.net/projects/tinymce/" target="_blank">3.4.3.2-atlassian-3</a>)</li>
+<li>xhtmlrenderer (org.xhtmlrenderer:xhtmlrenderer:pom:8.5-atlassian)</li>
+</ul>

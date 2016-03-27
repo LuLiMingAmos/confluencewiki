@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>$action.getText("title.revert.page.back")</title>
+		<meta name="help-path" content="/pages/help/revertpagebacktoversion.vm"/>
+	</head>
+
+	<body>
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("mode" "view-information")
+        #decoratorParam("context" "page")
+
+        #applyDecorator ("confirm")
+            #decoratorParam ("formAction" "dorevertpagebacktoversion.action")
+            #decoratorParam ("formName" "revertPageBackToVersion")
+                <div class="aui-message warning">
+                    <span class="aui-icon icon-warning"></span>
+                    <p class="title">$action.getText("title.revert.page.back")</p>
+                    <p>$action.getText("alert.revert.page.back", [$version])</p>
+                </div>
+                <h2><p class="title">$action.getText("title.revert.page.back")</h2>
+                <fieldset>
+                    <div class="field-group">
+                        <label for="revertComment" class="formtitle">$action.getText('comment.name'):</label>
+                        <input type="text" id="revertComment" class="text" name="revertComment" value="$action.defaultComment" size="40" />
+                    </div>
+                </fieldset>
+            #if (!$action.revertTitle)
+            <p>
+                $action.getText("revert.title.notavailable", ["$action.titleToRevert"])</label>
+            </p>
+            #end
+            <input type="hidden" name="pageId" value="$page.id">
+            <input type="hidden" name="version" value="$version">
+            <input type="hidden" name="revertTitle" value="$action.revertTitle">
+        #end
+    #end
+	</body>
+</html>

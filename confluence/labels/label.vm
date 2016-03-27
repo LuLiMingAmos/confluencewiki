@@ -1,0 +1,12 @@
+#* @vtlvariable name="label" type="com.atlassian.confluence.labels.Label" *#
+
+#foreach($label in $labels)
+<li class="aui-label #if($!isSpace)aui-label-closeable aui-label-split#end" data-label-id="$label.id">
+    <a class="aui-label-split-main" href="#labelLinkUrl($label)">$generalUtil.htmlEncode($label.realTitle)</a>
+    #if($!isSpace)
+    <span class="aui-label-split-close">
+        <span tabindex="0" class="aui-icon aui-icon-close"  title="$i18n.getText('remove.label')" original-title="$i18n.getText('remove.label')">$i18n.getText('remove.label')
+        </span>
+    </span>
+    #end
+</li>#end ##leave 'end' in same line as li to eliminate bothersome line break when rendering multiple list items

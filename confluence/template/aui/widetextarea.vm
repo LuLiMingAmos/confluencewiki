@@ -1,0 +1,2 @@
+#set($parameters.cssClass = "max-textarea $!parameters.cssClass" )
+#parse("/template/aui/textarea.vm")

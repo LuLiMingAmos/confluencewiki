@@ -1,0 +1,2 @@
+/* module-key = 'com.atlassian.support.stp:stp-license-status-resources', location = 'css/stp-licenseStatus.css' */
+#stp-licenseStatus-banner{margin:0!important}

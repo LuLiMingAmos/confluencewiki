@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>$action.getText("title.setup.usermanagement.choice")</title>
+    </head>
+	<body>
+        <p>$action.getText("setup.step.description.usermanagementchoice")</p>
+        
+        <h2>$action.getText('internal.usermanagement')</h2>
+        <p>$action.getText("internal.usermanagement.description")</p>
+        <p>$action.getText("internal.ldap.usermanagement.description")<p>
+        <div class="aui-panel">
+            <form method="POST" name="internaluser" action="setupusermanagementchoice.action" class="aui">
+                #tag( "Hidden" "name='userManagementChoice'" "value='internal'")
+                <input class="aui-button" type="submit" name="internal" value="$action.getText("internal.user.submit")"/>
+            </form>
+        </div>
+        
+        <h2>$action.getText('jaacs.usermanagement')</h2>
+        <p>$action.getText("jaacs.usermanagement.description")</p>
+        <div class="aui-panel">
+            <form method="POST" name="jaacsuser" action="setupusermanagementchoice.action">
+                #tag( "Hidden" "name='userManagementChoice'" "value='jaacs'")
+                <input class="aui-button" type="submit" name="jaacs" value="$action.getText("jaacs.user.submit")"/>
+            </form>
+        </div>
+    </body>
+</html>

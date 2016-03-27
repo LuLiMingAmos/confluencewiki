@@ -1,0 +1,46 @@
+.wiki-content{}.wiki-content .header,.wiki-content .footer,.wiki-content .cell{margin:8px 0;box-sizing:border-box;word-wrap:break-word;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
+.wiki-content .columnLayout{display:table;table-layout:fixed;width:100%;*clear:both;}.wiki-content .columnLayout .cell{vertical-align:top;}
+.wiki-content .columnLayout .cell.aside{width:29.9%;}
+.wiki-content .columnLayout .cell.sidebars{width:19.9%;}
+.wiki-content .cell{display:table-cell;padding:0 10px;}
+.wiki-content .innerCell{overflow-x:auto;}
+.wiki-content .image-left{float:left;margin:0 10px 10px 0;}
+.wiki-content .image-center{margin-left:auto;margin-right:auto;display:block;}
+.wiki-content .image-right{float:right;margin:0 0 10px 10px;}
+.wiki-content .placeholder{background:#f5f5f5;border:1px dotted #ccc;color:#707070;font-style:italic;margin:0;padding:10px;}.wiki-content .placeholder .activation-content{display:none;}
+.wiki-content .placeholder .display-content{display:inherit;}
+.wiki-content li>ul,.wiki-content li>ol,.wiki-content ul>ul,.wiki-content ol>ol{margin-top:0;}
+.wiki-content ul{list-style-type:disc;}
+.wiki-content ol,.wiki-content ol ol ol ol,.wiki-content ol ol ol ol ol ol ol,.wiki-content ol ol ol ol ol ol ol ol ol ol{list-style-type:decimal;}
+.wiki-content ol ol,.wiki-content ol ol ol ol ol,.wiki-content ol ol ol ol ol ol ol ol,.wiki-content ol ol ol ol ol ol ol ol ol ol ol{list-style-type:lower-alpha;}
+.wiki-content ol ol ol,.wiki-content ol ol ol ol ol ol,.wiki-content ol ol ol ol ol ol ol ol ol,.wiki-content ol ol ol ol ol ol ol ol ol ol ol ol{list-style-type:lower-roman;}
+.wiki-content h5{text-transform:none;font-size:14px;}
+.wiki-content h1,.wiki-content h2{margin-top:30px;}
+.wiki-content h1:first-child,.wiki-content h2:first-child{margin-top:0;}
+.wiki-content h1+h1,.wiki-content h2+h2,.wiki-content h3+h3,.wiki-content h4+h4,.wiki-content h5+h5,.wiki-content h6+h6{margin-top:10px;}
+.wiki-content .confluence-embedded-image{cursor:pointer;max-width:100%;}
+.wiki-content .confluence-content-image-border{border:1px solid black;}
+.wiki-content div.error>span.error{color:#333;padding:6px 10px;position:relative;background:#fffdf6;border:1px solid #ffeaae;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
+.wiki-content .columnLayout,.wiki-content .cell,.wiki-content .header,.wiki-content .footer{*display:block;*float:left;*width:100%;}
+.wiki-content .innerCell{*border:2px dashed #ccc;*margin:8px 4px;*padding:4px 8px;}
+.wiki-content .text-placeholder{background:#f5f5f5;color:#707070;font-style:italic;min-width:10px;display:block;}
+.wiki-content .text-placeholder.selected{color:#333333;}
+.wiki-content .aui-lozenge{padding:3px 5px 2px 5px;}
+.contentLayout .innerCell>*:first-child .innerCell>*:first-child,.contentLayout2 .innerCell>*:first-child{margin-top:0;}
+.contentLayout2 .columnLayout{margin-bottom:8px;}
+.view .wiki-content .cell:first-child,.content-preview .wiki-content .cell:first-child{padding:0;}
+li[style*='text-align: center'],li[style*='text-align: right']{list-style-position:inside;}
+#main .wiki-content .footer p,#main .wiki-content .footer a{font-family:arial,sans-serif;font-size:14px;}
+.wiki-content .cell,.mceContentBody.wiki-content .cell,.twoColumns .cell,.threeColumns .cell,.twoColumns .large,.mceContentBody.wiki-content .header,.mceContentBody.wiki-content .footer,.threeColumns .large{*border:0;*margin:0;*padding:0;*overflow:hidden;}
+.twoColumns .cell{*width:49.9%;}
+.threeColumns .cell{*width:33.3%;}
+.twoColumns .large{*width:69.9%;}
+.threeColumns .large{*width:59.9%;}
+div.aside+div.large,div.large+div.aside,div.large+div.sidebars,.twoColumns div.cell+div.cell,.threeColumns div.cell+div.cell+div.cell{*float:right;}
+.two-equal .normal{*width:49.9%;}
+.two-left-sidebar .normal,.two-right-sidebar .normal{*width:69.9%;}
+.three-equal .cell{*width:33.3%;}
+.three-with-sidebars .normal{*width:59.9%;}
+.two-equal div.cell+div.cell{*float:right;}
+.three-equal div.cell+div.cell+div.cell,.three-with-sidebars div.cell+div.cell+div.cell{*float:right;}
+#mw-container div.mw-no-notifications div.subheading p{line-height:24px;margin-top:8px;margin-bottom:8px;}

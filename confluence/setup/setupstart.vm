@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>$action.getText("setup.start.title")</title>
+</head>
+
+<body>
+    <content tag="header-actioncontent">
+        <div class="locale-switcher">
+            <div class="locale-flags">
+                #set ($installedLanguages = $action.getInstalledLanguages())
+
+                #foreach ($locale in $installedLanguages)
+                    ## Only show flags for those except the current locale
+                    #if ($action.getLocale().toString() != $locale.getName())
+                        <a id="$locale.getName()" href="$req.contextPath/setup/selectglobaldefaultlocale.action?globalDefaultLocale=$locale.getName()">${locale.getDisplayLanguage()}</a>
+                    #end
+                #end
+            </div>
+        </div>
+    </content>
+
+    #parse ("/template/includes/actionerrors.vm")
+
+    <form method="POST" action="dosetupstart.action" name="startform" class="aui">
+        <div class="aui-group setup-start-group">
+            #if(!$action.clusteredEdition)
+            <div class="aui-item setup-start-divider">
+                <h2>$action.getText("setup.start.eval.heading")</h2>
+                <p>$action.getText("setup.start.eval.wizard")</p>
+                <ul>
+                    <li>$action.getText("setup.start.eval.wizard.bullet1")</li>
+                    <li>$action.getText("setup.start.eval.wizard.bullet2")</li>
+                </ul>
+
+                <p style="color: #707070; margin-top: 20px">$action.getText("setup.start.eval.embedded-hint")</p>
+
+                <div class="aui-panel setup-start-buttons">
+                    <input class="aui-button" type="submit" name="setupTypeInstall" value="$action.getText('setup.start.eval.start-trial')"/>
+                </div>
+            </div>
+            #end
+
+            <div class="aui-item">
+                <h2>$action.getText("setup.start.custom.heading")</h2>
+                <p>$action.getText("setup.start.custom.wizard")</p>
+                <ul>
+                    <li>$action.getText("setup.start.custom.wizard.bullet1")</li>
+                    <li>$action.getText("setup.start.custom.wizard.bullet2")</li>
+                    <li>$action.getText("setup.start.custom.wizard.bullet3")</li>
+                </ul>
+
+                <div class="aui-panel setup-start-buttons">
+                    <input class="aui-button" type="submit" name="setupTypeCustom" value="$action.getText('setup.start.custom.start-setup')"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,1 @@
+AJS.toInit(function(b){var a=b(".edit-space-details");Confluence.Binder.autocompletePage(a)});

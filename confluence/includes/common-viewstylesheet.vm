@@ -1,0 +1,28 @@
+#requireResource("confluence.web.resources:ajs")
+#requireResource("confluence.web.resources:syntaxhighlighter-core")
+#requireResource("confluence.web.resources:syntaxhighlighter-css")
+
+#parse ("/template/includes/actionerrors.vm")
+#if ($actionErrors.size() == 0)
+<div>
+    <form method="POST" action="editstylesheet.action" name="view-stylesheet" id="view-stylesheet">
+        <h2>$action.getText("stylesheet.label")</h2>
+        #if(!$stringUtils.isEmpty($style))
+            <pre name="ajs-syntax-highlight" class="css">
+                $style
+            </pre>
+        #else
+            <div class="aui-message hint shadowed">
+                <p>$action.getText("stylesheet.not.defined")</p>
+                <span class="aui-icon icon-hint"></span>
+            </div>
+        #end
+
+        #tag("Hidden" "name='key'")
+        #bodytag ("Submit" "theme='aui'")
+            #param("editMode" "false")
+        #end
+    </form>
+</div>
+
+#end

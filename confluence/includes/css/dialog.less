@@ -1,0 +1,37 @@
+.dialog-tip {
+    float: left;
+    line-height: 30px;
+    color: #707070;
+    text-align: left;
+}
+
+.dialog-help-link {
+    font-weight: normal;
+    font-size: 14px;
+    float: right;
+    margin: 5px 0 0 5px;
+}
+
+.dialog-button-panel .dialog-back-link {
+    float: left;
+}
+
+.aui-dialog {
+
+    .dialog-panel-body > .aui-message {
+        margin: 20px;
+    }
+
+    /*
+      Until the AUI Dialog addCancel method adds a button and not a link, we need to add disabled styles manually.
+     */
+    .dialog-button-panel a.button-panel-link {
+        &.disabled, &[disabled], &[aria-disabled="true"] {
+            &, &:hover, &:focus, &:active {
+                color: #999;
+                cursor: default;
+                text-decoration: none;
+            }
+        }
+    }
+}

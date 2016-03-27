@@ -1,0 +1,1 @@
+AJS.toInit(function(a){a("#view-all-content-with-label").click(function(){return false})});

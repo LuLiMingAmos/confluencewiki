@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>$action.getActionName($action.getClass().getName())</title>
+	</head>
+	<body>
+        #parse ( "/template/includes/actionerrors.vm" )
+	
+		<p>$action.getText("action.description")</p>
+	    
+        <h2>$action.getText("demo.hint")</h2>
+        <form method="POST" action="setupdata.action" id="demoChoiceForm">
+            <p>$action.getText("demo.description")</p>
+            <div class="aui-panel">
+                <input class="aui-button" type="submit" name="dbchoiceSelect" value="$action.getText("demo.label")" />
+            </div>
+            #tag( "Hidden" "name='contentChoice'" "value='demo'")
+        </form>
+
+        <h2>$action.getText("blank.hint")</h2>
+        <form method="POST" action="setupdata.action" id="blankChoiceForm">
+            <p>$action.getText("blank.description")</p>
+            <div class="aui-panel">
+                <input class="aui-button" type="submit" name="dbchoiceSelect" value="$action.getText("blank.label")" />
+            </div>
+            #tag( "Hidden" "name='contentChoice'" "value='blank'")
+        </form>
+
+        <h2>$action.getText("import.hint")</h2>
+        <form method="POST" action="setupdata.action" id="restoreChoiceForm">
+            <p>$action.getText("import.description")</p>
+            <div class="aui-panel">
+                <input class="aui-button" type="submit" name="dbchoiceSelect" value="$action.getText("import.label")" />
+            </div>
+            #tag( "Hidden" "name='contentChoice'" "value='import'")
+         </form>
+	</body>
+</html>

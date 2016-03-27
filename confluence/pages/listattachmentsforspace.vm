@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <title>$action.getActionName($action.getClass().getName())</title>
+    </head>
+
+#macro (sortHover $sortByLink)
+    #if (!($sortBy == $sortByLink))sortHover#end
+#end
+
+#applyDecorator("root")
+    #decoratorParam("helper" $action.helper)
+    #decoratorParam("context" "space-operations")
+    #decoratorParam("mode"  "view-space-operations")
+
+    #applyDecorator ("root")
+        #decoratorParam ("context" "spacecontentpanel")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("selection" "space-attachments")
+        #decoratorParam("selectedSpaceToolsWebItem" "space-attachments")
+
+        #requireResource("confluence.web.resources:attachments")
+
+        <div class="pagecontent">
+
+        #set ($results = $action.paginationSupport.page)
+
+        #if (!$results.empty || $textUtil.stringSet($fileExtension) || $labelsCount > 0)
+            <form name="listattachmentfilter" action="listattachmentsforspace.action" method="POST" class="aui">
+            <label for="filterByExtension">$action.getText('filter.by.ext'):</label>
+            <input class="text" type="text" id="filterByExtension" name="fileExtension" value="$generalUtil.htmlEncode($!fileExtension)" size="10">
+            <label for="filterByLabel">$i18n.getText('filter.by.label'):</label>
+            <input class="text" type="text" name="labels" id="filterByLabel" value="$generalUtil.htmlEncode($!labels)" size="10" />
+            <input type="submit" class="aui-button aui-submit" id="filterAttachments" value="$action.getText('filter.name')">
+            <input type="hidden" name="key" value="$!generalUtil.urlEncode($key)">
+            </form>
+        #end
+
+        #if (!$results.empty)
+            #pagination($action.paginationSupport "listattachmentsforspace.action?key=$!generalUtil.urlEncode($key)&startsWith=$!generalUtil.urlEncode($!action.startsWith)&sortBy=$!generalUtil.urlEncode($!sortBy)&fileExtension=$!generalUtil.urlEncode($!fileExtension)&")
+            <table class="aui tableview attachments">
+                <thead>
+                    <tr>
+                        <th class="#sortHover("")">#sortLink("" "$req.contextPath/spaces/listattachmentsforspace.action?key=$!generalUtil.urlEncode($space.key)&fileExtension=$!generalUtil.urlEncode($!fileExtension)&sortBy=" $action.getText('columnheading.name'))</th>
+                        <th class="#sortHover("size")">#sortLink("size" "$req.contextPath/spaces/listattachmentsforspace.action?key=$!generalUtil.urlEncode($space.key)&fileExtension=$!generalUtil.urlEncode($!fileExtension)&sortBy=size" $action.getText('columnheading.size'))</th>
+                        <th>$action.getText('creator.name')</th>
+                        <th class="#sortHover("createddate")">#sortLink("createddate" "$req.contextPath/spaces/listattachmentsforspace.action?key=$!generalUtil.urlEncode($space.key)&fileExtension=$!generalUtil.urlEncode($!fileExtension)&sortBy=createddate" $action.getText('columnheading.creation.date'))</th>
+                        <th class="#sortHover("date")">#sortLink("date" "$req.contextPath/spaces/listattachmentsforspace.action?key=$!generalUtil.urlEncode($space.key)&fileExtension=$!generalUtil.urlEncode($!fileExtension)&sortBy=date" $action.getText('space-last-mod-date'))</th>
+                        <th class="labels">$action.getText('labels.name')</th>
+                        <th class="attachedto">$action.getText('attached.to')</th>
+                    </tr>
+                </thead>
+
+                #foreach ($attachment in $results)
+                    #set ($labels = $attachment.labels)
+                    #set ($labelable = $attachment)
+                    <tr id="attachment_$!attachment.id">
+                        <td><a name="$!generalUtil.urlEncode($!attachment.content.displayTitle)-attachment-$!generalUtil.urlEncode($!attachment.fileName)">#parse ("/pages/includes/attachment_icon.vm")</a> <a href="$req.contextPath$!attachment.downloadPathWithoutVersion">$generalUtil.shortenString($attachment.fileName, 50)</a></td>
+                        <td>$!attachment.niceFileSize</td>
+                        <td>#userLink($!attachment.creator)</td>
+                        <td>$dateFormatter.formatDateTime($!attachment.creationDate)</td>
+                        <td>$dateFormatter.formatDateTime($!attachment.lastModificationDate)</td>
+                        <td>#parse("/labels/labels-editor-content.vm")</td>
+                        <td class="attachedto">#contentLink2 ($!attachment.getContent() true false)</td>
+                    </tr>
+                #end
+            </table>
+            #pagination($action.paginationSupport "listattachmentsforspace.action?key=$!generalUtil.urlEncode($key)&startsWith=$!generalUtil.urlEncode($!action.startsWith)&sortBy=$!generalUtil.urlEncode($!sortBy)&fileExtension=$!generalUtil.urlEncode($!fileExtension)&")
+        #else
+            #if ($textUtil.stringSet($fileExtension))
+                $action.getText('currently.no.attachments.in.space.ending.with.ext', ["$generalUtil.htmlEncode($fileExtension)"])
+                #if($labelsCount > 1)
+                    $action.getText('currently.no.attachments.also.with.labels', ["$generalUtil.htmlEncode($labels)"])
+                #elseif($labelsCount == 1)
+                    $action.getText('currently.no.attachments.also.with.label', ["$generalUtil.htmlEncode($labels)"])                
+                #end
+            #elseif($labelsCount > 1)
+                $action.getText('currently.no.attachments.in.space.with.labels', ["$generalUtil.htmlEncode($labels)"])
+            #elseif($labelsCount == 1)
+                $action.getText('currently.no.attachments.in.space.with.label', ["$generalUtil.htmlEncode($labels)"])
+            #else
+                $action.getText('currently.no.attachments.in.space')
+            #end
+        #end
+
+        </div>
+    #end
+#end
+</html>

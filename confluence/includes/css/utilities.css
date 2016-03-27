@@ -1,0 +1,12 @@
+.aui-align-right {
+  float: right;
+}
+.aui-align-left {
+  float: left;
+}
+.aui-state-hidden {
+  display: none;
+}
+.aui-rounded {
+  border-radius: 3px;
+}

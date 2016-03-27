@@ -1,0 +1,10 @@
+.wiki-content time {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVQ4Eb2SUQoCIRCGVUTPENR9uklPHqGnbiAIuo8dor1D1wjqEqLNPIwsMa4UlbCM/v83/4isEL9YMcbE5XK6JDCEsFdKTfDtSOvVUsot53xwzs2aIK31TPtRxSHGmAtw7QIipVRHjUufeLUUP9mvBtCU18oOIog1GZF49gZk9iqTJ777iG9NputA0917v6XzWkUOeWTaG9Raz9baaRSCPnLIY0D7E6WURxBPYF4hfYNmZz2wGfmO/2f5CTREYDTdjgwiAAAAAElFTkSuQmCC);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-color: #F5F5F5;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 0px 1px 0px 18px;
+    white-space: nowrap;
+}

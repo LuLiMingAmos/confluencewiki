@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<title>$action.getText("title.import.pages")</title>
+    </head>
+
+
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("context" "space-administration")
+        #decoratorParam("mode"  "view-space-administration")
+        #decoratorParam("help-path" "/spaces/help/importpages.vm")
+
+        <body>
+
+            #applyDecorator ("root")
+                #decoratorParam ("context" "spaceadminpanel")
+                #decoratorParam ("selection" "importpages")
+                #decoratorParam ("title" $action.getActionName($action.getClass().getName()))
+                #decoratorParam ("selectedTab" "admin")
+                #decoratorParam ("selectedSpaceToolsWebItem" "importpages")
+                #decoratorParam("helper" $action.helper)
+
+                <div class="import-pages">
+
+                    <p>$action.getText('importpages.help.header')
+                    <ul>
+                    <li>$action.getText('importpages.page.title.from.filename')
+                    <li>$action.getText('importpages.content.is.entire.body')
+                    </ul>
+                    </p>
+                    <div>
+                            <form method="POST" name="importpagesform" action="doimportpages.action?key=${key}" class="aui">
+                                <fieldset>
+                                #form_xsrfToken()
+                                #tag( "TextField" "label='directory'" "name='directory'" "size=50" "theme='aui'" )
+                                #tag( "Checkbox" "label='trim-extension'" "name='trimExtension'" "theme='aui'"  )
+                                #tag( "Checkbox" "label='overwrite-existing'" "name='overwriteExisting'"  "theme='aui'"  )
+                                #bodytag ("Submit" "theme='aui'")
+                                    #param("editMode" "true")
+                                    #param("submitValue" "$action.getText('import.name')")
+                                    #param("submitName" "import")
+                                    #param("cancelValue" "$action.getText('cancel.name')")
+                                #end
+                                </fieldset>
+                            </form>
+                    </div>
+
+                </div>
+            #end
+        </body>
+    #end
+</html>

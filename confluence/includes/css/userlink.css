@@ -1,0 +1,176 @@
+.ajs-content-hover {
+    position: absolute;
+    display: none;
+    z-index: 3100;
+    text-align: left;
+}
+
+.ajs-content-hover .contents {
+    border-radius: 3px;
+    border: 1px solid #bbb;
+    background: white;
+    float: left;
+}
+
+.ajs-content-hover .vcard {
+    padding: 7px;
+    border-bottom: 1px solid #ccc;
+}
+
+.ajs-content-hover .profile-info {
+    padding: 7px;
+}
+
+.greybox #peoplelist .profile-macro {
+    width: 300px;
+    float: left;
+    margin: 20px;
+    height: 65px;
+}
+
+.profile-macro .vcard {
+    position: relative;
+    overflow: hidden;
+    min-height: 48px;
+    white-space:nowrap;
+}
+
+.profile-macro .vcard .userLogoLink{
+    float: left;
+}
+
+.profile-macro .vcard .user-status {
+    white-space:normal;
+}
+
+.profile-macro .vcard .userLogo {
+    float: left;
+    margin-right: 10px;
+}
+
+.profile-macro .vcard .values {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    width: 225px;
+}
+
+.profile-macro .vcard .notloggedin {
+    white-space: normal;
+}
+
+.profile-macro .vcard .notloggedin {
+    white-space: normal;
+}
+
+.profile-macro .user-status {
+    padding-top: 7px;
+    display: block;
+    clear: both;
+}
+
+.profile-macro .profile-info {
+    border-spacing: 0;
+}
+.profile-macro .profile-info tr,
+.profile-macro .profile-info td,
+.profile-macro .profile-info th {
+    font-size: 14px;
+    padding: 0 0 2px;
+}
+.profile-macro .profile-info th {
+    padding-right: 10px;
+}
+
+.ajs-content-hover .actions .ajs-menu-bar .section-secondary li a {
+    padding-left: 10px;
+}
+
+.ajs-content-hover .actions .popup-follow a,
+.ajs-content-hover .actions ul li a.user-popup-more {
+    display: block;
+    text-align: center;
+    background-color: #f5f5f5;
+    color: #707070;
+    line-height: 2;
+}
+
+.ajs-content-hover .actions ul li {
+    width: 150px;
+    float: left;
+}
+
+.ajs-content-hover .actions ul.single-item li {
+    width: 300px;
+}
+
+.ajs-content-hover .actions ul li div.ajs-drop-down ul li {
+    width: auto;
+    float: none;
+    text-align: left;
+}
+
+.ajs-content-hover .actions .ajs-menu-bar {
+    float: none;
+}
+
+.ajs-content-hover .actions ul.ajs-menu-bar .popup-follow {
+    width: 149px;
+}
+
+.ajs-content-hover .actions ul.ajs-menu-bar .popup-follow {
+    border-right: 1px solid #ccc;
+}
+
+.ajs-content-hover .ajs-menu-bar .ajs-menu-item .trigger > span {
+    background: none;
+}
+
+.ajs-content-hover .actions .ajs-button a {
+    border-radius: 0;
+}
+.ajs-content-hover .actions ul.ajs-menu-bar .ajs-menu-item a span,
+.ajs-content-hover .actions ul.ajs-menu-bar .ajs-menu-item a span span {
+    display: inline;
+}
+
+.ajs-content-hover .actions ul.ajs-menu-bar .ajs-menu-item.opened a span span {
+    background: none;
+}
+
+.ajs-content-hover .popup-icon span {
+    padding-left: 20px;
+    background-repeat: no-repeat;
+    background-position: center left;
+}
+
+.ajs-content-hover .waiting span {
+    background-image: url(../../../images/icons/wait.gif);
+    padding-left: 20px;
+}
+
+.ajs-content-hover .actions .ajs-menu-bar .unfollow-item a.follow,
+.ajs-content-hover .actions .ajs-menu-bar .follow-item a.unfollow {
+    display: none;
+}
+
+.ajs-content-hover .actions .ajs-menu-bar .follow-item a.follow,
+.ajs-content-hover .actions .ajs-menu-bar .unfollow-item a.unfollow {
+    display: block;
+}
+
+
+.ajs-content-hover .actions .ajs-menu-bar,
+.ajs-content-hover .actions .ajs-menu-bar li,
+.ajs-content-hover .actions .ajs-menu-bar li a,
+.ajs-content-hover .actions .ajs-menu-bar .ajs-drop-down li a span {
+    padding-left: 0;
+}
+
+.ajs-content-hover .actions .ajs-menu-bar .ajs-menu-item a:hover,
+.ajs-content-hover .actions .ajs-menu-bar .ajs-menu-item a:focus,
+.ajs-content-hover .actions .ajs-menu-bar .ajs-menu-item a:active,
+.ajs-content-hover .ajs-menu-bar .ajs-menu-item.opened a.trigger {
+    color: #333;
+    background-color: #e9e9e9;
+}

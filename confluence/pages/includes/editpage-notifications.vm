@@ -1,0 +1,56 @@
+#if ($showDraftMessage)
+    
+<div id="draft-messages" class="aui-message info closeable">
+        <span class="aui-icon icon-hint"></span>
+    #if ($existingDraft.newPage)
+        #set ($draftDate=$dateFormatter.formatDateTime($existingDraft.lastModificationDate))
+        #if ($existingDraft.title && $existingDraft.title.length() > 0)
+            $action.getText("draft.warning.create.page", [$draftDate, $generalUtil.htmlEncode(${existingDraft.title})])
+        #else
+            $action.getText("draft.warning.create.page.without.title", [$draftDate])
+        #end
+        #if ($darkFeatures.isFeatureEnabled("dark-drafts"))
+            $action.getText("draft.v2.warning.resume.or.discard.new", ["<a href='#' class='use-draft'>", "</a>", "<a href='#' class='discard-draft'>", "</a>", 
+                "<a href='$req.contextPath/users/viewmydrafts.action'>", "</a>"])
+        #else
+            $action.getText("draft.warning.resume.or.discard.new", ["<a href='#' class='use-draft'> ", "</a>", "<a href='#' class='discard-draft'> ", "</a>"])
+        #end
+    #else
+        $action.getText("draft.warning.edit.page", ["$dateFormatter.formatDateTime($draft.lastModificationDate)"])
+        #if ($mergeRequired)
+            $action.getText("draft.warning.merge.required")
+        #end
+        #if ($conflictFound)
+            $action.getText("draft.warning.conflict.found", ["<a href='?pageId=${pageId}&viewConflict=true&spaceKey=${action.spaceKey}' >", "</a>",
+            "<a href='#' class='discard-draft'>", "</a>", "<a href='$req.contextPath/users/viewmydrafts.action'>", "</a>"])
+        #else
+            #if ($darkFeatures.isFeatureEnabled("dark-drafts"))
+                #if ($mergeRequired)
+                    $action.getText("draft.v2.warning.merge.or.discard",  ["<a id='view-diff-link-notification' href='#' class='view-diff-link'>", "</a>",
+                    "<a href='#' class='use-draft'> ", "</a>", "<a href='#' class='discard-draft'>", "</a>", "<a href='$req.contextPath/users/viewmydrafts.action'>", "</a>"])
+                #else
+                    $action.getText("draft.v2.warning.resume.or.discard", ["<a id='view-diff-link-notification' href='#' class='view-diff-link'>", "</a>",
+                    "<a href='#' class='use-draft'> ", "</a>", "<a href='#' class='discard-draft'> ", "</a>", 
+                    "<a href='$req.contextPath/users/viewmydrafts.action'>", "</a>"])
+                #end
+            #else
+                #if ($mergeRequired)
+                    $action.getText("draft.warning.merge.or.discard",  ["<a id='view-diff-link-notification' href='#' class='view-diff-link'>", "</a>",
+                    "<a href='#' class='use-draft'> ", "</a>", "<a href='#' class='discard-draft'>", "</a>"])
+                #else
+                    $action.getText("draft.warning.resume.or.discard", ["<a id='view-diff-link-notification' href='#' class='view-diff-link'>", "</a>",
+                    "<a href='#' class='use-draft'> ", "</a>", "<a href='#' class='discard-draft'> ", "</a>"])
+                #end
+            #end
+        #end
+    #end
+</div>
+#end
+
+<div id='heartbeat-div' class="hidden">
+    <div class="aui-message info closeable">
+            <span class="aui-icon icon-info"></span>
+        $action.getText("heartbeat.page.edited.info", ["<span id='other-users-span'></span>"])
+    </div>
+</div>
+

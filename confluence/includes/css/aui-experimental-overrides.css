@@ -1,0 +1,58 @@
+/* Overrides for css from aui-experimental features */
+
+.aui-header .aui-button.aui-button-primary.aui-style {
+    margin: 5px 10px; /* AUI has 6px 10px 0 10px which causes our button to not be vertically aligned CONFDEV-13968 */
+    line-height: 22px; /* to match to height of the SPAN which is 30px button anchor height - 4px top padding - 4px bottom padding */
+}
+
+/* AUI-1074 temporary adjustments to the search field width to cater for Confluence OnDemand common navigation config
+   ... when the doc theme is enabled (so we have an extra Browse menu and sidebar icon). */
+.aui-header .aui-quicksearch input {
+    width: 135px; /* this is the default minimum width for this field, to leave room for placeholder in shipped translations */
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+
+    -webkit-transition: width 100ms linear;
+    transition: width 100ms linear;
+}
+@media screen and (min-width : 1280px) {
+    .aui-header .aui-quicksearch input {
+        width: 220px;
+    }
+}
+/* end AUI-1074 changes */
+
+/* Necessary override for CONFDEV-14585 / AUI-1348. Setting an explicit line-height seems borked on Chrome. */
+.aui-header .aui-quicksearch input {
+    line-height: normal;
+    line-height: 1.42857142857143\9 /* IE8 hack. It needs a proper line-height */
+}
+
+/* AUI-1329 Adjust icon font small icons to be vertically centred across browsers */
+.aui-icon-small:before {
+    margin-top: -8px; /* AUI has -9px */
+}
+/* end AUI-1329 changes */
+
+/* AUI-1319 serve default logo with twice the normal resolution to allow high dpi screens to display better images */
+.aui-header .aui-header-logo img {
+    max-height: 24px; /* AUI has 30px */
+    padding: 8px 0; /* AUI has 5px */
+}
+.aui-header .aui-header-logo-confluence .aui-header-logo-device {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOwAAAAwBAMAAADgAYtzAAAAA3NCSVQICAjb4U/gAAAAMFBMVEX///////////////////////////////////////////////////////////////9Or7hAAAAAEHRSTlMAESIzRFVmd4iZqrvM3e7/dpUBFQAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAVdEVYdENyZWF0aW9uIFRpbWUAMjUvMS8xM/ajFVMAAASRSURBVFiF7ZdNbBtVEIBnbTdJGwo+RCBQBUYqAnEgPlT8SBAcMFSoB3LggLjU4sSPUANYiigCuxAhAwLnUtQDNIdKCKlAovIj0Eo4RagS6iFBXEAcrIpLEAdHiYnXsb3DzLz3dtex14lw8QEyB++8n5lv571589YAe/I/lMPpVK/hG0r45yl4pjB7VaGPLSNi85NE2PhQhcZrMfr5h4DD8WArMimP+1HJYpjV4zxa7QM7v/W037hn2eHHEO6E5cXAjT6wRcQfjP4CRcDPCYOdCzGKyuhaH9jjiC2Ad237K7DIyzr3lQw2H2LEy5F9NNUH9joynYJ5xE0YIXWJuiJMvHzermAmxIhmNujRB/YAmf4E44gr/IPToGL5nseOhBn1j2VTh/2keG3duHKKCW+ClU4nA/Nv3QF7pOt5t7SLsfRDuqckq1wSNDraacszuIOS1v2Ye+1vIfpqBVfj7diYbX9J+jHbJl7sc+r6Wprn4PoPEc+JD2I0T9PuvUejv6iIHiT1dzg0BydIuRKIBbTO8rMkwdEyyvYvqM4VwY6oly1yAlolM7uIzlOsuhTmTdLpAuRE2fQc8yD7oLC3Yed1Ticl90RqJtPXOrCH1ICb4KaSJX3IyaUOQSWqxb0X1WHdgm3YYWN9xcc2w7HmJed87IahOaq0mSUVXjMerUhKb8Nea6wdH4uh2IiZse5ja8aHo6PmLhYphRcn9Fq3Y49T75lCmXPMx6bC9pbX5lJ6gbfPwzqcPK3sI69c4JdaTb/uOc9Ru8XBVmE7tigZMEpjCcb+McVlMdWWyQHsqJzAUe5g7KWEqDm9rPtkWzlI5Xu/ebNMB7bEZUQMUoR16OzsgK1rc2p+AWqsqK+UEQFaHtZkwiZ0wy6qys9YXo1e2IOiGmy+KxZ87P62YDuxsEust/2hWJ2TwXBrMGgs54xcPoPFSsnYGDhWqlorPmDsgYyEmw/DWrvH1tMsk2FYGX1YOy9uSoWs+liMB7GxXWJH9c2pm90PkCdWBZPsoanbXOPmPOt1ZZDsga2D9TwqbLMrdsVgEz713o/4wuVq9uPL0sHVoTGbfvIdO5kjR1MRHoMeWLdQ4i3L8/l/kbpPZoJYunjqcYhN8uwL5P1ZDmnfWZRAr5HN/lUug7LZ+/y40bZ6Yc1suVQuy8YEsLeo0Rqb4m/fqfVTCFfd8pTOGXJ3wnPkletqKDbmY62K1taCWO3D8W7jvyBaNn3mEm3EA3fDoucoH4oFM4XmmPfdCGIjakID7kIDm0D3gxRK3GTSGDtZ4Q8N77ZchAeUUodwrJr8KXPMgleDWP0nowlR/YINWG6kJIOWgLeAvrKGynVOqrNq5jRY78tE+sY6qOpYhb+rhuVF2NJVGdp4aUi+sY8Zu5w0h6XSKx/0wXSjcFtvAqd2TNZH6jK5GleV4u6ZmZknRDv69jdvBfK+i9w+k/X02wp2Idsxg7xluRKMFc6fmSVnpao6L9OyofxxnnM6jK6+3Iyn2jvulL39t8VacN8Itu/DQQRLGzvv/70FeA1XEwPBgvXcqt/47PRgoHuyJ/8J+Rs7ac4B4+iySQAAAABJRU5ErkJggg==);
+    width: 118px;
+    height: 24px;
+}
+/* end AUI-1319 changes */
+
+/*
+ * We should be able to remove this when AUI changes its styling of headings to follow the ADG.
+ * See https://jdog.atlassian.net/browse/DT-431.
+ */
+h4, h5, h6 {
+    line-height: 20px;
+}

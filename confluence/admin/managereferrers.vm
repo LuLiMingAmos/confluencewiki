@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<title>$action.getActionName($action.getClass().getName())</title>
+	</head>
+    <content tag="selectedWebItem">managereferers</content>
+    <content tag="subtitleDescription">external.referrers.subtitle</content>
+	<body>
+		#parse ( "/template/includes/actionerrors.vm" )
+
+        #if ($showActionMsg)
+            #applyDecorator ("warning" "")
+                $action.getText("purge.referrers.feedback", [$deletions])
+            #end
+        #end
+
+        #applyDecorator("form-aui")
+            #decoratorParam("submitAction" "doeditreferrers.action")
+            #decoratorParam("editAction" "editreferrers.action")
+            #decoratorParam("formName" "managereferrers")
+            #decoratorParam("formStyle" "long-label")
+            #form_xsrfToken()
+
+            <h2>External Referrer Settings</h2>
+
+            <div class="field-group">
+                <label>$action.getText("external.referrers")</label>
+                <input type="checkbox" class="checkbox" value="true" name="collectReferrerData"
+                    #if($action.isCollectReferrerData())checked#end
+                    #if(!$editMode)disabled#end>
+                <div class="description description-textbox">
+                    $i18n.getText('external.referrers.description') #doc("help.managing.external.referrers" "$i18n.getText('more.about.external.referrers')")
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label>$action.getText("show.external.referrers")</label>
+                <input type="checkbox" class="checkbox" value="true" name="showExternalReferrers"
+                    #if(!$action.isHideExternalReferrers())checked#end
+                    #if(!$editMode)disabled#end>
+                <div class="description">
+                    $i18n.getText('external.referrers.show.description')
+                </div>
+            </div>
+
+            #tag("Submit" "theme='aui'")
+        #end
+
+        #if(!$editMode)
+            <form action="ban_referrer_admin.action" method="POST" class="aui long-label">
+                <h2>Exclude External Referrers</h2>
+                #form_xsrfToken()
+                <div class="field-group">
+                    <label>Referrer URL Prefix</label>
+                    <input type="text" name="referrerToExclude">
+                    <div class="description">
+                        $i18n.getText("exclude.ext.referrer.prefixes.description")
+                    </div>
+                </div>
+
+                <div class="buttons-container">
+                    <div class="buttons">
+                        <input class="submit button" type="submit" value="$action.getText('add.word')">
+                    </div>
+                </div>
+            </form>
+
+            #set($hasReferrers = $excludedReferrers && $excludedReferrers.size()!=0)
+            <div id="excludedReferrers">
+            <h2 class="aui-style">Excluded Referrer URL Prefixes</h2>
+            <table class="aui">
+                <tr>
+                    <th width="60%">URL Prefix</th>
+                    <th width="40%">Operations</th>
+                </tr>
+                #if( !$hasReferrers )
+                <tr>
+                    <td colspan="2">
+                        There are currently no Referrers being excluded.
+                    </td>
+                </tr>
+                </table>
+                #else
+                    <tr>
+                        <td></td>
+                        <td>
+                            <a href="$req.contextPath/admin/purgereferrers.action?#url_xsrfToken()">$action.getText("purge.all")</a>
+                        </td>
+                    </tr>
+                    #foreach($referrer in $action.paginationSupport.getPage())
+                    <tr>
+                        <td>$referrer</td>
+                        <td><a href="$req.contextPath/admin/remove_referrer_from_excludelist.action?referrerToRemove=$referrer&#url_xsrfToken()">$action.getText("delete.one")</a> &middot; <a href="$req.contextPath/admin/purgesinglereferrer.action?referrer=$referrer&#url_xsrfToken()">$action.getText("purge.one")</a></td>
+                    </tr>
+                    #end
+                </table>
+                #pagination($action.paginationSupport "managereferrers.action?")
+                #end
+            </div>
+        #end
+
+		#parse("/breadcrumbs.vm")
+	</body>
+</html>

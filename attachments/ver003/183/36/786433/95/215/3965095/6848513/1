@@ -1,0 +1,160 @@
+; Domain: kick9.com
+; Exported (y-m-d hh:mm:ss): 2016-02-23 20:07:25
+;
+; This file is intended for use for informational and archival
+; purposes ONLY and MUST be edited before use on a production
+; DNS server.
+;
+; In particular, you must update the SOA record with the correct
+; authoritative name server and contact e-mail address information,
+; and add the correct NS records for the name servers which will
+; be authoritative for this domain.
+;
+; For further information, please consult the BIND documentation
+; located on the following website:
+;
+; http://www.isc.org/
+;
+; And RFC 1035:
+;
+; http://www.ietf.org/rfc/rfc1035.txt
+;
+; Please note that we do NOT offer technical support for any use
+; of this zone data, the BIND name server, or any other third-
+; party DNS software.
+;
+; Use at your own risk.
+
+; SOA Record
+KICK9.COM.	3600	IN	SOA	ns67.domaincontrol.com.	dns.jomax.net (
+				2016022200
+				28800
+				7200
+				604800
+				600
+				)
+
+; A Records
+@	600	IN	A	54.187.249.122
+accesslog	1800	IN	A	52.34.254.44
+appcpa.push	3600	IN	A	120.132.65.79
+appsflyer.push	3600	IN	A	52.11.160.209
+bokelong	3600	IN	A	120.132.95.79
+bokelong2	3600	IN	A	123.59.59.130
+bokelong3	3600	IN	A	123.59.65.142
+chat	3600	IN	A	52.34.162.247
+cs.us	1800	IN	A	54.187.249.122
+deploy.new	3600	IN	A	54.148.78.109
+developer.us	1800	IN	A	54.187.249.122
+email	3600	IN	A	54.213.238.223
+email.util	3600	IN	A	52.24.208.19
+forum.us	3600	IN	A	54.187.249.122
+game.us	3600	IN	A	54.187.249.122
+log.us	3600	IN	A	54.187.251.180
+log2.us	3600	IN	A	54.191.152.169
+mail	3600	IN	A	54.187.249.122
+office.vpn	3600	IN	A	210.22.175.252
+ope	3600	IN	A	54.187.249.122
+opeinner.us	3600	IN	A	54.213.238.223
+redmine	1800	IN	A	54.213.238.223
+sb	3600	IN	A	54.213.238.223
+sb.charge.us	3600	IN	A	54.213.238.223
+sb.lg.us	3600	IN	A	54.213.238.223
+sb.log.us	3600	IN	A	54.213.238.223
+sb.openpf.us	3600	IN	A	54.213.238.223
+sb.pf.us	3600	IN	A	54.213.238.223
+sbpre	3600	IN	A	52.26.244.65
+sbpre.admin.forum	3600	IN	A	52.26.244.65
+sbpre.charge.us	3600	IN	A	52.26.244.65
+sbpre.cs.us	3600	IN	A	52.26.244.65
+sbpre.developer.us	3600	IN	A	52.26.244.65
+sbpre.lg.us	3600	IN	A	52.26.244.65
+sbpre.log.us	3600	IN	A	52.26.244.65
+sbpre.ope.us	3600	IN	A	52.26.244.65
+sbpre.openpf.us	3600	IN	A	52.26.244.65
+sbpre.pf.us	3600	IN	A	52.26.244.65
+vpn	3600	IN	A	106.75.193.76
+vpn3	3600	IN	A	54.213.238.223
+www	3600	IN	A	54.187.249.122
+zabbix.us	3600	IN	A	54.148.78.109
+
+; CNAME Records
+ad.us	3600	IN	CNAME	pf.us.kick9.com
+adope	3600	IN	CNAME	email.util.kick9.com
+avalon	3600	IN	CNAME	www.kick9.com
+beta	3600	IN	CNAME	www.kick9.com
+cdn.s3	3600	IN	CNAME	d25nf8p8c2lz0e.cloudfront.net
+charge.us	3600	IN	CNAME	charge-us-kick9-com-49886371.us-west-2.elb.amazonaws.com
+crashreport	3600	IN	CNAME	www.kick9.com
+cs	3600	IN	CNAME	ope.kick9.com
+daas	3600	IN	CNAME	ope.kick9.com
+developer	3600	IN	CNAME	ope.kick9.com
+download-nba-en.game.us	1800	IN	CNAME	d1thf6itlq468h.cloudfront.net
+em.opeinner.us	3600	IN	CNAME	sbpre.kick9.com
+hhkjscry2rc3mb4vm7tgu4p6t74oi6oo._domainkey.auto	3600	IN	CNAME	hhkjscry2rc3mb4vm7tgu4p6t74oi6oo.dkim.amazonses.com
+inmobi.push	3600	IN	CNAME	appsflyer.push.kick9.com
+lg.us	3600	IN	CNAME	lg-us-kick9-com-1062758361.us-west-2.elb.amazonaws.com
+m.opt	3600	IN	CNAME	www.kick9.com
+mineheroes	3600	IN	CNAME	email.util.kick9.com
+monster	3600	IN	CNAME	ope.kick9.com
+nba-20140609-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20140717-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20140828-login.game.us	1800	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20140924-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20141023-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20141116-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20141208-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20141219-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20150122-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20150216-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20150303-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20150419-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20150506-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20150629-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20150716-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20150807-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20150929-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+nba-20151113-login.game.us	3600	IN	CNAME	usnbalogin-812578164.us-east-1.elb.amazonaws.com
+ope.us	3600	IN	CNAME	d24puw6r7cr8gc.cloudfront.net
+openpf.us	3600	IN	CNAME	openpf-us-kick9-com-965316738.us-west-2.elb.amazonaws.com
+opt	3600	IN	CNAME	www.kick9.com
+pf.us	3600	IN	CNAME	lg-us-kick9-com-1062758361.us-west-2.elb.amazonaws.com
+pf2	3600	IN	CNAME	d3vs4uziualj0q.cloudfront.net
+pre.mineheroes	3600	IN	CNAME	email.util.kick9.com
+qd5wlt4evlvharbwjrjik3lkl53w5uc3._domainkey.auto	3600	IN	CNAME	qd5wlt4evlvharbwjrjik3lkl53w5uc3.dkim.amazonses.com
+ri2t56qrwrcusyoz5h426f2a754tbe2b._domainkey.auto	3600	IN	CNAME	ri2t56qrwrcusyoz5h426f2a754tbe2b.dkim.amazonses.com
+sb.ad.us	3600	IN	CNAME	sb.kick9.com
+sb.appsflyer	3600	IN	CNAME	sb.pf.kick9.com
+sb.forum.us	3600	IN	CNAME	sb.pf.us.kick9.com
+sb.img	3600	IN	CNAME	s3.amazonaws.com
+sbpre.ad.us	3600	IN	CNAME	sbpre.kick9.com
+sbpre.adope	3600	IN	CNAME	sbpre.kick9.com
+sbpre.avalon	3600	IN	CNAME	sbpre.kick9.com
+sbpre.chat	3600	IN	CNAME	sbpre.kick9.com
+sbpre.crashreport	3600	IN	CNAME	sbpre.kick9.com
+sbpre.ec	3600	IN	CNAME	sbpre.kick9.com
+sbpre.forum	3600	IN	CNAME	sbpre.kick9.com
+sbpre.m.opt	3600	IN	CNAME	sbpre.kick9.com
+sbpre.mineheroes	3600	IN	CNAME	sbpre.kick9.com
+sbpre.monster	3600	IN	CNAME	sbpre.pf.us.kick9.com
+sbpre.opt	3600	IN	CNAME	sbpre.kick9.com
+sbpre.paycallback	3600	IN	CNAME	sbpre.kick9.com
+sbpre.shot	3600	IN	CNAME	sbpre.kick9.com
+
+; MX Records
+@	3600	IN	MX	5	mxbiz1.qq.com
+@	3600	IN	MX	10	mxbiz2.qq.com
+139	3600	IN	MX	10	mta1.mail.139.com
+auto	3600	IN	MX	5	mx.sendcloud.org
+vpn	3600	IN	MX	15	office.vpn.kick9.com
+
+; TXT Records
+@	3600	IN	TXT	"google-site-verification=Wcvb0jWmNFHBBPFt_8IFcgoGXTUSas-LM2RhHT-L5xE"
+auto	3600	IN	TXT	"ef99e90e-7819-4f81-a6a6-49c3c54dc016-1431572757485"
+auto	3600	IN	TXT	"v=spf1 include:spf.sendcloud.org ~all"
+mail._domainkey.auto	3600	IN	TXT	"k=rsa;p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCP4XfWIospuqs82Ym2fwt3Diq5 E4Vo0A/fgf2D9cv+k1v/mp71lgX4OQwHLDMeEPBNgh/7dvhZZQ7F8dsPMhQPPZFE BjHDkkOEuDr6cPFkTXQ4ApZYVO6OGvgPcNFuB1Qhq1XV9F+vMYBlD8kGxmsiPH/V BIwuowlEE17qwNYqJQIDAQAB"
+_amazonses.auto	3600	IN	TXT	"xtANgxB7YSC1R9GaC8+fubJWJQDT1MUrRr/6N4XGxXI="
+
+; NS Records
+@	3600	IN	NS	ns67.domaincontrol.com
+@	3600	IN	NS	ns68.domaincontrol.com

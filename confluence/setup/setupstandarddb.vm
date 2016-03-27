@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>$action.getActionName($action.getClass().getName())</title>
+</head>
+
+<body>
+    <p>$action.getText("setup.step.description.stdb")</p>
+
+    #parse ( "/template/includes/actionerrors.vm" )
+
+    #if ($dbConfigInfo.dbNotes.size() > 0)
+        #foreach ($dbNoteHtml in $dbConfigInfo.dbNotes)
+            #applyDecorator("warning" "")
+                $dbNoteHtml
+            #end
+        #end
+    #end
+
+    <h2>$action.getText("setup.standard.database.title")</h2>
+    
+    <form name="dbform" method="POST" action="setupstandarddb.action" class="aui">
+		#bodytag( "TextField" "label='driver-class-name'" "name='dbConfigInfo.driverClassName'" "theme='aui'" "cssClass='long-field'")
+            #param ("required" "$action.getText('required.field')")
+        #end
+		#bodytag( "TextField" "label='database-url'" "name='dbConfigInfo.databaseUrl'" "theme='aui'" "cssClass='long-field'")
+            #param ("required" "$action.getText('required.field')")
+        #end
+		#bodytag( "TextField" "label='user-name'" "name='dbConfigInfo.userName'" "theme='aui'")
+            #param ("required" "$action.getText('required.field')")
+        #end
+        #bodytag( "Password" "label='password.name'" "name='dbConfigInfo.password'" "theme='aui'")
+        #end
+
+        #tag( "Hidden" "name='database'" )
+		#if ($database == "other")
+			#tag( "TextField" "label='Hibernate Dialect'" "name='dbConfigInfo.dialect'" "theme='aui'" "cssClass='long-field'")
+		#end
+        
+        #bodytag( "Submit" "theme='aui'")
+            #param ("editValue" "$action.getText('move.page.dialog.next')")
+        #end
+    </form>
+</body>
+</html>

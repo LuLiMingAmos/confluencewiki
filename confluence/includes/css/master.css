@@ -1,0 +1,624 @@
+/* PDL master.css */
+/* Generic */
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.smalltext {
+    font-size: 12px;
+    color: #707070;
+}
+
+#title-text a:hover{
+    text-decoration: none;
+}
+
+#title-text {
+    margin: 0;
+}
+
+#main-header,
+#preview-header {
+    margin-bottom: 20px;
+}
+
+#preview-header #title-text {
+    color: #333;
+    margin-top: 10px;
+}
+
+a img {
+    border: 0;
+}
+
+.hidden {
+    display: none;
+}
+/* End generic */
+
+/* Main body */
+
+/* if space-ia is on, we want width to be auto*/
+.ia-splitter .aui-page-panel {
+    width: auto;
+}
+/* end main body */
+
+/* Header */
+#quick-search-submit {
+    display: none;
+}
+
+#quick-search {
+    margin: 0;
+}
+
+.aui-nav-link span + span {
+    margin-left: 5px;
+}
+/* End header */
+
+/* Generic Admin sidebar (or vertical navigation) */
+.aui-nav-vertical li a:link,
+.aui-nav-vertical li a:focus,
+.aui-nav-vertical li a:visited,
+.aui-nav-vertical li a:active  {
+    color: #666;
+}
+
+/* End generic admin sidebar/vertical nav*/
+
+/* Space Admin sidebar */
+.in-page-menu {
+  padding: 10px;
+}
+
+.in-page-menu-content {
+    border-left: 1px solid #CCC;
+    padding: 0 0 20px 10px;
+}
+
+/* End Space Admin sidebar */
+
+/*Global messages above the header*/
+#messageContainer {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#messageContainer li {
+    display: block;
+}
+
+#messageContainer .aui-message {
+    margin: 0;
+    border-radius: 0;
+}
+/*End global messages above the header*/
+
+#breadcrumbs li.hidden-crumb {
+    display: none;
+}
+
+/* Metadata stuff just below page title*/
+.page-metadata ul {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.page-metadata ul li {
+    list-style: none;
+    float: left;
+    padding: 0 5px 0 0;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.page-metadata ul a.page-tinyurl span {
+    float: left;
+    height: 16px;
+    width: 10px;
+    text-indent: -9999em;
+}
+
+.page-metadata ul a.action-view-attachments span.page-metadata-attachments-count {
+    margin-left: 3px;
+}
+/* End metadata stuff*/
+
+/* Page content */
+#main {
+    margin: 0;
+    padding: 20px;
+    clear: both;
+    min-height: 600px;
+}
+
+#title-heading {
+    margin: 0;
+    padding: 0;
+}
+#title-text a {
+    color: #333;
+}
+
+.navBackgroundBox {
+    padding: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.simple-confirmation > form > .buttons-container {
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+/* aui-page-layout.css makes this clear, which stuffs up
+ the multi-column layout of space admin sidebar */
+
+#content {
+    clear: none !important;
+}
+
+#content::before {
+    display: none !important;
+}
+
+/* end aui-page-layout.css overrides */
+
+/*End page content*/
+
+/* Page footer */
+
+.aui-layout #footer .footer-body > ul > li.print-only {
+    display: none;
+}
+/* End page footer */
+
+#com-atlassian-confluence .hidden {
+    display: none;
+}
+
+/* Progress Page */
+
+/* This doesn't and shouldn't be a table */
+
+#status {
+    margin: 10px 0;
+}
+
+#status table {
+    margin: 10px 0;
+}
+
+#taskProgressBar {
+    background: #ebf2f9;
+    /* This border radius will not
+       work while it's still a table */
+    border-radius: 3px;
+}
+
+#taskGreenBar {
+    background: #3b7fc4;
+}
+
+#status .smalltext {
+    text-align: center;
+    color: #707070;
+}
+
+#content {
+    /* Override aui-page-layout.css */
+    position: static !important;
+}
+
+hr {
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+#bloglist {
+    display: none;
+}
+
+/* Child Pages styling (mainly for the benefit of doctheme) */
+.children-show-hide.icon {
+    display: none;;
+}
+
+.child-display {
+    padding: 2px 2px 2px 12px;
+    display: block;
+}
+
+/*
+ * Page history
+ * This is the css for the warning at the top of the page when viewing the page history
+ */
+#page-history-warning {
+    margin-bottom: 20px;
+}
+
+.page-history-view a:before {
+    display: inline-block;
+    content: "·";
+    padding: 0 10px;
+}
+
+.page-history-view a:before:hover {
+    text-decoration: none;
+}
+
+.page-history-view a:first-child:before {
+    display: none;
+    content: '';
+    padding: 0;
+}
+
+.version-navigation-block {
+    padding-top: 10px;
+}
+
+.current-version-margin {
+    display: inline-block;
+    padding-left: 10px;
+}
+
+.current-version-margin:first-child {
+    padding: 0;
+}
+/* End page history */
+
+/* Alternative pages */
+.alternative-page-list {
+    list-style: none;
+    padding-left: 30px;
+    line-height: 20px;
+}
+
+.alternative-page-list .excerpt {
+    margin-left: 20px;
+}
+/* End alternative pages */
+
+/* People directory*/
+.page-section,
+.page-group {
+    display: table;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.page-section .page-group {
+    display: table-row;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.page-item {
+    display: table-cell;
+    margin: 0;
+    min-width: 256px; /* grid minimum */
+    padding: 0 0 0 16px;
+    vertical-align: top;
+}
+
+/*People directory*/
+body.people .dashboard {
+    margin-top: 0;
+}
+body.people .dashboard-group > div {
+    margin-top: 0;
+}
+
+body.people #main {
+    padding: 0;
+}
+
+body.people #main-header {
+    padding: 20px;
+    margin-bottom: 0;
+    background-color: #f5f5f5;
+}
+
+.people-directory .dashboard-section {
+    display: table;
+    width: 100%;
+}
+
+body.people .dashboard-group > .aui-page-panel {
+    border-bottom: 0;
+}
+
+body.people .dashboard-group .aui-page-panel .aui-page-panel-nav {
+    height: 523px; /* 600px (#main:min-height) - #main-header:height */
+}
+
+body.people .dashboard-group .aui-navgroup-inner {
+    margin-left: -10px;
+}
+
+body.people .active-tab > a {
+    color: #333;
+    font-weight: bold;
+}
+
+#people-search-title-bar {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+#people-search-title-bar h2 {
+    float: left;
+}
+
+body.people #people-search {
+    margin-top: 0;
+    text-align: right;
+}
+
+.people-directory .aui-tabs > .tabs-menu {
+    padding: 0 30px;
+}
+
+.people-directory .greybox {
+    position: relative;
+    margin: 0;
+}
+
+.people-directory .greyboxfilled {
+    width: 100%;
+}
+
+body.people #people-search input {
+    vertical-align: top;
+}
+
+body.people #people-search .field-group {
+    display: inline-block;
+    width: auto;
+    padding: 0 10px 0 0;
+    margin: 0;
+}
+
+body.people .aui-message.error {
+    margin-bottom: 10px;
+}
+
+body.people .greybox #peoplelist .profile-macro {
+    margin: 10px 40px 20px 0;
+}
+
+#people-search .field-group {
+    padding-left: 0;
+}
+
+body.people .blank-experience-people {
+    margin-top: 50px;
+}
+
+.blank-experience-people {
+    min-height: 100px;
+    background: url(../../../images/icons/people-empty-placeholder.png) no-repeat right bottom;
+}
+
+.watches .tableview-action-icon {
+    text-align: right;
+}
+
+/* Blank experience */
+.blank-experience-container {
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    width: 65%;
+    margin: 100px auto;
+    padding: 30px;
+}
+
+.blank-experience-container p {
+    color: #707070;
+    line-height: 24px;
+    font-size: 16px;
+    width:70%;
+    margin-top:0;
+    margin-bottom:26px;
+}
+
+.blank-experience-blog {
+    background: url('../../images/icons/blog-empty-placeholder.png') no-repeat right bottom;
+}
+.blank-experience-page {
+    background: url('../../images/icons/pages-empty-placeholder.png') no-repeat right bottom;
+}
+
+/*Blog Role*/
+
+.blog-post-listing {
+    position: relative;
+    padding: 30px 20px 20px 68px;
+    margin-top: -10px;
+}
+
+#link-browser-tab-items + .blog-post-listing {
+    padding-top: 10px;
+}
+
+#link-browser-tab-items + .blog-post-listing .logoBlock {
+    top: 10px;
+}
+
+.blog-post-listing + .blog-post-listing {
+    border-top: 1px solid #ccc;
+    margin-top: 0;
+}
+
+.logoBlock,
+.blogHeading {
+    display: inline-block;
+}
+
+.userLogo {
+    width: 48px;
+    height: 48px;
+    border-radius: 3px;
+}
+
+.userLogoLink {
+    display: inline;
+}
+
+.page-metadata {
+    line-height: 1.25 !important;
+}
+
+.logo-heading-block {
+    margin-bottom: 20px;
+}
+
+
+.logoBlock {
+    position: absolute;
+    left: 0px;
+    top: 30px;
+}
+
+.userLogoLink {
+    line-height: 30px;
+}
+
+#title-heading .userLogoLink {
+    float: left;
+}
+
+.logo-heading-block .userLogo {
+    width: 48px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+span.blogHeading {
+    display: block;
+}
+
+.blogHeading .page-metadata {
+    margin: 0;
+    line-height: 16px !important;
+    margin-top: 2px;
+    margin-right: 10px;
+}
+
+a.blogHeading {
+    font-size: 24px;
+}
+
+.blog-post-listing > .wiki-content {
+    padding: 0px !important;
+}
+
+
+.blog-post-listing .endsection {
+    clear:both;
+    margin-top: 20px;
+}
+/* End blog role*/
+
+/* Blank experience */
+.blank-experience-container {
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    width: 65%;
+    margin: 100px auto;
+    padding: 30px;
+}
+
+.blank-experience-container p {
+    color: #707070;
+    line-height: 24px;
+    font-size: 16px;
+    width:70%;
+    margin-top:0;
+    margin-bottom:26px;
+}
+
+.blank-experience-blog {
+    background: url('../../images/icons/blog-empty-placeholder.png') no-repeat right bottom;
+}
+
+/* alphabet list */
+#squaretab {
+    margin-left: 0;
+    padding-left: 0;
+    white-space: nowrap;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+#squaretab li {
+    display: inline;
+    list-style-type: none;
+}
+
+#squaretab a {
+    padding: 5px 7px 3px 7px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+#squaretab a:link,
+#squaretab a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+#squaretab a:hover {
+    text-decoration: none;
+}
+
+.admin-sidebar-group ~ .admin-sidebar-group {
+	margin-top: 20px;
+}
+
+/* CONFDEV-13482: Override .aui-page-panel */
+#main.aui-page-panel {
+	border-top: 0;
+}
+
+.recently-updated-concise .update-item .update-item-desc,
+.recently-updated-concise .update-item .update-item-changes{
+    font-size: 12px;
+    margin-left: 5px;
+    line-height: 20px;
+}
+
+/*  CONFDEV-12305: Required due to UPM-3249, but also custom color scheme (colors-css.vm).
+    The .wiki-content a:link would end up with the same specifity as .aui-message.error a,
+    thus being dependant on the order, which is too fragile. As long as we don't support
+    a secondary link colour, the link colour in error messages should not be customisable,
+    since the background is red. */
+.aui-message.error a {
+    color: #fff !important;
+}
+
+/* consistent placeholder text color */
+::-webkit-input-placeholder {
+   color: #999;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: #999; 
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #999; 
+}
+:-ms-input-placeholder { 
+   color: #999; 
+}
+
+/* End PDL master.css */

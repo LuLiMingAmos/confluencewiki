@@ -1,0 +1,70 @@
+\<html>
+	<head>
+		<title>$action.getActionName($action.getClass().getName())</title>
+		<meta name="help-path" content="/admin/mail/help/viewmailqueue.vm"/>
+	</head>
+
+	<body>
+        <content tag="selectedWebItem">mailqueue</content>
+        <content tag="subtitleDescription">viewmailqueue.desc</content>
+		#parse ( "/template/includes/actionerrors.vm" )
+
+        <div class="aui-tabs horizontal-tabs" id="mailqueue">
+
+##            Top Tabs
+            <ul class="tabs-menu">
+                <li class="menu-item #if ($action.page != 'errorqueue')active-tab#end">
+                    <a href="#view-mailqueue"><strong>$action.getText("mail.queue") ($action.getMailQueue().size())</strong></a>
+                </li>
+                <li class="menu-item #if ($action.page == 'errorqueue')active-tab#end">
+                    <a href="#view-errorqueue"><strong>$action.getText("error.queue") ($action.getMailQueue().getErrorQueue().size())</strong></a>
+                </li>
+            </ul>
+
+##            View Queue
+            <div class="tabs-pane #if ($action.page != 'errorqueue')active-pane#end" id="view-mailqueue">
+                <p><a href="flushqueue.action?#url_xsrfToken">$action.getText("flushqueue.name")</a> &ndash; $action.getText("flushqueue")</p>
+                <p></p>
+                <table class="aui">
+                    <tr><th width="80%">$action.getText('email.subject')</th><th nowrap>$action.getText('date.queued')</th></tr>
+                    #if ($action.getMailQueue().size() > 0)
+                        #foreach ($queueItem in $action.getMailQueue().getTasks())
+                            <tr #if ($velocityCount%2==0) bgcolor=#f9f9f9 #end>
+                                <td>$generalUtil.htmlEncode($queueItem.getTask().getSubject())</td>
+                                <td>$dateFormatter.formatDateTime($queueItem.getTask().getDateQueued())</td>
+                            </tr>
+                        #end
+                    #else
+                    <tr><td colspan="2">$action.getText("noqueueitems")</td></tr>
+                #end
+                </table>
+            </div>
+
+##            Error Queue
+            <div class="tabs-pane #if ($action.page == 'errorqueue')active-pane#end" id="view-errorqueue">
+                <p><a id="resend-error-queue-link" href="resenderrorqueue.action?page=errorqueue&#url_xsrfToken">$action.getText("resend.error.queue")</a> &ndash; $action.getText("resend.error.queue.desc")
+                <br/>
+                <a href="deleteerrorqueue.action?page=errorqueue&#url_xsrfToken">$action.getText("delete.error.queue")</a> &ndash; $action.getText("delete.error.queue.desc")</p>
+
+                <table class="aui">
+                    <tr><th width="60%">$action.getText("email.subject")</th><th>$action.getText("error.message")</th><th nowrap>$action.getText("date.queued")</th></tr>
+                    #set ($errorQueue = $action.getMailQueue().getErrorQueue())
+                    #if ($errorQueue.size() > 0)
+                        #foreach ($queueItem in $errorQueue.getTasks())
+                            <tr #if ($velocityCount%2==0) bgcolor=#f9f9f9 #end>
+                                <td>$generalUtil.htmlEncode($queueItem.getSubject())</td>
+                                <td>$!queueItem.getLastError()</td>
+                                <td>$dateFormatter.formatDateTime($queueItem.getDateQueued())</td>
+                            </tr>
+                        #end
+                    #else
+                    <tr><td colspan="3">$action.getText("noerrorqueueitems")</td></tr>
+                #end
+                </table>
+
+            </div>
+        </div>
+
+        #parse ("/breadcrumbs.vm")
+	</body>
+</html>

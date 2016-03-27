@@ -1,0 +1,37 @@
+#macro(customHtmlInput $id $labelText)
+    <textarea rows="4" id="${id}" name="${id}" class="textarea max-textarea">${labelText}</textarea>
+#end
+
+<html>
+<head>
+    <title>$action.getText("custom.html")</title>
+    <meta name="help-path" content="/admin/lookandfeel/help/customhtml.vm"/>
+</head>
+
+<body>
+<content tag="selectedWebItem">customhtml</content>
+#parse ("/template/includes/actionerrors.vm")
+<form action="$req.contextPath/admin/doeditcustomhtml.action" method="post" class="aui top-label">
+    #form_xsrfToken()
+    <h2>$action.getText("customhtml.title")</h2>
+    <div class="field-group">
+        <label for="beforeHeadEnd" >$action.getText("customhtml.head.end")</label>
+        #customHtmlInput("beforeHeadEnd", $generalUtil.htmlEncode($!beforeHeadEnd))
+    </div>
+    <div class="field-group">
+        <label for="afterBodyStart">$action.getText("customhtml.body.start")</label>
+         #customHtmlInput("afterBodyStart", $generalUtil.htmlEncode($!afterBodyStart))
+    </div>
+    <div class="field-group">
+        <label for="beforeBodyEnd">$action.getText("customhtml.body.end")</label>
+        #customHtmlInput("beforeBodyEnd", $generalUtil.htmlEncode($!beforeBodyEnd))
+    </div>
+    #bodytag ("Submit" "theme='aui'")
+        #param("editMode" "true")
+        #param("submitName" "update")
+        #param("submitValue" "$i18n.getText('update.name')")
+    #end
+</form>
+#parse ( "/breadcrumbs.vm" )
+</body>
+</html>

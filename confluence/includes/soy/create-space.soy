@@ -1,0 +1,106 @@
+{namespace Confluence.Templates.CreateSpace}
+
+/**
+ * Dialog form for the Add Space button.
+ *
+ * @param atlToken the XSRF token to send with the form
+ * @param? buttons whether or not to display the form buttons
+ * @param? fieldErrors the map of errors to display keyed by field name
+ * @param? name initial value for the name field
+ * @param? key initial value for the key field
+ * @param? spacePermission initial space permission (defaults to edit)
+ */
+{template .createSpaceForm}
+    <p>{getText('space.create.form.description')}</p>
+    <form action="{contextPath()}/spaces/createspace.action" method="post" class="aui" id="create-space-form">
+        <fieldset>
+            <div class="field-group">
+                <label for="name">{getText('space.create.form.name.label')}</label>
+                <input class="text" name="name" autocomplete="off" {if $name}value="{$name}"{/if}/>
+                {if $fieldErrors and $fieldErrors['name']}
+                    {foreach $error in $fieldErrors['name']}
+                        <div class="error">{$error}</div>
+                    {/foreach}
+                {else}
+                    <div class="error" class="hidden"></div>
+                {/if}
+            </div>
+            <div class="field-group">
+                <label for="key">{getText('space.create.form.key.label')}</label>
+                <input class="text" name="key" {if $key}value="{$key}"{/if}/>
+                <div class="description">{getText('space.create.form.key.description', '<br /><span id="space-url-example"></span>')|noAutoescape}</div>
+                {if $fieldErrors and $fieldErrors['key']}
+                    {foreach $error in $fieldErrors['key']}
+                        <div class="error">{$error}</div>
+                    {/foreach}
+                {else}
+                    <div class="error" class="hidden"></div>
+                {/if}
+            </div>
+        </fieldset>
+        {call .spaceFormPermissions}
+            {param spacePermission: $spacePermission /}
+        {/call}
+        <input type="hidden" name="atl_token" value="{$atlToken}" />
+
+        {if $buttons}
+            {call .spaceFormButtons /}
+        {/if}
+    </form>
+{/template}
+
+/**
+ * Dialog form for the Add Personal Space link.
+ *
+ * @param atlToken the XSRF token to send with the form
+ * @param? buttons whether or not to display the form buttons
+ * @param? spacePermission initial space permission (defaults to edit)
+ */
+{template .createPersonalSpaceForm}
+    <form action="{contextPath()}/spaces/docreatepersonalspace.action" method="post" class="aui" id="create-personal-space-form">
+        <p>{getText('personal.space.desc')|noAutoescape}</p>
+        {call .spaceFormPermissions}
+            {param spacePermission: $spacePermission /}
+        {/call}
+
+        <input type="hidden" name="atl_token" value="{$atlToken}" />
+
+        {if $buttons}
+            {call .spaceFormButtons /}
+        {/if}
+    </form>
+{/template}
+
+/**
+ * Common space permission options to show when creating a space.
+ * @param spacePermission '' or 'private'.
+ */
+{template .spaceFormPermissions private="true"}
+    <fieldset class="group{if $spacePermission == 'private'} locked{/if}" id="permissions-group">
+        <div class="checkbox">
+            <input class="checkbox" type="checkbox" id="permission-private" name="spacePermission" value="private"{if $spacePermission == 'private'} checked="checked"{/if} />
+            <label for="permission-private">{getText('space.create.form.permissions.label')}</label>
+        </div>
+    </fieldset>
+{/template}
+
+/**
+ * Buttons for the personal and regular space forms
+ */
+{template .spaceFormButtons private="true"}
+    <div class="buttons-container">
+        <div class="buttons">
+            <input name="create" class="aui-button aui-button-primary" type="submit" value="{getText('space.create.form.submit.button')}" />
+            <a href="{contextPath()}/dashboard.action" class="aui-button aui-button-link">{getText('cancel.name')}</a>
+        </div>
+    </div>
+{/template}
+
+/**
+ * A template for a dialog help link
+ */
+{template .helpLink}
+    {call Confluence.Templates.Dialog.helpLink}
+        {param href: docLink('help.add.space') /}
+    {/call}
+{/template}

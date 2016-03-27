@@ -1,0 +1,2 @@
+/* module-key = 'com.atlassian.confluence.plugins.status-macro:view_content_status', location = 'css/status-view.css' */
+.status-macro{min-width:76px;padding:2px 5px 1px 5px}

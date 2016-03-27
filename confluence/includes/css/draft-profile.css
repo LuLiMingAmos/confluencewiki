@@ -1,0 +1,82 @@
+/* View My Drafts page */
+
+#draft-space-list {
+    margin-top: 1em;
+}
+
+#draft-space-list li {
+    width: 100%;
+    overflow: hidden;
+}
+
+#draft-space-list .space-logo {
+    display: table-cell;
+    width: 48px;
+    padding-right: 1em;
+}
+
+#draft-space-list .space-logo img {
+    width: 48px;
+}
+
+#draft-space-list .draft-space-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 .6em 0;
+    white-space: nowrap;
+}
+
+#draft-space-list > li {
+    display: table;
+    padding-bottom: 30px;
+}
+
+#draft-space-list {
+    list-style: none;
+    padding: 0;
+}
+
+#draft-space-list .drafts-container {
+    display: table-cell;
+    vertical-align: top;
+}
+
+#draft-space-list table {
+    clear: none;
+    margin-top: 0;
+}
+
+#draft-space-list table thead {
+    display: none;
+}
+
+.draft-list {
+    padding: 5px 55px;
+}
+
+.draft-summary {
+    padding-left: 20px;
+    color: #666;
+}
+
+.draft-summary em {
+    color: #999;
+}
+
+.draft-last-modified,
+.draft-actions {
+    white-space: nowrap;
+}
+
+.draft-title-description {
+    width: 80%;
+}
+
+
+#draft-space-list table td.draft-actions {
+    text-align: right;
+}
+
+#draft-space-list table td.draft-actions a {
+    display: block;
+}

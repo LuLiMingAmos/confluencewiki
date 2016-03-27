@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>$action.getText("title.setup.administrator")</title>
+</head>
+<body>
+    #parse ( "/template/includes/actionerrors.vm" )
+
+	<p>$action.getText("setupadmin.step.description")</p>
+        
+    <h2>$action.getText("admin.configure.title")</h2>
+
+    <form name="setupadministratorform" method="POST" action="setupadministrator.action" class="aui">
+        #bodytag( "TextField" "label='username.name'" "name='username'" "theme='aui'")
+            #param ("required" "$action.getText('required.field')")
+        #end
+        #bodytag( "TextField" "label='admin.fullname.name'" "name='fullName'" "theme='aui'")
+            #param ("required" "$action.getText('required.field')")
+        #end
+        #bodytag( "TextField" "label='email.name'" "name='email'" "theme='aui'")
+            #param ("required" "$action.getText('required.field')")
+            #param ("type" "email")
+        #end
+        #bodytag( "Password" "label='password.name'" "name='password'" "theme='aui'")
+            #param ("required" "$action.getText('required.field')")
+        #end
+        #bodytag( "Password" "label='confirm.name'" "name='confirm'" "theme='aui'")
+            #param ("required" "$action.getText('required.field')")
+        #end
+        #bodytag( "Submit" "theme='aui'")
+            #param ("editValue" "$action.getText('move.page.dialog.next')")
+        #end
+    </form>
+</body>
+</html>

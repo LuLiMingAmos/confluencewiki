@@ -1,0 +1,23 @@
+#set( $labelValue = $i18n.getText($parameters.label) )
+#if( !$labelValue )
+    #set( $labelValue = $parameters.label )
+#end
+
+#if (!$parameters.id)
+    #set( $parameters.id = $parameters.name)
+#end
+
+<div class="field-group
+    #if ($editMode == false)viewMode#end"
+    #if ($parameters.fieldGroupId)id='$parameters.fieldGroupId'#end
+    >
+    <label id="${parameters.id}-label" for="$parameters.id">
+    $!labelValue
+    #if($parameters.required)
+        <span class="aui-icon icon-required"></span>
+        <span class="content">$parameters.required</span>
+    #end
+    </label>
+
+    #parse("/template/aui/text-include.vm")
+</div>## .field-group

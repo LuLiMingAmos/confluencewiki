@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>$action.getText("title.setup.dbchoose")</title>
+</head>
+<body>
+    #parse ("/template/includes/actionerrors.vm" )
+
+    <p>$action.getText("setup.step.description.dbchoice")</p>
+
+    <h2>$action.getText('external.database')</h2>
+
+    <form method="POST" name="standardform" action="setupdbchoice.action" class="aui">
+        <p>$action.getText("external.description")</p>
+        <div class="aui-panel">
+            #tag("Select" "label='db.choice.choose'" "name='dbChoiceSelect'" "value=dbchoice" "list=databases" "listKey=key" "listValue=value" "theme='simple'" "cssClass='select'")
+            <input id="select-db" class="aui-button" type="submit" name="standard" value="$action.getText("external.submit")"/>
+
+            #set ($docLink = $action.getDocLink("help.mysql.database.setup"))
+            <div id="db-choice-warning" class="aui-message warning hidden">
+                <p>$action.getText("unbundled.mysql.driver.warning", ["$docLink"])</p>
+                <span class="aui-icon icon-warning"></span>
+            </div>
+
+            #if($fieldErrors.get('mySQLError'))
+                <div id="mysql-db-choice-error" class="aui-message warning">
+                    <p class="title">$action.getText("unbundled.mysql.driver.error.title")</p>
+                    <span class="aui-icon icon-warning"></span>
+                    <p>$action.getText("unbundled.mysql.driver.error", ["$docLink"])</p>
+                </div>
+            #end
+        </div>
+    </form>
+
+    #if ($action.isThisNodeClustered())
+    <p>$action.getText("clustered.so.no.embedded.description")</p>
+    #else
+
+    <h2>$action.getText('embedded.database')</h2>
+
+    <form method="POST" name="embeddedform" action="setupembeddeddb-default.action" class="aui">
+        #tag( "Hidden" "name='dbChoice'" "value='embedded'")
+        <p>$action.getText("embedded.description")</p>
+        <p class="warningPanel">$action.getText("embedded.warning")</p>
+        <div class="aui-panel">
+            <input class="aui-button" type="submit" name="embedded" value="$action.getText("embedded.submit")"/>
+        </div>
+    </form>
+    #end
+</body>
+</html>

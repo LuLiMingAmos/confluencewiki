@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>$action.getText("title.finish.setup")</title>
+</head>
+
+<body>
+    #parse ( "/template/includes/actionerrors.vm" )
+
+    #if ($actionErrors.size() == 0)
+    <p>
+        #if ($action.demonstrationContentInstalled)
+            <a href="$req.contextPath/display/ds/">$action.getText('start.using.now')</a>
+        #else
+            <a href="$req.contextPath/">$action.getText('start.using.now')</a>
+        #end
+        or continue with
+        <a href="$req.contextPath/admin/console.action">$action.getText('setup.invite.users')</a>.
+    </p>
+    #end
+</body>
+</html>

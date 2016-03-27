@@ -1,0 +1,89 @@
+<html>
+	<head>
+		<title>$action.getText("title.setup.jira.connection")</title>
+	</head>
+	<body>
+	    #parse ( "/template/includes/actionerrors.vm" )
+	    
+		<p>$action.getText("connecttojira.step.description")</p>
+		
+        <form name="connecttojira" method="POST" action="connecttojira.action" class="aui max-width">
+
+            <h2>$action.getText("jira.server.location.title")</h2>
+
+            #if ($action.applinkAndCrowdReady)
+                #bodytag( "TextField" "label='jira.base.url'" "name='jiraBaseUrl'" "theme='aui'" "readonly=true")
+                    #param("longField" "true")
+                    #param("description", "$action.getText('connecttojira.jira.base.url.description')")
+                #end
+            #else
+                #bodytag( "TextField" "label='jira.base.url'" "name='jiraBaseUrl'" "theme='aui'")
+                    #param("longField" "true")
+                    #param("description", "$action.getText('connecttojira.jira.base.url.description')")
+                    #param ("required" "$action.getText('required.field')")
+                #end
+            #end
+
+            <h2>$action.getText("jira.administrator.login.title")</h2>
+            
+            <p class="stepdesc">$action.getText("jira.administrator.login.description")</p>
+            
+            #if ($action.applinkAndCrowdReady)
+                #bodytag( "TextField" "label='admin.username.label'" "name='username'" "theme='aui'" "readonly=true")
+                    #param("description", "$action.getText('connecttojira.admin.username.description')")
+                #end
+            #else
+                #bodytag( "TextField" "label='admin.username.label'" "name='username'" "theme='aui'")
+                    #param("description", "$action.getText('connecttojira.admin.username.description')")
+                    #param ("required" "$action.getText('required.field')")
+                #end
+            #end
+
+            #if ($action.applinkAndCrowdReady)
+                #tag( "Password" "label='admin.password.label'" "name='password'" "theme='aui'" "readonly=true")
+            #else
+                #bodytag( "Password" "label='admin.password.label'" "name='password'" "theme='aui'")
+                    #param ("required" "$action.getText('required.field')")
+                #end
+            #end
+            
+            <h2>$action.getText("jira.advancedoptions.title")</h2>
+            
+            #if ($action.applinkAndCrowdReady)
+                #bodytag( "TextField" "label='confluence.base.url'" "name='confluenceBaseUrl'" "theme='aui'" "readonly=true")
+                    #param("longField" "true")
+                    #param("description", "$action.getText('connecttojira.confluence.base.url.description')")
+                #end
+            #else
+                #bodytag( "TextField" "label='confluence.base.url'" "name='confluenceBaseUrl'" "theme='aui'")
+                    #param("longField" "true")
+                    #param("description", "$action.getText('connecttojira.confluence.base.url.description')")
+                    #param ("required" "$action.getText('required.field')")
+                #end
+            #end
+
+            #bodytag( "TextField" "label='jira.user.groups'" "name='jiraUserGroups'" "theme='aui'")
+                #param("description", "$action.getText('connecttojira.jira.user.groups.description')")
+                #param ("required" "$action.getText('required.field')")
+            #end
+
+            #bodytag( "TextField" "label='jira.admin.groups'" "name='jiraAdminGroups'" "theme='aui'")
+                #param("description", "$action.getText('connecttojira.jira.admin.groups.description')")
+                #param ("required" "$action.getText('required.field')")
+            #end
+
+            <input type="hidden" name="applinkAndCrowdReady" value="$action.applinkAndCrowdReady">
+            <input type="hidden" name="crowdApplicationName" value="$action.crowdApplicationName">
+            <input type="hidden" name="crowdApplicationPassword" value="$action.crowdApplicationPassword">
+            
+			<div class="buttons-container">
+	            <div class="buttons">
+	                <input class="aui-button" type="submit" value="$action.getText('move.page.dialog.next')">
+	                #if (!$action.applinkAndCrowdReady)
+                        <a href="setupusermanagementchoice-start.action" class="cancel">$action.getText("return.to.usermanagement.selection")</a>
+                    #end
+	            </div>
+	        </div>
+        </form>
+	</body>
+</html>

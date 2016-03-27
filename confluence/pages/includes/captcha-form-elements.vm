@@ -1,0 +1,12 @@
+<!-- captcha form elements -->
+#if($captchaManager.showCaptchaForCurrentUser())
+<div class="captcha field-group">
+    <label id="captcha-reponse-label" for="captcha-response">
+        <span class="assistive">$i18n.getText("login.elevatedsecuritycheck.assistive")</span>
+    </label>
+    #set($captchaId = $captchaManager.generateCaptchaId())
+    #captchaImage($captchaId)
+    <input type="text" id="captcha-response" name="captchaResponse" value="" class="text" placeholder="$i18n.getText('captcha.challenge')">
+    #fielderrorAUI('captcha')
+</div>
+#end

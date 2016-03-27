@@ -1,0 +1,124 @@
+/* module-key = 'com.atlassian.confluence.plugins.confluence-page-layout:editor-pagelayout-content-styles', location = 'css/pagelayout/page-layout-editor-content.css' */
+.wiki-content .columnLayout {
+    border-spacing: 8px;
+}
+
+.wiki-content .header, .wiki-content .footer,
+.wiki-content .cell {
+    border: 2px dashed #ccc;
+    margin: 8px;
+    padding: 4px 8px;
+}
+
+.wiki-content .header,
+.wiki-content .header .innerCell {
+    margin-bottom: 0;
+}
+
+.wiki-content .footer,
+.wiki-content .footer .innerCell {
+    margin-top: 0;
+}
+
+.wiki-content .innerCell {
+    outline: 0px;
+    overflow: auto;
+    overflow-y: hidden;
+    height: 100%;
+}
+
+/*CONFDEV-7477 Horizontal scrollbars appear unnecessarily when inserting body macros into page layout middle cells in IE8*/
+.wiki-content .wysiwyg-macro {
+    *width: 99.46%;
+}
+
+.wiki-content .sidebars .wysiwyg-macro {
+    *width: 98.88%;
+}
+/*End CONFDEV-7477*/
+
+/* Page Layouts 2 Context menu */
+.columnLayout {
+    *margin-right: 10px;
+}
+
+.section-decorator {
+    display: table-cell;
+    width: 14px;
+    overflow: visible;
+    /* IE8 compatibility: */
+    *display: block;
+    *overflow: hidden;
+    *position: absolute;
+    *right: 0;
+}
+
+.section-decorator button {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    padding: 7px 0 7px 0;
+    text-align: center;
+    width: 14px;
+    height: 20px;
+    color: #aaa;
+    /* IE8 */
+    *padding: 0;
+}
+
+.show-property-panel .icon {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #333;
+    /* IE8 */
+    *display: inline-block;
+}
+
+.section-decorator .move-section {
+    cursor: move;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+/* Page Layouts 2 Cell Styling */
+body.mceContentBody.pl2-contextual {
+    margin: 0;
+    padding: 0;
+    /* IE8 */
+    *margin-right: 15px;
+}
+
+.wiki-content .contentLayout2 .columnLayout {
+    border-spacing: 4px 2px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.wiki-content .contentLayout2 .cell {
+    border: 1px dashed #999;
+    border-radius: 5px;
+    /* IE8 */
+    *border: 0;
+    padding: 0px;
+}
+
+
+.wiki-content .contentLayout2 .innerCell {
+    padding: 5px;
+    min-height:20px; /* Prevents inner cell to be uneditable when there is not content */
+
+    /* Override PL2 for IE8 */
+    *border: 1px dashed #999;
+}
+
+.wiki-content .contentLayout2 .columnLayout > :first-child {
+    /* IE8 */
+    *padding-left: 0;
+}
+
+.wiki-content .contentLayout2 > :first-child {
+    margin-top: 5px;
+}
+

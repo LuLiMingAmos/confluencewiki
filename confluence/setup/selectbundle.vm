@@ -1,0 +1,52 @@
+<html>
+<head>
+    <title>$action.getText("setup.selectbundle.title")</title>
+    $webResourceManager.requireResourcesForContext("setup.select-bundle")
+</head>
+
+<body>
+    #parse ("/template/includes/actionerrors.vm")
+
+    ## We don't have soy templates in the early stages of the setup
+    ## So let's use good old underscore templates.
+    <script type="text/template" id="bundle-selector-template">
+        <ol>
+            <% _.each(bundles, function (bundle, index) { %>
+            <li class="bundle" data-cid="<%= bundle.cid %>">
+                <span class="aui-icon aui-icon-small aui-iconfont-success bundle-icon">X</span>
+                <div class="bundle-information">
+                    <div class="bundle-name"><%= bundle.name %></div>
+                    <div><%= bundle.description %></div>
+                </div>
+            </li>
+            <% }); %>
+        </ol>
+    </script>
+
+    <script type="text/template" id="loading-error-template">
+        <div class='error'>$action.getText('setup.selectbundle.loading-error')</div>
+    </script>
+
+
+    <form method="POST" action="doselectbundle.action" class="aui">
+        <p>$action.getText("setup.selectbundle.bundle.description")</p>
+
+        <div id="bundle-selector" class="bundle-selector">
+            <div class="loading-outer">
+                <div class="loading">
+                    <div class="aui-icon-wait loading-inner">$action.getText('setup.selectbundle.loading')</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons-container">
+            <div class="buttons">
+                <input id="setup-package-button" class="aui-button" type="submit" value="$action.getText('setup.selectbundle.setup-package')"/>
+            </div>
+        </div>
+
+        <input type="hidden" name="product">
+        <input type="hidden" name="pluginKeys">
+    </form>
+</body>
+</html>
